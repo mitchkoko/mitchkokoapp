@@ -73,6 +73,11 @@
         }
         [data-theme="dark"] .theme-toggle-circle{ transform:translateX(26px); }
 
+        .footer-credit{
+            position:fixed; top:20px; left:20px; color:var(--text-muted); font-size:.8rem;
+            font-weight:500; z-index:1000; opacity:0.8;
+        }
+
         .container{ width:100%; max-width:900px; animation:fadeInUp .8s cubic-bezier(.4,0,.2,1);
             display:flex; flex-direction:column; align-items:center; justify-content:center; text-align:center; padding:20px; }
         @keyframes fadeInUp{ from{opacity:0; transform:translateY(30px);} to{opacity:1; transform:translateY(0);} }
@@ -81,6 +86,11 @@
         .logo{
             width:88px; height:88px; object-fit:contain; margin:0 auto 16px; display:block;
             border-radius:12px; box-shadow:var(--shadow-sm);
+            animation:float 3s ease-in-out infinite;
+        }
+        @keyframes float{
+            0%, 100%{ transform:translateY(0px) rotate(0deg); }
+            50%{ transform:translateY(-8px) rotate(1deg); }
         }
         h1{ font-size:2.5rem; font-weight:700; margin-bottom:10px; letter-spacing:-.025em; color:var(--text-primary); }
         .tagline{ color:var(--text-secondary); font-size:1.1rem; margin-bottom:20px; font-weight:500; }
@@ -93,7 +103,20 @@
         }
         .badge:hover{ transform:translateY(-3px); box-shadow:var(--shadow-md); border-color:var(--border-hover); background:var(--surface-hover); }
 
-        .nav-container{ display:flex; gap:18px; justify-content:center; flex-wrap:wrap; position:relative; }
+        .divider{
+            width:280px; height:2px; background:linear-gradient(90deg, transparent, var(--border), var(--border), transparent);
+            margin:0 auto; opacity:0.7; position:relative;
+        }
+
+        .about-section{
+            margin:35px 0; display:flex; flex-direction:column; align-items:center; gap:20px;
+        }
+        .about-text{
+            color:var(--text-secondary); font-size:.95rem; font-weight:600; text-align:center;
+            max-width:400px; line-height:1.5;
+        }
+
+        .nav-container{ display:flex; gap:18px; justify-content:center; flex-wrap:wrap; position:relative; margin-top:35px; }
         .nav-item{ position:relative; }
 
         .nav-button{
@@ -143,21 +166,29 @@
         @media (max-width:768px){
             h1{ font-size:2rem; }
             .tagline{ font-size:1rem; }
-            .nav-container{ gap:14px; }
+            .nav-container{ gap:14px; margin-top:30px; }
             .nav-button{ padding:12px 18px; font-size:.9rem; min-width:120px; }
             .dropdown{ left:0; transform:translateX(0); width:calc(100vw - 40px); max-width:300px; }
             .nav-item:hover .dropdown{ transform:translateX(0) translateY(0); }
             header{ margin-bottom:30px; }
             .theme-toggle{ top:16px; right:16px; }
+            .footer-credit{ top:16px; left:16px; font-size:.75rem; }
+            .about-section{ margin:30px 0; gap:18px; }
+            .about-text{ font-size:.9rem; }
+            .divider{ width:220px; }
         }
         @media (max-width:480px){
             .container{ padding:16px; }
             h1{ font-size:1.8rem; }
-            .nav-container{ flex-direction:column; align-items:center; gap:12px; }
+            .nav-container{ flex-direction:column; align-items:center; gap:12px; margin-top:25px; }
             .nav-button{ min-width:220px; justify-content:center; }
             .tech-badges{ gap:8px; }
             .badge{ padding:5px 12px; font-size:.85rem; }
             .dropdown{ width:calc(100vw - 32px); max-width:280px; }
+            .footer-credit{ top:14px; left:14px; font-size:.7rem; }
+            .about-section{ margin:25px 0; gap:15px; }
+            .about-text{ font-size:.85rem; padding:0 10px; }
+            .divider{ width:160px; }
         }
 
         .nav-item:hover ~ .nav-item .dropdown, .nav-item .dropdown{ max-height:60vh; overflow-y:auto; }
@@ -178,6 +209,8 @@
     </style>
 </head>
 <body data-theme="light">
+    <div class="footer-credit">Created with ❤️ by Mitch Koko</div>
+    
     <div class="theme-toggle" onclick="toggleTheme()" role="button" tabindex="0" aria-label="Toggle dark mode">
         <div class="theme-toggle-circle"></div>
     </div>
@@ -194,6 +227,12 @@
                 <span class="badge">Android</span>
             </div>
         </header>
+
+        <div class="about-section">
+            <div class="divider"></div>
+            <p class="about-text">My expertise is in mobile app development. My craft is building, launching & monetising apps and teaching others how to do the same.</p>
+            <div class="divider"></div>
+        </div>
 
         <nav class="nav-container">
             <!-- YouTube -->
