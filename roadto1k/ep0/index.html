@@ -257,6 +257,46 @@
             color:var(--text-muted);
         }
 
+        /* signoff section */
+        .signoff{
+            margin-top:26px;
+            padding-top:18px;
+            border-top:1px dashed var(--border);
+        }
+        .signoff p{
+            margin-bottom:10px;
+            font-size:.9rem;
+        }
+        .signoff-hello{
+            font-style:italic;
+        }
+        .signoff-links{
+            display:flex;
+            flex-wrap:wrap;
+            gap:10px;
+            margin-top:6px;
+        }
+        .signoff-link{
+            display:inline-flex;
+            align-items:center;
+            justify-content:center;
+            padding:8px 14px;
+            border-radius:999px;
+            border:1px solid var(--border);
+            background:var(--surface-hover);
+            color:var(--text-primary);
+            font-size:.9rem;
+            font-weight:500;
+            text-decoration:none;
+            transition:var(--transition);
+        }
+        .signoff-link:hover{
+            transform:translateY(-2px);
+            box-shadow:var(--shadow-md);
+            border-color:var(--text-primary);
+            background:var(--surface);
+        }
+
         @media (max-width:640px){
             body{ padding:18px 10px 26px; }
             header{
@@ -267,6 +307,10 @@
             h1{ font-size:1.6rem; }
             .episode-body{ padding:18px 16px 20px; }
             .download-box{
+                flex-direction:column;
+                align-items:flex-start;
+            }
+            .signoff-links{
                 flex-direction:column;
                 align-items:flex-start;
             }
@@ -286,7 +330,7 @@
         <header>
             <img src="../../images/logo.png" alt="Mitch Koko logo" class="logo" />
             <div class="header-text">
-                <a href="/" class="home-link">← Back to mitchkoko.app</a>
+                <a href="../index.html" class="home-link">← Back to episodes</a>
                 <h1>Road to $1k/Month App • The Reality Check</h1>
                 <div class="episode-meta">
                     <span class="pill">💰 Goal: $1,000/month</span>
@@ -306,25 +350,26 @@
                 This series is me documenting the journey of taking a simple app from $0 to (hopefully) $1k/month.
             </p>
 
-            <!-- CONTEXT -->
-            <h2>CONTEXT</h2>
+            <figure class="episode-image">
+                <img src="../../images/ritualz_thumbnail.png" alt="Ritualz thumbnail" loading="lazy">
+                <figcaption>Ritualz Habit Tracker.</figcaption>
+            </figure>
+
             <p>
                 I am <em>just now</em> getting my first few paying subscribers so this is a good time to document this
-                journey of building and monetising a real app.
-            </p>
-            <p>
-                Each episode I’ll share my progress and how much $ it currently makes, the problems I’m facing and the
+                journey of building and monetising a real app. Each episode I’ll share my progress and how much $ it currently makes, the problems I’m facing and the
                 solutions I’ll use to solve them.. so hopefully in every episode you can see the app improve.
             </p>
+
             <p>
                 The app itself is a minimal habit tracker, called ritualz, you can go download it right now and it’ll be
                 fun because you can see the app grow in real time.
             </p>
 
             <div class="download-box">
-                <p><strong>Try ritualz</strong> — the minimal habit tracker this whole series is based on.</p>
+                <p><strong>📱 Try Ritualz</strong> - Minimal Habit Tracker</p>
                 <a href="https://ritualz.app" target="_blank" rel="noopener noreferrer" class="download-btn">
-                    Download ritualz
+                    Download Ritualz
                 </a>
             </div>
 
@@ -333,7 +378,7 @@
             <p>
                 Personally, one of my biggest problems in life was consistency, and a book I really love is
                 <em>Atomic Habits</em> by James Clear. One of the insights that I love is if you want to improve
-                something, simply tracking it goes a long way.
+                something, simply track it.
             </p>
             <p>So I started with a Google Sheet with the good habits I wanted to have in my life:</p>
             <ul>
@@ -342,6 +387,7 @@
                 <li>one for physical health (gym)</li>
                 <li>one for mental health (meditation)</li>
             </ul>
+
             <p>
                 I tracked it on Google Sheets for years and then decided I should code up an app for this.
                 Something nice and minimal.
@@ -352,9 +398,7 @@
             <p>
                 I chose to use Flutter to build my app as it was important to me as a solo developer to have both iOS
                 and Android. Coding with Flutter has been really fun and I built the habit tracker from scratch by hand
-                (before AI coding and ChatGPT was a thing).
-            </p>
-            <p>
+                (before AI coding and ChatGPT was a thing). The app had one basic functionality to track your habits and visualised in a nice heatmap.
                 For a while I was just using the app myself. Then one day I decided to take the leap and publish it to
                 the Google Play Store.
             </p>
@@ -363,24 +407,20 @@
             <h2>LAUNCH</h2>
             <p>
                 I submitted the most basic version of the app to the Google Play Store first. My app at this time had no
-                authentication, no online database, no monetization. It was a simple habit tracker app that saved your
-                data locally in your device.
-            </p>
-            <p>
-                Honestly at this point even having my app on the real app store was a big milestone for me. To realise
-                that it’s actually possible, you can make something and people can download it on their device.. something
+                authentication, no online database, no monetization. Just a simple habit tracker with a nice heat map. Honestly at this point even having my app on the app store was a big milestone for me. To realise
+                that it’s actually possible.. you can make something and people can download it on their device.. something
                 about it is so cool and inspiring.
             </p>
+           
             <p>
-                The next big goal was to make the app more “real” and launch both iOS and Android. By “real” I mean
-                adding authentication and an online database so that users can log in and have their data saved.
-            </p>
-            <p>
-                I also bought the domain name
-                <a href="https://ritualz.app" target="_blank" rel="noopener noreferrer">ritualz.app</a>
-                and created a simple landing page with 2 links: App Store and Play Store. I shared the ritualz.app link
+                The next goal was to launch on both iOS and Android. I continued building out my app by adding authentication and an online database (using Firebase). I also bought the domain name ritualz.app and created a simple landing page. I shared the ritualz.app link
                 around social media and YouTube and over time people downloaded the app.
             </p>
+
+            <figure class="episode-image">
+                <img src="../../images/ritualz_landing_page.png" alt="Ritualz Landing Page" loading="lazy">
+                <figcaption>Minimal Landing Page for Ritualz</figcaption>
+            </figure>
 
             <!-- MONETIZATION -->
             <h2>MONETIZATION</h2>
@@ -397,7 +437,7 @@
 
             <!-- CURRENT PROGRESS -->
             <h2>CURRENT PROGRESS</h2>
-            <p><strong>$8 / month, few paying subscribers only.</strong></p>
+            <p><strong>$8/month, few paying subscribers only..</strong></p>
 
             <figure class="episode-image">
                 <img src="../../images/revenuecat_dashboard.png" alt="RevenueCat dashboard screenshot" loading="lazy">
@@ -405,30 +445,26 @@
             </figure>
 
             <!-- PROBLEM & SOLUTION -->
-            <h2>PROBLEM &amp; SOLUTION</h2>
+            <h2>PROBLEMS &amp; SOLUTIONS</h2>
 
-            <h3 style="font-size:1rem; margin-top:10px; margin-bottom:6px;">💔 Bad Retention</h3>
+            <h3 style="font-size:1rem; margin-top:10px; margin-bottom:6px;">💔 Fix User Retention</h3>
             <p>
                 The problem that has to be fixed urgently is that my retention sucks. My RevenueCat dashboard shows that
                 the app got around 500 new customers in the last month but I only have 5 subscriptions ~ 1% conversion
                 rate (it’s actually worse than that because the 5 subscriptions are from the lifetime of the app not
-                just the last month).
+                just the last month). So marketing is not my biggest problem right now because I need to fix the user retention. 
             </p>
             <p>
-                Marketing is not my biggest problem right now because I need to fix the user retention. The first thing
-                I did was to remove as much friction as possible between the user downloading the app and the user
-                getting value from the app.
-            </p>
-            <p>
-                For example, the app required you to create an account right away. That alone was something I could
-                remove and at least allow the user to experience the app first. Make it as easy as possible to start
+                The first thing I did was to remove as much friction as possible between the user downloading the app and the user
+                getting value from the app. For example, the app required you to create an account right away. That alone was something I could
+                remove and at least allow the user to experience the app first and make it as easy as possible to start
                 using the app.
             </p>
 
-            <h3 style="font-size:1rem; margin-top:14px; margin-bottom:6px;">⚙️ No Analytics</h3>
+            <h3 style="font-size:1rem; margin-top:14px; margin-bottom:6px;">⚙️ Need Analytics to Understand User Behaviour</h3>
             <p>
                 The other big problem is I have no idea <em>how</em> they are even using the app, if they are using the
-                app at all. Maybe they are just using the app once and then never using it again? I need some kind of
+                app <em>at all</em>. Maybe they are just using the app once and then never using it again? I need some kind of
                 analytics to understand user behaviour.
             </p>
             <p>
@@ -449,13 +485,9 @@
 
             <h3 style="font-size:1rem; margin-top:14px; margin-bottom:6px;">💰 New Monetization Model</h3>
             <p>
-                I implemented ads into the free version of the app using Google AdMob. I typically never wanted to
+                This was originally a subscription-based app but I recently implemented ads into the free version of the app using Google AdMob. I typically never wanted to
                 include ads in my apps because I felt like it lowers the user experience. However compared to a
                 subscription maybe users are more okay with ads if it means they can use the app for free.
-            </p>
-            <p>
-                I just made the new update and I made my first few cents on Google AdMob so I know it’s working now.
-                I’ll see how the ads go as a source of revenue and report back here.
             </p>
 
             <figure class="episode-image">
@@ -463,9 +495,36 @@
                 <figcaption>First few cents earned from Google AdMob.</figcaption>
             </figure>
 
-            <p class="footnote">
-                This is Episode 0. Download the app Ritualz.
+            <p>
+                I just made the new update and made my first few cents on Google AdMob so I know it’s working now.
+                I’ll see how the ads go as a source of revenue. I'm also tinkering with the subcription prices. I'll see how the different monetization models go and report back here.
             </p>
+
+            <!-- SIGNOFF -->
+            <section class="signoff">
+                <p class="signoff-hello">Thanks for reading — Download Ritualz and follow along as I try to turn this into a real $1k/month app..</p>
+                <p>
+                    If you want to follow along more closely or learn how I build this stuff:
+                </p>
+                <div class="signoff-links">
+                    <a
+                        href="https://ritualz.app"
+                        target="_blank"
+                        rel="noopener noreferrer"
+                        class="signoff-link"
+                    >
+                        📱 Download Ritualz
+                    </a>
+                    <a
+                        href="https://youtube.com/mitchkoko"
+                        target="_blank"
+                        rel="noopener noreferrer"
+                        class="signoff-link"
+                    >
+                        📺 YouTube Tutorials
+                    </a>
+                </div>
+            </section>
         </main>
     </div>
 
