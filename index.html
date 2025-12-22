@@ -5,7 +5,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
     <title>Mitch Koko - App Developer & Creator</title>
     <style>
-        * { margin:0; padding:0; box-sizing:border-box; }
+        * { margin:0; padding:0; box-sizing:border-box; -webkit-tap-highlight-color: transparent; }
 
         :root{
             --bg:#f5f5f5;
@@ -21,8 +21,8 @@
             --shadow-md:0 4px 12px rgba(0,0,0,.08),0 2px 4px rgba(0,0,0,.04);
             --shadow-lg:0 8px 24px rgba(0,0,0,.12),0 4px 8px rgba(0,0,0,.06);
             --shadow-xl:0 12px 32px rgba(0,0,0,.15),0 6px 12px rgba(0,0,0,.08);
-            --accent-red:#ff0000;
-            --accent-red-dark:#dc2626;
+            /* Premium YouTube Gradient */
+            --accent-red: linear-gradient(135deg, #ff4b4b 0%, #dc0000 100%);
             --transition:all .3s cubic-bezier(.4,0,.2,1);
             --transition-bounce:all .4s cubic-bezier(.175,.885,.32,1.275);
             --border-radius:12px;
@@ -43,11 +43,10 @@
             --shadow-md:0 4px 12px rgba(0,0,0,.3),0 2px 4px rgba(0,0,0,.15);
             --shadow-lg:0 8px 24px rgba(0,0,0,.4),0 4px 8px rgba(0,0,0,.2);
             --shadow-xl:0 12px 32px rgba(0,0,0,.5),0 6px 12px rgba(0,0,0,.25);
-            --accent-red:#ff4444;
-            --accent-red-dark:#ff6666;
         }
 
-        html,body{height:100vh; overflow:hidden;}
+        /* Fixed: Body now allows scrolling to prevent dropdowns getting cut off */
+        html,body{ min-height:100vh; }
         body{
             font-family:-apple-system,BlinkMacSystemFont,'Segoe UI',Roboto,'Helvetica Neue',Arial,sans-serif;
             background:var(--bg);
@@ -55,8 +54,9 @@
             line-height:1.6;
             transition:var(--transition);
             display:flex; align-items:center; justify-content:center; text-align:center;
-            height:100vh; font-synthesis:none; text-rendering:optimizeLegibility;
+            font-synthesis:none; text-rendering:optimizeLegibility;
             -webkit-font-smoothing:antialiased; -moz-osx-font-smoothing:grayscale;
+            padding: 40px 20px;
         }
 
         .theme-toggle{
@@ -65,33 +65,25 @@
             cursor:pointer; display:flex; align-items:center; padding:2px;
             transition:var(--transition); z-index:1000; box-shadow:var(--shadow-sm);
         }
-        .theme-toggle:hover{ box-shadow:var(--shadow-lg); border-color:var(--border-hover); transform:translateY(-1px); }
         .theme-toggle-circle{
             width:22px; height:22px; background:var(--text-primary); border-radius:50%;
             transition:var(--transition-bounce); display:flex; align-items:center; justify-content:center; font-size:10px;
-            box-shadow:0 2px 4px rgba(0,0,0,.1);
         }
         [data-theme="dark"] .theme-toggle-circle{ transform:translateX(26px); }
-
-        .footer-credit{
-            position:fixed; top:20px; left:20px; color:var(--text-muted); font-size:.8rem;
-            font-weight:500; z-index:1000; opacity:0.8;
-        }
 
         .container{ width:100%; max-width:900px; animation:fadeInUp .8s cubic-bezier(.4,0,.2,1);
             display:flex; flex-direction:column; align-items:center; justify-content:center; text-align:center; padding:20px; }
         @keyframes fadeInUp{ from{opacity:0; transform:translateY(30px);} to{opacity:1; transform:translateY(0);} }
 
-        header{ margin-bottom:40px; text-align:center; }
+        /* Reduced bottom margin to tighten spacing */
+        header{ margin-bottom:20px; text-align:center; }
         .logo{
             width:88px; height:88px; object-fit:contain; margin:0 auto 16px; display:block;
             border-radius:12px; box-shadow:var(--shadow-sm);
             animation:float 3s ease-in-out infinite;
         }
-        @keyframes float{
-            0%, 100%{ transform:translateY(0px) rotate(0deg); }
-            50%{ transform:translateY(-8px) rotate(1deg); }
-        }
+        @keyframes float{ 0%, 100%{ transform:translateY(0px); } 50%{ transform:translateY(-8px); } }
+        
         h1{ font-size:2.5rem; font-weight:700; margin-bottom:10px; letter-spacing:-.025em; color:var(--text-primary); }
         .tagline{ color:var(--text-secondary); font-size:1.1rem; margin-bottom:20px; font-weight:500; }
 
@@ -99,24 +91,16 @@
         .badge{
             padding:6px 16px; background:var(--surface); border:1px solid var(--border);
             border-radius:var(--border-radius-lg); font-size:.9rem; color:var(--text-secondary); font-weight:500;
-            transition:var(--transition); box-shadow:var(--shadow-sm);
         }
-        .badge:hover{ transform:translateY(-3px); box-shadow:var(--shadow-md); border-color:var(--border-hover); background:var(--surface-hover); }
 
+        /* Fixed: Divider spacing reduced as requested */
         .divider{
             width:280px; height:2px; background:linear-gradient(90deg, transparent, var(--border), var(--border), transparent);
-            margin:0 auto; opacity:0.7; position:relative;
+            margin: 20px auto 40px; 
+            opacity:0.7; position:relative;
         }
 
-        .about-section{
-            margin:35px 0; display:flex; flex-direction:column; align-items:center; gap:20px;
-        }
-        .about-text{
-            color:var(--text-secondary); font-size:.95rem; font-weight:600; text-align:center;
-            max-width:400px; line-height:1.5;
-        }
-
-        .nav-container{ display:flex; gap:18px; justify-content:center; flex-wrap:wrap; position:relative; margin-top:35px; }
+        .nav-container{ display:flex; gap:18px; justify-content:center; flex-wrap:wrap; position:relative; }
         .nav-item{ position:relative; }
 
         .nav-button{
@@ -129,13 +113,12 @@
             transform:translateY(-4px); box-shadow:var(--shadow-xl); border-color:var(--text-primary);
             background:var(--text-primary); color:var(--bg);
         }
-        .nav-button span{ font-size:1.1rem; transition:var(--transition); }
-        .nav-button:hover span{ transform:scale(1.1); }
 
+        /* Premium YouTube Badge style */
         .youtube-badge{
             position:absolute; top:-10px; right:-10px; background:var(--accent-red); color:#fff;
-            padding:3px 7px; border-radius:10px; font-weight:700; font-size:.75rem; min-width:22px; text-align:center;
-            box-shadow:var(--shadow-md); z-index:2;
+            padding:3px 8px; border-radius:12px; font-weight:800; font-size:.7rem; min-width:22px; text-align:center;
+            box-shadow: 0 4px 10px rgba(220, 0, 0, 0.2); z-index:2; border: 2px solid var(--bg);
         }
 
         .dropdown{
@@ -152,8 +135,8 @@
             border-radius:var(--border-radius); color:var(--text-primary); text-decoration:none; transition:var(--transition);
             font-size:.9rem; text-align:left;
         }
-        .dropdown-item:hover{ background:var(--hover-bg); transform:translateY(-2px); box-shadow:var(--shadow-md); border-color:var(--border-hover); }
-        .dropdown-item strong{ display:block; font-weight:600; margin-bottom:3px; color:var(--text-primary); }
+        .dropdown-item:hover{ background:var(--hover-bg); transform:translateY(-2px); border-color:var(--border-hover); }
+        .dropdown-item strong{ display:block; font-weight:600; margin-bottom:3px; }
         .dropdown-item small{ color:var(--text-muted); font-size:.8rem; line-height:1.4; }
 
         .social-links{ display:flex; flex-direction:column; gap:8px; }
@@ -161,63 +144,43 @@
             padding:12px 16px; background:transparent; border:1px solid var(--border); border-radius:var(--border-radius);
             text-decoration:none; color:var(--text-primary); transition:var(--transition); font-size:.9rem; font-weight:500; text-align:center;
         }
-        .social-link:hover{ background:var(--hover-bg); transform:translateY(-2px); box-shadow:var(--shadow-md); border-color:var(--border-hover); }
+        .social-link:hover{ background:var(--hover-bg); transform:translateY(-2px); border-color:var(--border-hover); }
+
+        .email-display{
+            display:flex; align-items:center; gap:8px; padding:10px 14px;
+            background:var(--hover-bg); border:1px solid var(--border); border-radius:var(--border-radius);
+            font-family:ui-monospace,SFMono-Regular,Menlo,Monaco,Consolas,monospace;
+            font-size:.85rem; color:var(--text-primary);
+        }
+        .copy-btn{
+            padding:6px 12px; background:var(--surface); border:1px solid var(--border);
+            border-radius:8px; font-size:.75rem; font-weight:600; color:var(--text-secondary);
+            cursor:pointer; transition:var(--transition);
+        }
+
+        .toast{
+            position:fixed; bottom:24px; left:50%; transform:translateX(-50%) translateY(100px);
+            background:var(--text-primary); color:var(--bg); padding:12px 24px;
+            border-radius:var(--border-radius); font-size:.9rem; font-weight:500;
+            box-shadow:var(--shadow-xl); opacity:0; transition:var(--transition); z-index:2000;
+        }
+        .toast.show{ transform:translateX(-50%) translateY(0); opacity:1; }
 
         @media (max-width:768px){
-            h1{ font-size:2rem; }
-            .tagline{ font-size:1rem; }
-            .nav-container{ gap:14px; margin-top:30px; }
-            .nav-button{ padding:12px 18px; font-size:.9rem; min-width:120px; }
-            .dropdown{ left:0; transform:translateX(0); width:calc(100vw - 40px); max-width:300px; }
-            .nav-item:hover .dropdown{ transform:translateX(0) translateY(0); }
-            header{ margin-bottom:30px; }
-            .theme-toggle{ top:16px; right:16px; }
-            .footer-credit{ top:16px; left:16px; font-size:.75rem; }
-            .about-section{ margin:30px 0; gap:18px; }
-            .about-text{ font-size:.9rem; }
-            .divider{ width:220px; }
-        }
-        @media (max-width:480px){
-            .container{ padding:16px; }
-            h1{ font-size:1.8rem; }
-            .nav-container{ flex-direction:column; align-items:center; gap:12px; margin-top:25px; }
-            .nav-button{ min-width:220px; justify-content:center; }
-            .tech-badges{ gap:8px; }
-            .badge{ padding:5px 12px; font-size:.85rem; }
-            .dropdown{ width:calc(100vw - 32px); max-width:280px; }
-            .footer-credit{ top:14px; left:14px; font-size:.7rem; }
-            .about-section{ margin:25px 0; gap:15px; }
-            .about-text{ font-size:.85rem; padding:0 10px; }
-            .divider{ width:160px; }
-        }
-
-        .nav-item:hover ~ .nav-item .dropdown, .nav-item .dropdown{ max-height:60vh; overflow-y:auto; }
-        .dropdown::-webkit-scrollbar{ width:6px; }
-        .dropdown::-webkit-scrollbar-track{ background:transparent; }
-        .dropdown::-webkit-scrollbar-thumb{ background-color:var(--border); border-radius:3px; }
-
-        .nav-button:focus-visible, .dropdown-item:focus-visible, .social-link:focus-visible{ outline:2px solid var(--text-primary); outline-offset:2px; }
-        .theme-toggle:focus-visible{ outline:2px solid var(--text-primary); outline-offset:2px; }
-
-        @media (prefers-reduced-motion:reduce){
-            *{ animation-duration:.01ms !important; animation-iteration-count:1 !important; transition-duration:.01ms !important; }
-        }
-        @media (prefers-contrast:high){
-            :root{ --border:#000; --text-secondary:#000; }
-            [data-theme="dark"]{ --border:#fff; --text-secondary:#fff; }
+            .nav-item:hover .dropdown, .nav-item.mobile-active .dropdown{ transform:translateX(-50%) translateY(0); opacity:1; visibility:visible; }
+            .dropdown { position: fixed; bottom: 20px; top: auto; width: 90%; max-width: 320px; }
         }
     </style>
 </head>
 <body data-theme="light">
     
-    <div class="theme-toggle" onclick="toggleTheme()" role="button" tabindex="0" aria-label="Toggle dark mode">
+    <div class="theme-toggle" onclick="toggleTheme()" role="button" aria-label="Toggle dark mode">
         <div class="theme-toggle-circle"></div>
     </div>
 
     <div class="container">
         <header>
-            <!-- Logo above the name -->
-            <img src="images/logo.png" alt="Mitch Koko logo" class="logo" />
+            <img src="images/logo.png" alt="Mitch Koko" class="logo" />
             <h1>Mitch Koko</h1>
             <p class="tagline">App Developer & Creator</p>
             <div class="tech-badges">
@@ -230,179 +193,115 @@
         <div class="divider"></div>
 
         <nav class="nav-container">
-            <!-- YouTube -->
             <div class="nav-item">
-                <button class="nav-button" aria-haspopup="true" aria-expanded="false">
-                    <span>📺</span>
-                    YouTube
-                    <span class="youtube-badge">150K+</span>
+                <button class="nav-button">
+                    <span>📺</span> YouTube
+                    <span class="youtube-badge">170K+</span>
                 </button>
-                <div class="dropdown" role="menu">
-                    <a href="https://youtube.com/mitchkoko" target="_blank" rel="noopener noreferrer" class="dropdown-item" role="menuitem">
+                <div class="dropdown">
+                    <a href="https://youtube.com/mitchkoko" target="_blank" class="dropdown-item">
                         <strong>Visit Channel</strong>
                         <small>Watch tutorials & dev content</small>
                     </a>
-                    <a href="https://youtu.be/HQ_ytw58tC4" target="_blank" rel="noopener noreferrer" class="dropdown-item" role="menuitem">
-                        <strong>Flutter Beginner Course (1.2M+)</strong>
-                        <small>Start here • full fundamentals</small>
+                    <a href="https://youtu.be/HQ_ytw58tC4" target="_blank" class="dropdown-item">
+                        <strong>Flutter Beginner Course</strong>
+                        <small>Start here • 1.2M+ views</small>
                     </a>
                 </div>
             </div>
 
-            <!-- Apps + Road to $1k series -->
             <div class="nav-item">
-                <button class="nav-button" aria-haspopup="true" aria-expanded="false">
-                    <span>📱</span>
-                    Apps
-                </button>
-                <div class="dropdown" role="menu">
-                    <a href="https://ritualz.app" target="_blank" rel="noopener noreferrer" class="dropdown-item" role="menuitem">
+                <button class="nav-button"><span>📱</span> Apps</button>
+                <div class="dropdown">
+                    <a href="https://ritualz.app" target="_blank" class="dropdown-item">
                         <strong>Ritualz</strong>
                         <small>Habit Tracker</small>
                     </a>
-                    <a href="https://tuteee.app" target="_blank" rel="noopener noreferrer" class="dropdown-item" role="menuitem">
+                    <a href="https://expensif.app" target="_blank" class="dropdown-item">
+                        <strong>Expensif</strong>
+                        <small>Minimal Expense Tracker</small>
+                    </a>
+                    <a href="https://tuteee.app" target="_blank" class="dropdown-item">
                         <strong>Tuteee</strong>
                         <small>AI Personal Tutor</small>
-                    </a>
-                    <!-- NEW: Road to $1k series -->
-                    <a href="roadto1k/" class="dropdown-item" role="menuitem">
-                        <strong>Road to $1k/Month</strong>
-                        <small>Episode log for the Ritualz app</small>
                     </a>
                 </div>
             </div>
 
-
-            <!-- Course (single option) -->
             <div class="nav-item">
-                <button class="nav-button" aria-haspopup="true" aria-expanded="false">
-                    <span>🎓</span>
-                    Course
-                </button>
-                <div class="dropdown" role="menu">
-                    <a href="https://buildlaunchmonetize.app" target="_blank" rel="noopener noreferrer" class="dropdown-item" role="menuitem">
+                <button class="nav-button"><span>💰</span> Road to $1k</button>
+                <div class="dropdown">
+                    <a href="roadto1k/" class="dropdown-item">
+                        <strong>The Journey</strong>
+                        <small>Building Apps in public</small>
+                    </a>
+                </div>
+            </div>
+
+            <div class="nav-item">
+                <button class="nav-button"><span>📦</span> Products</button>
+                <div class="dropdown">
+                    <a href="https://buildlaunchmonetize.app" target="_blank" class="dropdown-item">
                         <strong>Build Launch Monetize</strong>
                         <small>Complete indie-dev playbook</small>
                     </a>
                 </div>
             </div>
 
-            <!-- Connect (link emoji + X, Instagram, Email) -->
             <div class="nav-item">
-                <button class="nav-button" aria-haspopup="true" aria-expanded="false">
-                    <span>🔗</span>
-                    Connect
-                </button>
-                <div class="dropdown" role="menu">
+                <button class="nav-button"><span>🔗</span> Connect</button>
+                <div class="dropdown">
                     <div class="social-links">
-                        <a href="https://x.com/createdbykoko" target="_blank" rel="noopener noreferrer" class="social-link" role="menuitem">X (Twitter)</a>
-                        <a href="https://instagram.com/createdbykoko" target="_blank" rel="noopener noreferrer" class="social-link" role="menuitem">Instagram</a>
-                        <a href="mailto:mitchell.h.koh@gmail.com" class="social-link" role="menuitem">Email</a>
+                        <a href="https://x.com/createdbykoko" target="_blank" class="social-link">X (Twitter)</a>
+                        <a href="https://instagram.com/createdbykoko" target="_blank" class="social-link">Instagram</a>
+                        <div class="email-display">
+                            <span>mitchell.h...</span>
+                            <button class="copy-btn" onclick="copyEmail(event)">Copy</button>
+                        </div>
                     </div>
                 </div>
             </div>
         </nav>
     </div>
 
+    <div class="toast" id="toast">Email copied!</div>
+
     <script>
         function toggleTheme(){
             const body=document.body;
-            const current=body.getAttribute('data-theme');
-            const next=current==='light'?'dark':'light';
+            const next=body.getAttribute('data-theme')==='light'?'dark':'light';
             body.setAttribute('data-theme',next);
-            try{ localStorage.setItem('theme',next); }catch(e){ console.warn('Could not save theme preference:',e); }
+            localStorage.setItem('theme',next);
         }
 
-        document.addEventListener('DOMContentLoaded',()=>{
-            let theme='light';
-            try{
-                const saved=localStorage.getItem('theme');
-                const systemDark=window.matchMedia('(prefers-color-scheme: dark)').matches;
-                theme=saved || (systemDark?'dark':'light');
-            }catch(e){ console.warn('Could not access theme preference:',e); }
-            document.body.setAttribute('data-theme',theme);
-        });
+        function copyEmail(e){
+            e.stopPropagation();
+            navigator.clipboard.writeText('mitchell.h.koh@gmail.com').then(()=>{
+                const toast=document.getElementById('toast');
+                toast.classList.add('show');
+                setTimeout(()=>toast.classList.remove('show'),2000);
+            });
+        }
 
-        const mediaQuery=window.matchMedia('(prefers-color-scheme: dark)');
-        mediaQuery.addEventListener('change',(e)=>{
-            try{
-                if(!localStorage.getItem('theme')){
-                    document.body.setAttribute('data-theme', e.matches?'dark':'light');
-                }
-            }catch(err){ console.warn('Could not update theme:',err); }
-        });
-
-        const navItems=document.querySelectorAll('.nav-item');
-        let activeItem=null;
-        let isMobile=false;
-
-        function checkMobile(){ isMobile=window.innerWidth<=768; }
-        window.addEventListener('resize',checkMobile); checkMobile();
-
-        navItems.forEach(item=>{
-            const button=item.querySelector('.nav-button');
-            button.addEventListener('click',(e)=>{
-                if(isMobile){
-                    e.preventDefault();
-                    if(activeItem && activeItem!==item){
-                        activeItem.classList.remove('mobile-active');
-                        const activeBtn=activeItem.querySelector('.nav-button');
-                        if(activeBtn){ activeBtn.setAttribute('aria-expanded','false'); }
+        // Mobile touch logic
+        document.querySelectorAll('.nav-button').forEach(btn => {
+            btn.addEventListener('click', (e) => {
+                if(window.innerWidth <= 768) {
+                    const item = btn.parentElement;
+                    const isActive = item.classList.contains('mobile-active');
+                    document.querySelectorAll('.nav-item').forEach(i => i.classList.remove('mobile-active'));
+                    if(!isActive) {
+                        e.preventDefault();
+                        item.classList.add('mobile-active');
                     }
-                    const isActive=item.classList.contains('mobile-active');
-                    item.classList.toggle('mobile-active');
-                    button.setAttribute('aria-expanded',!isActive);
-                    activeItem=!isActive?item:null;
                 }
             });
-            button.addEventListener('keydown',(e)=>{
-                if(e.key==='Enter' || e.key===' '){ e.preventDefault(); button.click(); }
-            });
         });
 
-        document.addEventListener('click',(e)=>{
-            if(!e.target.closest('.nav-item') && activeItem){
-                activeItem.classList.remove('mobile-active');
-                const activeBtn=activeItem.querySelector('.nav-button');
-                if(activeBtn){ activeBtn.setAttribute('aria-expanded','false'); }
-                activeItem=null;
+        document.addEventListener('click', (e) => {
+            if(!e.target.closest('.nav-item')) {
+                document.querySelectorAll('.nav-item').forEach(i => i.classList.remove('mobile-active'));
             }
-        });
-
-        document.addEventListener('keydown',(e)=>{
-            if(e.key==='Escape' && activeItem){
-                activeItem.classList.remove('mobile-active');
-                const activeBtn=activeItem.querySelector('.nav-button');
-                if(activeBtn){ activeBtn.setAttribute('aria-expanded','false'); activeBtn.focus(); }
-                activeItem=null;
-            }
-        });
-
-        const mobileStyleSheet=document.createElement('style');
-        mobileStyleSheet.textContent=`
-            @media (max-width: 768px){
-                .nav-item.mobile-active .dropdown{
-                    opacity:1 !important; visibility:visible !important; transform:translateX(0) translateY(0) !important;
-                }
-                .nav-item.mobile-active .nav-button{
-                    background:var(--text-primary); color:var(--bg);
-                }
-            }
-        `;
-        document.head.appendChild(mobileStyleSheet);
-
-        const themeToggle=document.querySelector('.theme-toggle');
-        themeToggle.addEventListener('keydown',(e)=>{
-            if(e.key==='Enter' || e.key===' '){ e.preventDefault(); toggleTheme(); }
-        });
-
-        const criticalLinks=document.querySelectorAll('a[href^="https://"]');
-        criticalLinks.forEach(link=>{
-            const url=new URL(link.href);
-            const preload=document.createElement('link');
-            preload.rel='dns-prefetch';
-            preload.href=url.origin;
-            document.head.appendChild(preload);
         });
     </script>
 </body>
