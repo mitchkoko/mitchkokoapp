@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
-    <title>Road to $1k/Month App – Episode 0 | Mitch Koko</title>
+    <title>Road to $1k/Month App – Episode 1 | Mitch Koko</title>
     <style>
         * { margin:0; padding:0; box-sizing:border-box; }
 
@@ -174,6 +174,11 @@
         .episode-body h2{
             font-size:1.2rem;
             margin:18px 0 8px;
+        }
+
+        .episode-body h3{
+            font-size:1rem;
+            margin:14px 0 6px;
         }
 
         .episode-body p{
@@ -358,11 +363,12 @@
             <img src="../../images/logo.png" alt="Mitch Koko logo" class="logo" />
             <div class="header-text">
                 <a href="../" class="home-link">← Back to episodes</a>
-                <h1>Road to $1k/Month App • The Reality Check</h1>
+                <h1>Road to $1k/Month App • Released a new app..</h1>
                 <div class="episode-meta">
                     <span class="pill">💰 Goal: $1,000/month</span>
-                    <span class="pill">💰 Current: $8/month</span>
+                    <span class="pill">💰 Current: $13/month</span>
                     <a href="https://ritualz.app" target="_blank" rel="noopener noreferrer" class="pill">🔥📱 Ritualz App</a>
+                    <a href="https://expensif.app" target="_blank" rel="noopener noreferrer" class="pill">💳📱 Expensif App</a>
                 </div>
             </div>
         </header>
@@ -370,160 +376,124 @@
         <div class="divider"></div>
 
         <main class="episode-body">
-            <!-- GOAL -->
-            <h2>GOAL</h2>
-            <p><strong>Make $1k/month with this app.</strong></p>
             <p class="intro-highlight">
-                This series is me documenting the journey of taking a simple app from $0 to (hopefully) $1k/month.
+                I spent the last week building and launching a new app called <a href="https://expensif.app" target="_blank" rel="noopener noreferrer">Expensif</a>. Since I already have a production-grade habit tracker (<a href="https://ritualz.app" target="_blank" rel="noopener noreferrer">Ritualz</a>) up and running, building an expense tracker wasn't too much work.
             </p>
 
             <figure class="episode-image">
-                <img src="images/ritualz_thumbnail.png" alt="Ritualz thumbnail" loading="lazy">
-                <figcaption><a href="https://ritualz.app" target="_blank" rel="noopener noreferrer">Ritualz</a> Habit Tracker.</figcaption>
+                <img src="images/expensif_app_ep1.png" alt="Expensif app screenshot" loading="lazy">
+                <figcaption><a href="https://expensif.app" target="_blank" rel="noopener noreferrer">Expensif</a> - Minimal Expense Tracker.</figcaption>
             </figure>
 
             <p>
-                I am <em>just now</em> getting my first few paying subscribers so this is a good time to document this
-                journey of building and monetising a real app. Each episode I’ll share my progress and how much $ it currently makes, the problems I’m facing and the
-                solutions I’ll use to solve them.. so hopefully in every episode you can see the app improve.
+                I've also started using Claude Code and it's boosted my productivity tenfold at least. Now when I say it took a week, that's how long it took to build and release the app, but it's important to not overlook the fact that I've been coding apps for 5-10 years so at this point I have a lot of areas nailed down. For example, the app store submission process for iOS and Android can be an annoying process but I've experienced it many times so it's fine now.
             </p>
 
+            <!-- BUILDING PROCESS -->
+            <h2>RELEASING AN APP IN 1 WEEK</h2>
             <p>
-                The app itself is a minimal habit tracker, called <a href="https://ritualz.app" target="_blank" rel="noopener noreferrer">Ritualz</a>, you can go download it right now and it'll be
-                fun because you can see the app grow in real time.
+                Here's how I went from idea to live app in 7 days:
             </p>
 
-
-            <!-- IDEA -->
-            <h2>IDEA</h2>
+            <h3>Day 0 - Design & Plan</h3>
             <p>
-                Personally, one of my biggest problems in life was consistency, and a book I really love is
-                <em>Atomic Habits</em> by James Clear. One of the insights that I love is if you want to improve
-                something, simply track it.
-            </p>
-            <p>So I started with a Google Sheet with the good habits I wanted to have in my life:</p>
-            <ul>
-                <li>one for learning (read)</li>
-                <li>one for creativity (code)</li>
-                <li>one for physical health (gym)</li>
-                <li>one for mental health (meditation)</li>
-            </ul>
-
-            <p>
-                I tracked it on Google Sheets for years and then decided I should code up an app for this.
-                Something nice and minimal.
-            </p>
-
-            <!-- BUILDING THE APP -->
-            <h2>BUILDING THE APP</h2>
-            <p>
-                I chose to use Flutter to build my app as it was important to me as a solo developer to have both iOS
-                and Android. Coding with Flutter has been really fun and I built the habit tracker from scratch by hand
-                (before AI coding and ChatGPT was a thing). The app had one basic functionality to track your habits and visualised in a nice heatmap.
-                For a while I was just using the app myself. Then one day I decided to take the leap and publish it to
-                the Google Play Store.
-            </p>
-
-            <!-- LAUNCH -->
-            <h2>LAUNCH</h2>
-            <p>
-                I submitted the most basic version of the app to the Google Play Store first. My app at this time had no
-                authentication, no online database, no monetization. Just a simple habit tracker with a nice heat map. Honestly at this point even having my app on the app store was a big milestone for me. To realise
-                that it’s actually possible.. you can make something and people can download it on their device.. something
-                about it is so cool and inspiring.
-            </p>
-           
-            <p>
-                The next goal was to launch on both iOS and Android. I continued building out my app by adding authentication and an online database (using Firebase). I also bought the domain name ritualz.app and created a simple landing page. I shared the ritualz.app link
-                around social media and YouTube and over time people downloaded the app.
+                Before I even code, I get a good old pen and paper out and draw out the basic idea. You can always add more features in the future but this is version 1 of the app so I actually try to <em>remove</em> as much as possible while leaving the core idea in place. I spend a good amount of time thinking and planning what to build and then I write it down because it's much easier to build something when you're clear about what it is exactly that you're building.
             </p>
 
             <figure class="episode-image">
-                <img src="images/ritualz_landing_page.png" alt="Ritualz Landing Page" loading="lazy">
-                <figcaption>Minimal Landing Page for <a href="https://ritualz.app" target="_blank" rel="noopener noreferrer">Ritualz</a></figcaption>
+                <img src="images/expensif_drawing_ep1.png" alt="Expensif design & sketch" loading="lazy">
+                <figcaption><a href="https://expensif.app" target="_blank" rel="noopener noreferrer">Expensif</a> Design & Sketch</figcaption>
             </figure>
 
-            <!-- MONETIZATION -->
-            <h2>MONETIZATION</h2>
+            <h3>Day 1 - Build the app</h3>
             <p>
-                People are downloading my app but I had no monetisation in place so I added subscriptions using
-                RevenueCat. Monthly subscriptions of $0.99 or something really low to see if <em>anyone</em> would
-                actually subscribe. I also added a yearly option just to see what would happen.
+                I used Flutter to code up the app so that I can release on both iOS and Android. I've also started using Claude Code properly and it's pretty insane. I'm currently using just the base $20 plan but I might even upgrade to the $100 max plan which sounds crazy expensive but when you compare it to how much a human developer costs, the $100 max plan doesn't sound so bad suddenly. I try to finish building out version 1 of the app with basic functionality before I sleep.
             </p>
+
+            <figure class="episode-image">
+                <img src="images/flutter_building_expensif_ep1.png" alt="Coding Expensif App with Flutter" loading="lazy">
+                <figcaption>Coding <a href="https://expensif.app" target="_blank" rel="noopener noreferrer">Expensif</a> App with Flutter</figcaption>
+            </figure>
+
+            <h3>Day 2 - Test & Fix</h3>
             <p>
-                Once I implemented the subscription feature, I subscribed to my own app just for fun haha just to
-                experience the full customer flow. I knew the app had a long way to go but someone actually subscribed!
-                This was another big milestone for me as this was the first dollar I ever made from my own app.
+                I put the app on my phone and then I use it for a day. There's always going to be some problem to fix or a slight redesign that I feel is needed. So I fix the issues and improve it. Make sure the UI looks good and just try to complete the app in its basic form. We need to do everything we can tonight to prepare it for app store submission tomorrow.
+            </p>
+
+            <h3>Day 3 - Submit to App Store</h3>
+            <p>
+                Once you finalise building the app, submitting it to the app store is a process of its own. So I give myself a good day to prepare it for both iOS App Store and Google Play Store. You need to do a bunch of random stuff like prepare screenshots, icons, pick a name, etc.
+            </p>
+
+            <h3>Day 4 - Landing Page</h3>
+            <p>
+                I then go and buy the domain name that I like and set up a simple landing page which I make with basic HTML CSS code. Keep it minimal for now and just set up two buttons for each app store. Once I have the landing page ready to go, I can now share the link around to people.
+            </p>
+
+            <figure class="episode-image">
+                <img src="images/expensif_landing_page_ep1.png" alt="Expensif landing page" loading="lazy">
+                <figcaption><a href="https://expensif.app" target="_blank" rel="noopener noreferrer">Expensif</a> Landing Page</figcaption>
+            </figure>
+
+            <h3>Day 5 - Monetise</h3>
+            <p>
+                Once the app is live on both app stores no problem and working well, now it's time to monetise the app. Monetisation looks different depending on the app but my basic monetisation model is to include ads and subscriptions for premium features and make the app ad-free. I use RevenueCat for subscriptions and Google AdMob for ads.
+            </p>
+
+            <h3>Day 6 - Analytics Dashboard</h3>
+            <p>
+                You can release the app into the wild and have no idea what your users are doing. So I use Supabase to save some basic information and set up an analytics dashboard so that I can see a bird's eye view of the users and what they are doing. Data points such as how many expenses they added, last active time, iOS or Android, etc.
+            </p>
+
+            <figure class="episode-image">
+                <img src="images/ritualz_analytics_dashboard_ep1.png" alt="Ritualz analytics dashboard" loading="lazy">
+                <figcaption>Analytics dashboard showing user behaviour in <a href="https://ritualz.app" target="_blank" rel="noopener noreferrer">Ritualz</a>.</figcaption>
+            </figure>
+
+            <h3>Day 7 - Release! Market!</h3>
+            <p>
+                Double check everything is working smoothly as expected. It'll never be perfect, but when you feel you are at some baseline level of functionality that users can use, then you should share it and get feedback as you continuously improve the app.
             </p>
 
             <!-- CURRENT PROGRESS -->
             <h2>CURRENT PROGRESS</h2>
-            <p><strong>$8/month, few paying subscribers only..</strong></p>
+            <p><strong>$13/month total (up from $8/month in Episode 0)</strong></p>
 
             <figure class="episode-image">
-                <img src="images/revenuecat_dashboard.png" alt="RevenueCat dashboard screenshot" loading="lazy">
-                <figcaption>Current RevenueCat dashboard for <a href="https://ritualz.app" target="_blank" rel="noopener noreferrer">Ritualz</a>.</figcaption>
-            </figure>
-
-            <!-- PROBLEM & SOLUTION -->
-            <h2>PROBLEMS &amp; SOLUTIONS</h2>
-
-            <h3 style="font-size:1rem; margin-top:10px; margin-bottom:6px;">💔 Fix User Retention</h3>
-            <p>
-                The problem that has to be fixed urgently is that my retention sucks. My RevenueCat dashboard shows that
-                the app got around 500 new customers in the last month but I only have 5 subscriptions ~ 1% conversion
-                rate (it’s actually worse than that because the 5 subscriptions are from the lifetime of the app not
-                just the last month). So marketing is not my biggest problem right now because I need to fix the user retention. 
-            </p>
-            <p>
-                The first thing I did was to remove as much friction as possible between the user downloading the app and the user
-                getting value from the app. For example, the app required you to create an account right away. That alone was something I could
-                remove and at least allow the user to experience the app first and make it as easy as possible to start
-                using the app.
-            </p>
-
-            <h3 style="font-size:1rem; margin-top:14px; margin-bottom:6px;">⚙️ Need Analytics to Understand User Behaviour</h3>
-            <p>
-                The other big problem is I have no idea <em>how</em> they are even using the app, if they are using the
-                app <em>at all</em>. Maybe they are just using the app once and then never using it again? I need some kind of
-                analytics to understand user behaviour.
-            </p>
-            <p>
-                So in my latest update I added a simple backend with Supabase to save random bits of information that
-                might be helpful such as:
-            </p>
-            <ul>
-                <li>when the user opened the app</li>
-                <li>when the user created a new habit</li>
-                <li>when the user completed a habit</li>
-                <li>what platform the user is on (iOS or Android)</li>
-                <li>etc..</li>
-            </ul>
-            <p>
-                My new app update is live so I will come back to this data over time to analyse the user behaviour more
-                closely.
-            </p>
-
-            <h3 style="font-size:1rem; margin-top:14px; margin-bottom:6px;">💰 New Monetization Model</h3>
-            <p>
-                This was originally a subscription-based app but I recently implemented ads into the free version of the app using Google AdMob. I typically never wanted to
-                include ads in my apps because I felt like it lowers the user experience. However compared to a
-                subscription maybe users are more okay with ads if it means they can use the app for free.
-            </p>
-
-            <figure class="episode-image">
-                <img src="images/googleadmob_dashboard.png" alt="Google AdMob dashboard screenshot" loading="lazy">
-                <figcaption>First few cents earned from Google AdMob.</figcaption>
+                <img src="images/revenuecat_dashboard_ep1.png" alt="RevenueCat dashboard screenshot" loading="lazy">
+                <figcaption>Current RevenueCat dashboard showing subscription revenue.</figcaption>
             </figure>
 
             <p>
-                I just made the new update and made my first few cents on Google AdMob so I know it’s working now.
-                I’ll see how the ads go as a source of revenue. I'm also tinkering with the subcription prices. I'll see how the different monetization models go and report back here.
+                Revenue is slowly growing. The new <a href="https://expensif.app" target="_blank" rel="noopener noreferrer">Expensif</a> app is still too fresh to have subscriptions, but <a href="https://ritualz.app" target="_blank" rel="noopener noreferrer">Ritualz</a> is picking up a few more paying users. Small progress, but it's moving in the right direction. The ads for free users are also growing.
+            </p>
+
+            <figure class="episode-image">
+                <img src="images/admob_dashboard_ep1.png" alt="Google AdMob dashboard screenshot" loading="lazy">
+                <figcaption>Google AdMob dashboard showing ad revenue.</figcaption>
+            </figure>
+
+            <!-- FINAL THOUGHTS -->
+            <h2>FINAL THOUGHTS</h2>
+
+            <h3>👁️ As Building Gets Easier, Marketing Becomes More Important</h3>
+            <p>
+                As building gets easier, I think areas like marketing are starting to matter a lot more (It always mattered). Since anyone can build and ship apps quickly now, getting users to discover and download them is the real challenge. I created a social media account for each of my apps so that they are their own entity and can post content on X, Instagram, TikTok etc. Marketing is an area where I need to improve in general.
+            </p>
+
+            <h3>📱 Focusing on One App vs Multiple Apps</h3>
+            <p>
+                I've been thinking about the question of focusing all my energy on <a href="https://ritualz.app" target="_blank" rel="noopener noreferrer">Ritualz</a> vs releasing another app like <a href="https://expensif.app" target="_blank" rel="noopener noreferrer">Expensif</a>. I do believe that devoting everything to one app will maximise its growth but at the same time releasing <a href="https://expensif.app" target="_blank" rel="noopener noreferrer">Expensif</a> took only a week. Also it's already making more ad revenue than <a href="https://ritualz.app" target="_blank" rel="noopener noreferrer">Ritualz</a>. Especially with AI getting better, the execution of idea to product is getting quicker. If I'm being honest I'm actually also really dying to make a workout gym tracker. I'll stop there though haha I won't go further. I want the 3 apps to be my main for now: Habit Tracker, Expense Tracker, Workout Tracker. So hopefully by the next episode my workout tracker app is also live.
+            </p>
+
+            <h3>👨🏽‍💻 I Love Claude Code </h3>
+            <p>
+                I started using Claude Code properly in the terminal and dayumn.. It's mind blowing. If you actually understand code and use AI it's incredibly powerful. I don't know where this is all heading but in the meantime I'm going to leverage AI to build these apps and make money.
             </p>
 
             <!-- SIGNOFF -->
             <section class="signoff">
-                <p class="signoff-hello">Thanks for reading — Download <a href="https://ritualz.app" target="_blank" rel="noopener noreferrer">Ritualz</a> and follow along as I try to turn this into a real $1k/month app..</p>
+                <p class="signoff-hello">Thanks for reading — Download <a href="https://ritualz.app" target="_blank" rel="noopener noreferrer">Ritualz</a> or <a href="https://expensif.app" target="_blank" rel="noopener noreferrer">Expensif</a> and follow along as I try to turn these into real $1k/month apps..</p>
                 <p>
                     If you want to follow along more closely or learn how I build this stuff:
                 </p>
@@ -534,7 +504,15 @@
                         rel="noopener noreferrer"
                         class="signoff-link"
                     >
-                        📱 Download Ritualz
+                        🔥📱 Download Ritualz
+                    </a>
+                    <a
+                        href="https://expensif.app"
+                        target="_blank"
+                        rel="noopener noreferrer"
+                        class="signoff-link"
+                    >
+                        💳📱 Download Expensif
                     </a>
                     <a
                         href="https://youtube.com/mitchkoko"

@@ -132,9 +132,19 @@
       gap:6px;
       padding:3px 9px;
       border-radius:999px;
-      background:var(--accent-pill);
+      background:var(--surface);
       color:var(--text-secondary);
       border:1px solid var(--border);
+      text-decoration:none;
+      transition:var(--transition);
+    }
+
+    a.pill:hover{
+      transform:translateY(-2px);
+      box-shadow:var(--shadow-md);
+      border-color:var(--text-primary);
+      background:var(--surface-hover);
+      cursor:pointer;
     }
 
     .divider{
@@ -172,6 +182,16 @@
       background:var(--surface-hover);
     }
 
+    .episode-card.coming-soon{
+      opacity:0.7;
+    }
+
+    .episode-card.coming-soon:hover{
+      transform:none;
+      box-shadow:var(--shadow-md);
+      cursor:default;
+    }
+
     .episode-title{
       font-size:1.1rem;
       font-weight:600;
@@ -199,6 +219,46 @@
       color:var(--text-muted);
     }
 
+    .badge-row{
+      display:flex;
+      flex-wrap:wrap;
+      gap:8px;
+      margin-top:10px;
+    }
+
+    .revenue-badge{
+      display:inline-flex;
+      align-items:center;
+      gap:4px;
+      font-size:.78rem;
+      padding:4px 10px;
+      border-radius:999px;
+      background:var(--surface);
+      border:1px solid var(--border);
+      color:var(--text-secondary);
+    }
+
+    .app-badge{
+      display:inline-flex;
+      align-items:center;
+      gap:4px;
+      font-size:.78rem;
+      padding:4px 10px;
+      border-radius:999px;
+      background:var(--surface);
+      border:1px solid var(--border);
+      color:var(--text-secondary);
+      text-decoration:none;
+      transition:var(--transition);
+    }
+
+    .app-badge:hover{
+      transform:translateY(-2px);
+      box-shadow:var(--shadow-md);
+      border-color:var(--text-primary);
+      background:var(--surface-hover);
+    }
+
     @media (max-width:640px){
       body{ padding:18px 10px 26px; }
       header{ align-items:center; }
@@ -224,11 +284,12 @@
       <div class="header-text">
         <a href="../" class="home-link">← Back to mitchkoko.app</a>
         <h1>Road to $1k/Month App</h1>
-        <p class="subtitle">Documenting the journey of taking Ritualz from $0 to $1k/month.</p>
+        <p class="subtitle">Documenting the journey of building apps from $0 to $1k/month.</p>
         <div class="pill-row">
           <span class="pill">💰 Goal: $1,000/month</span>
-          <span class="pill">📱 Ritualz – Habit Tracker</span>
-          <span class="pill">👨🏽‍💻 Solo dev journey</span>
+          <a href="https://ritualz.app" target="_blank" rel="noopener noreferrer" class="pill">🔥📱 Ritualz App</a>
+          <a href="https://expensif.app" target="_blank" rel="noopener noreferrer" class="pill">💳📱 Expensif App</a>
+          <span class="pill">🥷🏽 Solo Indie Dev</span>
         </div>
       </div>
     </header>
@@ -243,21 +304,43 @@
             <h2 class="episode-title">Episode 0 – The Reality Check</h2>
             <p class="episode-meta">Intro, context, first subs, bad retention, first AdMob cents.</p>
             <p class="episode-desc">
-              How Ritualz started as a Google Sheet, became a real app, got its first paying users,
-              and why retention + analytics are now the main focus.
+              My first real app. My first paying users.
             </p>
+            <div class="badge-row">
+              <span class="revenue-badge">💰 MRR: $8/month</span>
+              <a href="https://ritualz.app" target="_blank" rel="noopener noreferrer" class="app-badge" onclick="event.stopPropagation()">🔥 Ritualz</a>
+            </div>
           </a>
         </article>
 
-        <!-- Episode 1 (placeholder) -->
+        <!-- Episode 1 -->
         <article class="episode-card">
-          <h2 class="episode-title">Episode 1 – Coming soon</h2>
-          <p class="episode-meta">Will be linked here once the article is live.</p>
-          <p class="episode-desc">
-            This will cover the next batch of changes: deeper analytics, onboarding tweaks,
-            pricing experiments, and whatever actually moves the needle toward $1k/month.
-          </p>
-          <span class="badge-soon">✨ Writing in progress</span>
+          <a href="ep1/">
+            <h2 class="episode-title">Episode 1 – Released Another App..</h2>
+            <p class="episode-meta">Launched Expensif in 7 days, analytics dashboard, Claude Code productivity boost.</p>
+            <p class="episode-desc">
+              I built and shipped a new app in one week using Claude Code. The $$ journey continues.
+            </p>
+            <div class="badge-row">
+              <span class="revenue-badge">💰 MRR: $13/month</span>
+              <a href="https://ritualz.app" target="_blank" rel="noopener noreferrer" class="app-badge" onclick="event.stopPropagation()">🔥 Ritualz</a>
+              <a href="https://expensif.app" target="_blank" rel="noopener noreferrer" class="app-badge" onclick="event.stopPropagation()">💳 Expensif</a>
+            </div>
+          </a>
+        </article>
+
+        <!-- Episode 2 -->
+        <article class="episode-card coming-soon">
+          <div>
+            <h2 class="episode-title">Episode 2 – Coming Soon</h2>
+            <p class="episode-meta">New updates, progress, and insights on the journey to $1k/month.</p>
+            <p class="episode-desc">
+              The next episode is currently being worked on. Stay tuned for more updates!
+            </p>
+            <div class="badge-row">
+              <span class="badge-soon">Coming Soon</span>
+            </div>
+          </div>
         </article>
 
         <!-- Add more episodes here later -->
