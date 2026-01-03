@@ -184,32 +184,15 @@
             <h1>Mitch Koko</h1>
             <p class="tagline">App Developer & Creator</p>
             <div class="tech-badges">
-                <span class="badge">Flutter</span>
                 <span class="badge">iOS</span>
                 <span class="badge">Android</span>
+                <span class="badge">Flutter</span>
             </div>
         </header>
 
         <div class="divider"></div>
 
         <nav class="nav-container">
-            <div class="nav-item">
-                <button class="nav-button">
-                    <span>📺</span> YouTube
-                    <span class="youtube-badge">170K+</span>
-                </button>
-                <div class="dropdown">
-                    <a href="https://youtube.com/mitchkoko" target="_blank" class="dropdown-item">
-                        <strong>Visit Channel</strong>
-                        <small>Watch tutorials & dev content</small>
-                    </a>
-                    <a href="https://youtu.be/HQ_ytw58tC4" target="_blank" class="dropdown-item">
-                        <strong>Flutter Beginner Course</strong>
-                        <small>Start here • 1.2M+ views</small>
-                    </a>
-                </div>
-            </div>
-
             <div class="nav-item">
                 <button class="nav-button"><span>📱</span> Apps</button>
                 <div class="dropdown">
@@ -229,36 +212,38 @@
             </div>
 
             <div class="nav-item">
-                <button class="nav-button"><span>💰</span> Road to $1k</button>
-                <div class="dropdown">
-                    <a href="roadto1k/" class="dropdown-item">
-                        <strong>The Journey</strong>
-                        <small>Building Apps in public</small>
-                    </a>
-                </div>
-            </div>
-
-            <div class="nav-item">
-                <button class="nav-button"><span>📦</span> Products</button>
-                <div class="dropdown">
-                    <a href="https://buildlaunchmonetize.app" target="_blank" class="dropdown-item">
-                        <strong>Build Launch Monetize</strong>
-                        <small>Complete indie-dev playbook</small>
-                    </a>
-                </div>
-            </div>
-
-            <div class="nav-item">
-                <button class="nav-button"><span>🔗</span> Connect</button>
+                <button class="nav-button">
+                    <span>🔗</span> Social
+                    <span class="youtube-badge">170K+</span>
+                </button>
                 <div class="dropdown">
                     <div class="social-links">
-                        <a href="https://x.com/createdbykoko" target="_blank" class="social-link">X (Twitter)</a>
+                        <a href="https://youtube.com/mitchkoko" target="_blank" class="social-link">YouTube</a>
                         <a href="https://instagram.com/createdbykoko" target="_blank" class="social-link">Instagram</a>
-                        <div class="email-display">
-                            <span>mitchell.h...</span>
-                            <button class="copy-btn" onclick="copyEmail(event)">Copy</button>
-                        </div>
+                        <a href="https://x.com/createdbykoko" target="_blank" class="social-link">X</a>
+                        <a href="https://twitch.tv/mitchkoko96" target="_blank" class="social-link">Twitch</a>
+                        <a href="https://www.tiktok.com/@createdbykoko" target="_blank" class="social-link">TikTok</a>
+                        <a href="https://www.patreon.com/mitchkoko" target="_blank" class="social-link">Patreon</a>
+                        <a href="#" class="social-link" onclick="copyEmail(event)">Email</a>
                     </div>
+                </div>
+            </div>
+
+            <div class="nav-item">
+                <button class="nav-button"><span>💰</span> Road to 1k</button>
+                <div class="dropdown">
+                    <a href="roadto1k/" class="dropdown-item">
+                        <strong>View All Episodes</strong>
+                        <small>See the full journey</small>
+                    </a>
+                    <a href="roadto1k/ep0/" class="dropdown-item">
+                        <strong>Ep 0</strong>
+                        <small>MRR: $8/month</small>
+                    </a>
+                    <a href="roadto1k/ep1/" class="dropdown-item">
+                        <strong>Ep 1</strong>
+                        <small>MRR: $13/month</small>
+                    </a>
                 </div>
             </div>
         </nav>
@@ -275,6 +260,7 @@
         }
 
         function copyEmail(e){
+            e.preventDefault();
             e.stopPropagation();
             navigator.clipboard.writeText('mitchell.h.koh@gmail.com').then(()=>{
                 const toast=document.getElementById('toast');
