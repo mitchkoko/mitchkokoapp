@@ -84,8 +84,29 @@
         }
         @keyframes float{ 0%, 100%{ transform:translateY(0px); } 50%{ transform:translateY(-8px); } }
         
-        h1{ font-size:2.5rem; font-weight:700; margin-bottom:10px; letter-spacing:-.025em; color:var(--text-primary); }
-        .tagline{ color:var(--text-secondary); font-size:1.1rem; margin-bottom:20px; font-weight:500; }
+        h1{ font-size:2.5rem; font-weight:700; margin-bottom:14px; letter-spacing:-.025em; color:var(--text-primary); }
+
+        /* Typewriter Animation */
+        .hero-statement{
+            font-size:1.4rem; font-weight:600; margin-bottom:20px; color:var(--text-primary);
+            letter-spacing:-.01em;
+        }
+        .hero-statement .static{ color:var(--text-secondary); }
+        .typing-wrapper{
+            display:inline-block; position:relative;
+        }
+        .typing-text{
+            color:var(--text-primary); font-weight:700;
+            background:linear-gradient(135deg, var(--text-primary) 0%, var(--text-secondary) 100%);
+            -webkit-background-clip:text; -webkit-text-fill-color:transparent;
+            background-clip:text;
+        }
+        .cursor{
+            display:inline-block; width:2px; height:1.2em; background:var(--text-primary);
+            margin-left:2px; vertical-align:text-bottom;
+            animation:blink .8s ease-in-out infinite;
+        }
+        @keyframes blink{ 0%,50%{opacity:1;} 51%,100%{opacity:0;} }
 
         .tech-badges{ display:flex; gap:10px; justify-content:center; flex-wrap:wrap; }
         .badge{
@@ -182,7 +203,13 @@
         <header>
             <img src="images/logo.png" alt="Mitch Koko" class="logo" />
             <h1>Mitch Koko</h1>
-            <p class="tagline">App Developer & Creator</p>
+            <p class="hero-statement">
+                <span class="static">I</span>
+                <span class="typing-wrapper">
+                    <span class="typing-text" id="typing-text"></span><span class="cursor"></span>
+                </span>
+                <span class="static">apps</span>
+            </p>
             <div class="tech-badges">
                 <span class="badge">iOS</span>
                 <span class="badge">Android</span>
@@ -252,6 +279,41 @@
     <div class="toast" id="toast">Email copied!</div>
 
     <script>
+        // Typewriter Animation
+        const words = ['build', 'code', 'ship', 'launch', 'monetise'];
+        let wordIndex = 0;
+        let charIndex = 0;
+        let isDeleting = false;
+        const typingEl = document.getElementById('typing-text');
+
+        function type() {
+            const currentWord = words[wordIndex];
+
+            if (isDeleting) {
+                typingEl.textContent = currentWord.substring(0, charIndex - 1);
+                charIndex--;
+            } else {
+                typingEl.textContent = currentWord.substring(0, charIndex + 1);
+                charIndex++;
+            }
+
+            let typeSpeed = isDeleting ? 60 : 120;
+
+            if (!isDeleting && charIndex === currentWord.length) {
+                typeSpeed = 2000; // Pause at end of word
+                isDeleting = true;
+            } else if (isDeleting && charIndex === 0) {
+                isDeleting = false;
+                wordIndex = (wordIndex + 1) % words.length;
+                typeSpeed = 400; // Pause before typing next word
+            }
+
+            setTimeout(type, typeSpeed);
+        }
+
+        // Start typing animation
+        setTimeout(type, 600);
+
         function toggleTheme(){
             const body=document.body;
             const next=body.getAttribute('data-theme')==='light'?'dark':'light';
