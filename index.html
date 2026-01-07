@@ -4,55 +4,59 @@
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
     <title>Mitch Koko - App Developer & Creator</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+    <link href="https://fonts.cdnfonts.com/css/retropix" rel="stylesheet">
     <style>
         * { margin:0; padding:0; box-sizing:border-box; -webkit-tap-highlight-color: transparent; }
 
         :root{
-            --bg:#f5f5f5;
+            --bg:#fafafa;
             --surface:#ffffff;
-            --surface-hover:#fafafa;
-            --border:#e5e5e5;
-            --border-hover:#d4d4d8;
-            --text-primary:#2c2c2c;
-            --text-secondary:#6c6c6c;
-            --text-muted:#a1a1aa;
-            --hover-bg:#f0f0f0;
-            --shadow-sm:0 1px 3px rgba(0,0,0,.05),0 1px 2px rgba(0,0,0,.03);
-            --shadow-md:0 4px 12px rgba(0,0,0,.08),0 2px 4px rgba(0,0,0,.04);
-            --shadow-lg:0 8px 24px rgba(0,0,0,.12),0 4px 8px rgba(0,0,0,.06);
-            --shadow-xl:0 12px 32px rgba(0,0,0,.15),0 6px 12px rgba(0,0,0,.08);
-            /* Premium YouTube Gradient */
-            --accent-red: linear-gradient(135deg, #ff4b4b 0%, #dc0000 100%);
-            --transition:all .3s cubic-bezier(.4,0,.2,1);
-            --transition-bounce:all .4s cubic-bezier(.175,.885,.32,1.275);
-            --border-radius:12px;
-            --border-radius-lg:16px;
+            --surface-hover:#f8f8f8;
+            --surface-glass:rgba(255,255,255,0.88);
+            --border:#e8e8e8;
+            --border-hover:#d0d0d0;
+            --text-primary:#1a1a1a;
+            --text-secondary:#666666;
+            --text-muted:#999999;
+            --hover-bg:#f5f5f5;
+            --shadow-sm:0 1px 2px rgba(0,0,0,.04),0 1px 3px rgba(0,0,0,.02);
+            --shadow-md:0 4px 16px rgba(0,0,0,.06),0 2px 6px rgba(0,0,0,.03);
+            --shadow-lg:0 8px 30px rgba(0,0,0,.08),0 4px 10px rgba(0,0,0,.04);
+            --shadow-xl:0 20px 50px rgba(0,0,0,.1),0 8px 20px rgba(0,0,0,.05);
+            --accent-red: linear-gradient(135deg, #ff5252 0%, #e60000 100%);
+            --transition:all .25s cubic-bezier(.4,0,.2,1);
+            --transition-bounce:all .5s cubic-bezier(.175,.885,.32,1.275);
+            --border-radius:14px;
+            --border-radius-lg:18px;
         }
 
         [data-theme="dark"]{
-            --bg:#1f1f1f;
-            --surface:#1a1a1a;
-            --surface-hover:#252525;
-            --border:#2a2a2a;
-            --border-hover:#404040;
-            --text-primary:#f0f0f0;
-            --text-secondary:#a0a0a0;
-            --text-muted:#71717a;
-            --hover-bg:#252525;
-            --shadow-sm:0 1px 3px rgba(0,0,0,.2),0 1px 2px rgba(0,0,0,.1);
-            --shadow-md:0 4px 12px rgba(0,0,0,.3),0 2px 4px rgba(0,0,0,.15);
-            --shadow-lg:0 8px 24px rgba(0,0,0,.4),0 4px 8px rgba(0,0,0,.2);
-            --shadow-xl:0 12px 32px rgba(0,0,0,.5),0 6px 12px rgba(0,0,0,.25);
+            --bg:#1e1e1e;
+            --surface:#252525;
+            --surface-hover:#2a2a2a;
+            --surface-glass:rgba(30,30,30,0.92);
+            --border:#333333;
+            --border-hover:#444444;
+            --text-primary:#f5f5f5;
+            --text-secondary:#a8a8a8;
+            --text-muted:#666666;
+            --hover-bg:#2a2a2a;
+            --shadow-sm:0 1px 2px rgba(0,0,0,.15),0 1px 3px rgba(0,0,0,.1);
+            --shadow-md:0 4px 16px rgba(0,0,0,.25),0 2px 6px rgba(0,0,0,.15);
+            --shadow-lg:0 8px 30px rgba(0,0,0,.35),0 4px 10px rgba(0,0,0,.2);
+            --shadow-xl:0 20px 50px rgba(0,0,0,.45),0 8px 20px rgba(0,0,0,.25);
         }
 
-        /* Fixed: Body now allows scrolling to prevent dropdowns getting cut off */
         html,body{ min-height:100vh; }
         body{
-            font-family:-apple-system,BlinkMacSystemFont,'Segoe UI',Roboto,'Helvetica Neue',Arial,sans-serif;
+            font-family:'Inter',-apple-system,BlinkMacSystemFont,'Segoe UI',Roboto,sans-serif;
             background:var(--bg);
             color:var(--text-primary);
             line-height:1.6;
-            transition:var(--transition);
+            transition:background .4s ease, color .3s ease;
             display:flex; align-items:center; justify-content:center; text-align:center;
             font-synthesis:none; text-rendering:optimizeLegibility;
             -webkit-font-smoothing:antialiased; -moz-osx-font-smoothing:grayscale;
@@ -60,137 +64,208 @@
         }
 
         .theme-toggle{
-            position:fixed; top:20px; right:20px; width:52px; height:26px;
-            background:var(--surface); border:1px solid var(--border); border-radius:13px;
-            cursor:pointer; display:flex; align-items:center; padding:2px;
-            transition:var(--transition); z-index:1000; box-shadow:var(--shadow-sm);
+            position:fixed; top:24px; right:24px; width:54px; height:28px;
+            background:var(--surface-glass); backdrop-filter:saturate(180%) blur(20px); -webkit-backdrop-filter:saturate(180%) blur(20px);
+            border:1px solid var(--border); border-radius:14px;
+            cursor:pointer; display:flex; align-items:center; padding:3px;
+            transition:var(--transition); z-index:1000; box-shadow:var(--shadow-md);
         }
+        .theme-toggle:hover{ border-color:var(--border-hover); box-shadow:var(--shadow-lg); }
         .theme-toggle-circle{
             width:22px; height:22px; background:var(--text-primary); border-radius:50%;
-            transition:var(--transition-bounce); display:flex; align-items:center; justify-content:center; font-size:10px;
+            transition:var(--transition-bounce); display:flex; align-items:center; justify-content:center;
         }
         [data-theme="dark"] .theme-toggle-circle{ transform:translateX(26px); }
 
-        .container{ width:100%; max-width:900px; animation:fadeInUp .8s cubic-bezier(.4,0,.2,1);
-            display:flex; flex-direction:column; align-items:center; justify-content:center; text-align:center; padding:20px; }
-        @keyframes fadeInUp{ from{opacity:0; transform:translateY(30px);} to{opacity:1; transform:translateY(0);} }
-
-        /* Reduced bottom margin to tighten spacing */
-        header{ margin-bottom:20px; text-align:center; }
-        .logo{
-            width:88px; height:88px; object-fit:contain; margin:0 auto 16px; display:block;
-            border-radius:12px; box-shadow:var(--shadow-sm);
-            animation:float 3s ease-in-out infinite;
+        .container{
+            width:100%; max-width:900px; position:relative;
+            display:flex; flex-direction:column; align-items:center; justify-content:center; text-align:center; padding:20px;
         }
-        @keyframes float{ 0%, 100%{ transform:translateY(0px); } 50%{ transform:translateY(-8px); } }
-        
-        h1{ font-size:2.5rem; font-weight:700; margin-bottom:14px; letter-spacing:-.025em; color:var(--text-primary); }
 
-        /* Typewriter Animation */
+        header{ margin-bottom:24px; text-align:center; opacity:0; animation:fadeInUp .8s cubic-bezier(.4,0,.2,1) forwards; position:relative; }
+        .logo{
+            width:92px; height:92px; object-fit:contain; margin:0 auto 18px; display:block;
+            border-radius:16px; box-shadow:var(--shadow-lg);
+            animation:float 4s ease-in-out infinite;
+            transition:var(--transition);
+        }
+        .logo:hover{ transform:scale(1.05); box-shadow:var(--shadow-xl); }
+        @keyframes float{ 0%, 100%{ transform:translateY(0px); } 50%{ transform:translateY(-10px); } }
+        @keyframes fadeInUp{ from{opacity:0; transform:translateY(25px);} to{opacity:1; transform:translateY(0);} }
+
+        h1{
+            font-size:2.6rem; font-weight:700; margin-bottom:16px;
+            letter-spacing:-.03em; color:var(--text-primary);
+            position:relative; z-index:2;
+        }
+
         .hero-statement{
-            font-size:1.4rem; font-weight:600; margin-bottom:20px; color:var(--text-primary);
+            font-size:1.35rem; font-weight:500; margin-bottom:22px; color:var(--text-primary);
             letter-spacing:-.01em;
+            position:relative; z-index:2;
         }
         .hero-statement .static{ color:var(--text-secondary); }
-        .typing-wrapper{
-            display:inline-block; position:relative;
-        }
+        .typing-wrapper{ display:inline-block; position:relative; }
         .typing-text{
-            color:var(--text-primary); font-weight:700;
+            color:var(--text-primary); font-weight:600;
             background:linear-gradient(135deg, var(--text-primary) 0%, var(--text-secondary) 100%);
             -webkit-background-clip:text; -webkit-text-fill-color:transparent;
             background-clip:text;
         }
         .cursor{
-            display:inline-block; width:2px; height:1.2em; background:var(--text-primary);
-            margin-left:2px; vertical-align:text-bottom;
-            animation:blink .8s ease-in-out infinite;
+            display:inline-block; width:2px; height:1.15em; background:var(--text-secondary);
+            margin-left:2px; vertical-align:text-bottom; border-radius:1px;
+            animation:blink 1s ease-in-out infinite;
         }
-        @keyframes blink{ 0%,50%{opacity:1;} 51%,100%{opacity:0;} }
+        @keyframes blink{ 0%,45%{opacity:1;} 50%,100%{opacity:0;} }
 
-        .tech-badges{ display:flex; gap:10px; justify-content:center; flex-wrap:wrap; }
+        .tech-badges{ display:flex; gap:10px; justify-content:center; flex-wrap:wrap; position:relative; z-index:2; }
         .badge{
-            padding:6px 16px; background:var(--surface); border:1px solid var(--border);
-            border-radius:var(--border-radius-lg); font-size:.9rem; color:var(--text-secondary); font-weight:500;
+            padding:7px 14px; background:var(--surface); border:1px solid var(--border);
+            border-radius:20px; font-size:.85rem; color:var(--text-secondary); font-weight:500;
+            transition:var(--transition); letter-spacing:-.01em;
+            display:inline-flex; align-items:center; gap:6px;
         }
+        .badge svg{ width:14px; height:14px; flex-shrink:0; }
+        .badge:hover{ border-color:var(--border-hover); transform:translateY(-2px); box-shadow:var(--shadow-sm); }
 
-        /* Fixed: Divider spacing reduced as requested */
         .divider{
-            width:280px; height:2px; background:linear-gradient(90deg, transparent, var(--border), var(--border), transparent);
-            margin: 20px auto 40px; 
-            opacity:0.7; position:relative;
+            width:200px; height:1px;
+            background:linear-gradient(90deg, transparent, var(--border), transparent);
+            margin: 28px auto 44px;
+            opacity:0.8;
+            position:relative; z-index:2;
         }
 
-        .nav-container{ display:flex; gap:18px; justify-content:center; flex-wrap:wrap; position:relative; }
+        .nav-container{
+            display:flex; gap:16px; justify-content:center; flex-wrap:wrap; position:relative; z-index:2;
+            opacity:0; animation:fadeInUp .8s cubic-bezier(.4,0,.2,1) .15s forwards;
+        }
         .nav-item{ position:relative; }
 
         .nav-button{
-            padding:14px 22px; background:var(--surface); border:1px solid var(--border);
-            border-radius:var(--border-radius); font-size:.95rem; color:var(--text-primary); cursor:pointer;
+            padding:14px 24px; background:var(--surface); border:1px solid var(--border);
+            border-radius:var(--border-radius); font-size:.9rem; color:var(--text-primary); cursor:pointer;
             transition:var(--transition); display:inline-flex; align-items:center; gap:10px; text-decoration:none;
-            font-weight:500; position:relative; box-shadow:var(--shadow-sm); min-width:130px; justify-content:center;
+            font-weight:500; position:relative; box-shadow:var(--shadow-sm); min-width:140px; justify-content:center;
+            font-family:'Inter',-apple-system,BlinkMacSystemFont,sans-serif; letter-spacing:-.01em;
+        }
+        .nav-button svg{
+            width:18px; height:18px; stroke:var(--text-secondary); stroke-width:1.75;
+            transition:var(--transition); flex-shrink:0;
         }
         .nav-button:hover{
-            transform:translateY(-4px); box-shadow:var(--shadow-xl); border-color:var(--text-primary);
+            transform:translateY(-3px) scale(1.02); box-shadow:var(--shadow-xl); border-color:var(--text-primary);
             background:var(--text-primary); color:var(--bg);
         }
+        .nav-button:hover svg{ stroke:var(--bg); }
+        .nav-button:active{ transform:translateY(-1px) scale(1); }
 
-        /* Premium YouTube Badge style */
         .youtube-badge{
             position:absolute; top:-10px; right:-10px; background:var(--accent-red); color:#fff;
-            padding:3px 8px; border-radius:12px; font-weight:800; font-size:.7rem; min-width:22px; text-align:center;
-            box-shadow: 0 4px 10px rgba(220, 0, 0, 0.2); z-index:2; border: 2px solid var(--bg);
+            padding:4px 9px; border-radius:10px; font-weight:700; font-size:.68rem; min-width:22px; text-align:center;
+            box-shadow: 0 4px 12px rgba(230, 0, 0, 0.25); z-index:2; border: 2px solid var(--bg);
+            letter-spacing:.02em;
         }
 
         .dropdown{
-            position:absolute; top:calc(100% + 12px); left:50%; transform:translateX(-50%);
-            display:flex; flex-direction:column; gap:8px; opacity:0; visibility:hidden;
-            transform:translateX(-50%) translateY(-15px); transition:var(--transition); z-index:100;
-            min-width:240px; background:var(--surface); border:1px solid var(--border);
-            border-radius:var(--border-radius-lg); padding:12px; box-shadow:var(--shadow-xl);
+            position:absolute; bottom:calc(100% + 35px); left:50%;
+            display:flex; flex-direction:column; gap:6px; opacity:0; visibility:hidden;
+            transform:translateX(-50%) translateY(8px);
+            transition:all .2s cubic-bezier(.4,0,.2,1); z-index:20;
+            min-width:220px; background:var(--surface-glass); backdrop-filter:saturate(180%) blur(24px); -webkit-backdrop-filter:saturate(180%) blur(24px);
+            border:1px solid var(--border); border-radius:var(--border-radius-lg); padding:10px;
+            box-shadow:var(--shadow-xl), inset 0 0 0 1px rgba(255,255,255,0.05);
         }
-        .nav-item:hover .dropdown{ opacity:1; visibility:visible; transform:translateX(-50%) translateY(0); }
+        .dropdown::before{
+            content:''; position:absolute; bottom:-35px; left:0; right:0; height:35px;
+        }
+        .nav-item:hover .dropdown, .nav-item.snake-hover .dropdown{ opacity:1; visibility:visible; transform:translateX(-50%) translateY(0); }
 
         .dropdown-item{
-            display:block; padding:12px 16px; background:transparent; border:1px solid var(--border);
-            border-radius:var(--border-radius); color:var(--text-primary); text-decoration:none; transition:var(--transition);
-            font-size:.9rem; text-align:left;
+            display:flex; align-items:center; gap:12px; padding:12px 14px; background:transparent; border:1px solid transparent;
+            border-radius:var(--border-radius); color:var(--text-primary); text-decoration:none;
+            transition:var(--transition); font-size:.88rem; text-align:left;
         }
-        .dropdown-item:hover{ background:var(--hover-bg); transform:translateY(-2px); border-color:var(--border-hover); }
-        .dropdown-item strong{ display:block; font-weight:600; margin-bottom:3px; }
-        .dropdown-item small{ color:var(--text-muted); font-size:.8rem; line-height:1.4; }
+        .dropdown-item:hover, .dropdown-item.snake-hover{ background:var(--hover-bg); border-color:var(--border); }
+        .dropdown-item svg{ width:20px; height:20px; flex-shrink:0; stroke:var(--text-secondary); stroke-width:1.75; }
+        .dropdown-item:hover svg, .dropdown-item.snake-hover svg{ stroke:var(--text-primary); }
+        .dropdown-item .item-text{ flex:1; }
+        .dropdown-item strong{ display:block; font-weight:600; margin-bottom:2px; letter-spacing:-.01em; }
+        .dropdown-item small{ color:var(--text-muted); font-size:.78rem; line-height:1.4; }
 
-        .social-links{ display:flex; flex-direction:column; gap:8px; }
+        .social-links{ display:grid; grid-template-columns:1fr 1fr; gap:6px; }
         .social-link{
-            padding:12px 16px; background:transparent; border:1px solid var(--border); border-radius:var(--border-radius);
-            text-decoration:none; color:var(--text-primary); transition:var(--transition); font-size:.9rem; font-weight:500; text-align:center;
+            padding:10px 12px; background:transparent; border:1px solid transparent; border-radius:var(--border-radius);
+            text-decoration:none; color:var(--text-primary); transition:var(--transition);
+            font-size:.82rem; font-weight:500; letter-spacing:-.01em;
+            display:flex; align-items:center; justify-content:flex-start; gap:8px;
         }
-        .social-link:hover{ background:var(--hover-bg); transform:translateY(-2px); border-color:var(--border-hover); }
+        .social-link svg{ width:16px; height:16px; flex-shrink:0; }
+        .social-link:hover, .social-link.snake-hover{ background:var(--hover-bg); border-color:var(--border); }
 
-        .email-display{
-            display:flex; align-items:center; gap:8px; padding:10px 14px;
-            background:var(--hover-bg); border:1px solid var(--border); border-radius:var(--border-radius);
-            font-family:ui-monospace,SFMono-Regular,Menlo,Monaco,Consolas,monospace;
-            font-size:.85rem; color:var(--text-primary);
+        /* Background Testimonials - Snake Game */
+        .testimonials-bg{
+            position:fixed; top:0; left:0; right:0; bottom:0;
+            pointer-events:none; z-index:0; overflow:hidden;
+            display:flex; flex-direction:column; justify-content:space-around;
+            padding:20px 0;
+            /* Fade out testimonials in center to keep main content clear */
+            mask-image:radial-gradient(ellipse 55% 50% at 50% 50%, transparent 0%, transparent 40%, rgba(0,0,0,0.15) 55%, rgba(0,0,0,0.4) 65%, rgba(0,0,0,0.7) 75%, black 90%);
+            -webkit-mask-image:radial-gradient(ellipse 55% 50% at 50% 50%, transparent 0%, transparent 40%, rgba(0,0,0,0.15) 55%, rgba(0,0,0,0.4) 65%, rgba(0,0,0,0.7) 75%, black 90%);
         }
-        .copy-btn{
-            padding:6px 12px; background:var(--surface); border:1px solid var(--border);
-            border-radius:8px; font-size:.75rem; font-weight:600; color:var(--text-secondary);
-            cursor:pointer; transition:var(--transition);
+        .testimonial-row{
+            display:flex; justify-content:center; gap:30px; flex-wrap:nowrap;
+            white-space:nowrap; overflow:hidden;
+        }
+        .testimonial-item{
+            display:inline-flex; align-items:center; gap:12px;
+            font-size:.7rem;
+            font-family:'Retropix', monospace;
+        }
+        .testimonial-char{
+            display:inline-block;
+            color:var(--text-hidden);
+            transition:color 0.12s cubic-bezier(0.4, 0, 0.2, 1);
+        }
+        .testimonial-quote{
+            font-style:normal; font-weight:400; letter-spacing:0.02em;
+        }
+        .testimonial-author{
+            font-weight:400; font-size:.55rem; letter-spacing:0.01em;
+        }
+        .testimonial-dot{
+            width:3px; height:3px; border-radius:50%; flex-shrink:0;
+            background-color:currentColor; opacity:0.4;
+        }
+
+        /* Snake Canvas */
+        #snake-canvas{
+            position:fixed; top:0; left:0; width:100%; height:100%;
+            pointer-events:none; z-index:5;
+        }
+
+        /* Hidden/Revealed text colors */
+        body, body[data-theme="light"]{
+            --text-hidden:#f8f8f8;
+            --text-revealed:#666666;
+            --snake-color:#1a1a1a;
+        }
+        body[data-theme="dark"]{
+            --text-hidden:#1e1e1e;
+            --text-revealed:#999999;
+            --snake-color:#ffffff;
         }
 
         .toast{
-            position:fixed; bottom:24px; left:50%; transform:translateX(-50%) translateY(100px);
-            background:var(--text-primary); color:var(--bg); padding:12px 24px;
-            border-radius:var(--border-radius); font-size:.9rem; font-weight:500;
+            position:fixed; bottom:28px; left:50%; transform:translateX(-50%) translateY(100px);
+            background:var(--text-primary); color:var(--bg); padding:14px 28px;
+            border-radius:var(--border-radius); font-size:.88rem; font-weight:500;
             box-shadow:var(--shadow-xl); opacity:0; transition:var(--transition); z-index:2000;
+            backdrop-filter:blur(10px); letter-spacing:-.01em;
         }
         .toast.show{ transform:translateX(-50%) translateY(0); opacity:1; }
 
-        @media (max-width:768px){
-            .nav-item:hover .dropdown, .nav-item.mobile-active .dropdown{ transform:translateX(-50%) translateY(0); opacity:1; visibility:visible; }
-            .dropdown { position: fixed; bottom: 20px; top: auto; width: 90%; max-width: 320px; }
-        }
     </style>
 </head>
 <body data-theme="light">
@@ -211,9 +286,22 @@
                 <span class="static">apps</span>
             </p>
             <div class="tech-badges">
-                <span class="badge">iOS</span>
-                <span class="badge">Android</span>
-                <span class="badge">Flutter</span>
+                <span class="badge">
+                    <svg viewBox="0 0 24 24" fill="currentColor"><path d="M18.71 19.5c-.83 1.24-1.71 2.45-3.05 2.47-1.34.03-1.77-.79-3.29-.79-1.53 0-2 .77-3.27.82-1.31.05-2.3-1.32-3.14-2.53C4.25 17 2.94 12.45 4.7 9.39c.87-1.52 2.43-2.48 4.12-2.51 1.28-.02 2.5.87 3.29.87.78 0 2.26-1.07 3.81-.91.65.03 2.47.26 3.64 1.98-.09.06-2.17 1.28-2.15 3.81.03 3.02 2.65 4.03 2.68 4.04-.03.07-.42 1.44-1.38 2.83M13 3.5c.73-.83 1.94-1.46 2.94-1.5.13 1.17-.34 2.35-1.04 3.19-.69.85-1.83 1.51-2.95 1.42-.15-1.15.41-2.35 1.05-3.11z"/></svg>
+                    iOS
+                </span>
+                <span class="badge">
+                    <svg viewBox="0 0 24 24" fill="currentColor"><path d="M17.6 9.48l1.84-3.18c.16-.31.04-.69-.26-.85-.29-.15-.65-.06-.83.22l-1.88 3.24a11.463 11.463 0 00-8.94 0L5.65 5.67c-.19-.29-.55-.38-.84-.22-.3.16-.42.54-.26.85L6.4 9.48A10.78 10.78 0 002 18h20a10.78 10.78 0 00-4.4-8.52zM7 15.25a1.25 1.25 0 110-2.5 1.25 1.25 0 010 2.5zm10 0a1.25 1.25 0 110-2.5 1.25 1.25 0 010 2.5z"/></svg>
+                    Android
+                </span>
+                <span class="badge">
+                    <svg viewBox="0 0 24 24" fill="currentColor"><path d="M14.314 0L2.3 12 6 15.7 21.684.013h-7.357zm.014 11.072L7.857 17.53l6.47 6.47H21.7l-6.46-6.468 6.46-6.46h-7.386z"/></svg>
+                    Flutter
+                </span>
+                <span class="badge">
+                    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 2L2 7l10 5 10-5-10-5z"/><path d="M2 17l10 5 10-5"/><path d="M2 12l10 5 10-5"/></svg>
+                    AI
+                </span>
             </div>
         </header>
 
@@ -221,66 +309,118 @@
 
         <nav class="nav-container">
             <div class="nav-item">
-                <button class="nav-button"><span>📱</span> Apps</button>
+                <button class="nav-button">
+                    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round"><rect x="5" y="2" width="14" height="20" rx="2" ry="2"/><line x1="12" y1="18" x2="12.01" y2="18"/></svg>
+                    Apps
+                </button>
                 <div class="dropdown">
                     <a href="https://ritualz.app" target="_blank" class="dropdown-item">
-                        <strong>Ritualz</strong>
-                        <small>Habit Tracker</small>
+                        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round"><path d="M22 11.08V12a10 10 0 1 1-5.93-9.14"/><polyline points="22 4 12 14.01 9 11.01"/></svg>
+                        <span class="item-text">
+                            <strong>Ritualz</strong>
+                            <small>Habit Tracker</small>
+                        </span>
                     </a>
                     <a href="https://expensif.app" target="_blank" class="dropdown-item">
-                        <strong>Expensif</strong>
-                        <small>Minimal Expense Tracker</small>
+                        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round"><line x1="12" y1="1" x2="12" y2="23"/><path d="M17 5H9.5a3.5 3.5 0 0 0 0 7h5a3.5 3.5 0 0 1 0 7H6"/></svg>
+                        <span class="item-text">
+                            <strong>Expensif</strong>
+                            <small>Minimal Expense Tracker</small>
+                        </span>
                     </a>
                     <a href="https://tuteee.app" target="_blank" class="dropdown-item">
-                        <strong>Tuteee</strong>
-                        <small>AI Personal Tutor</small>
+                        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round"><path d="M22 10v6M2 10l10-5 10 5-10 5z"/><path d="M6 12v5c3 3 9 3 12 0v-5"/></svg>
+                        <span class="item-text">
+                            <strong>Tuteee</strong>
+                            <small>AI Personal Tutor</small>
+                        </span>
                     </a>
                 </div>
             </div>
 
             <div class="nav-item">
                 <button class="nav-button">
-                    <span>🔗</span> Social
+                    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round"><circle cx="18" cy="5" r="3"/><circle cx="6" cy="12" r="3"/><circle cx="18" cy="19" r="3"/><line x1="8.59" y1="13.51" x2="15.42" y2="17.49"/><line x1="15.41" y1="6.51" x2="8.59" y2="10.49"/></svg>
+                    Social
                     <span class="youtube-badge">170K+</span>
                 </button>
                 <div class="dropdown">
                     <div class="social-links">
-                        <a href="https://youtube.com/mitchkoko" target="_blank" class="social-link">YouTube</a>
-                        <a href="https://instagram.com/createdbykoko" target="_blank" class="social-link">Instagram</a>
-                        <a href="https://x.com/createdbykoko" target="_blank" class="social-link">X</a>
-                        <a href="https://twitch.tv/mitchkoko96" target="_blank" class="social-link">Twitch</a>
-                        <a href="https://www.tiktok.com/@createdbykoko" target="_blank" class="social-link">TikTok</a>
-                        <a href="https://www.patreon.com/mitchkoko" target="_blank" class="social-link">Patreon</a>
-                        <a href="#" class="social-link" onclick="copyEmail(event)">Email</a>
+                        <a href="https://youtube.com/mitchkoko" target="_blank" class="social-link">
+                            <svg viewBox="0 0 24 24" fill="currentColor"><path d="M23.498 6.186a3.016 3.016 0 0 0-2.122-2.136C19.505 3.545 12 3.545 12 3.545s-7.505 0-9.377.505A3.017 3.017 0 0 0 .502 6.186C0 8.07 0 12 0 12s0 3.93.502 5.814a3.016 3.016 0 0 0 2.122 2.136c1.871.505 9.376.505 9.376.505s7.505 0 9.377-.505a3.015 3.015 0 0 0 2.122-2.136C24 15.93 24 12 24 12s0-3.93-.502-5.814zM9.545 15.568V8.432L15.818 12l-6.273 3.568z"/></svg>
+                            YouTube
+                        </a>
+                        <a href="https://instagram.com/createdbykoko" target="_blank" class="social-link">
+                            <svg viewBox="0 0 24 24" fill="currentColor"><path d="M12 2.163c3.204 0 3.584.012 4.85.07 3.252.148 4.771 1.691 4.919 4.919.058 1.265.069 1.645.069 4.849 0 3.205-.012 3.584-.069 4.849-.149 3.225-1.664 4.771-4.919 4.919-1.266.058-1.644.07-4.85.07-3.204 0-3.584-.012-4.849-.07-3.26-.149-4.771-1.699-4.919-4.92-.058-1.265-.07-1.644-.07-4.849 0-3.204.013-3.583.07-4.849.149-3.227 1.664-4.771 4.919-4.919 1.266-.057 1.645-.069 4.849-.069zM12 0C8.741 0 8.333.014 7.053.072 2.695.272.273 2.69.073 7.052.014 8.333 0 8.741 0 12c0 3.259.014 3.668.072 4.948.2 4.358 2.618 6.78 6.98 6.98C8.333 23.986 8.741 24 12 24c3.259 0 3.668-.014 4.948-.072 4.354-.2 6.782-2.618 6.979-6.98.059-1.28.073-1.689.073-4.948 0-3.259-.014-3.667-.072-4.947-.196-4.354-2.617-6.78-6.979-6.98C15.668.014 15.259 0 12 0zm0 5.838a6.162 6.162 0 1 0 0 12.324 6.162 6.162 0 0 0 0-12.324zM12 16a4 4 0 1 1 0-8 4 4 0 0 1 0 8zm6.406-11.845a1.44 1.44 0 1 0 0 2.881 1.44 1.44 0 0 0 0-2.881z"/></svg>
+                            Instagram
+                        </a>
+                        <a href="https://x.com/createdbykoko" target="_blank" class="social-link">
+                            <svg viewBox="0 0 24 24" fill="currentColor"><path d="M18.244 2.25h3.308l-7.227 8.26 8.502 11.24H16.17l-5.214-6.817L4.99 21.75H1.68l7.73-8.835L1.254 2.25H8.08l4.713 6.231zm-1.161 17.52h1.833L7.084 4.126H5.117z"/></svg>
+                            X
+                        </a>
+                        <a href="https://twitch.tv/mitchkoko96" target="_blank" class="social-link">
+                            <svg viewBox="0 0 24 24" fill="currentColor"><path d="M11.571 4.714h1.715v5.143H11.57zm4.715 0H18v5.143h-1.714zM6 0L1.714 4.286v15.428h5.143V24l4.286-4.286h3.428L22.286 12V0zm14.571 11.143l-3.428 3.428h-3.429l-3 3v-3H6.857V1.714h13.714Z"/></svg>
+                            Twitch
+                        </a>
+                        <a href="https://www.tiktok.com/@createdbykoko" target="_blank" class="social-link">
+                            <svg viewBox="0 0 24 24" fill="currentColor"><path d="M12.525.02c1.31-.02 2.61-.01 3.91-.02.08 1.53.63 3.09 1.75 4.17 1.12 1.11 2.7 1.62 4.24 1.79v4.03c-1.44-.05-2.89-.35-4.2-.97-.57-.26-1.1-.59-1.62-.93-.01 2.92.01 5.84-.02 8.75-.08 1.4-.54 2.79-1.35 3.94-1.31 1.92-3.58 3.17-5.91 3.21-1.43.08-2.86-.31-4.08-1.03-2.02-1.19-3.44-3.37-3.65-5.71-.02-.5-.03-1-.01-1.49.18-1.9 1.12-3.72 2.58-4.96 1.66-1.44 3.98-2.13 6.15-1.72.02 1.48-.04 2.96-.04 4.44-.99-.32-2.15-.23-3.02.37-.63.41-1.11 1.04-1.36 1.75-.21.51-.15 1.07-.14 1.61.24 1.64 1.82 3.02 3.5 2.87 1.12-.01 2.19-.66 2.77-1.61.19-.33.4-.67.41-1.06.1-1.79.06-3.57.07-5.36.01-4.03-.01-8.05.02-12.07z"/></svg>
+                            TikTok
+                        </a>
+                        <a href="https://www.patreon.com/mitchkoko" target="_blank" class="social-link">
+                            <svg viewBox="0 0 24 24" fill="currentColor"><path d="M15.386.524c-4.764 0-8.64 3.876-8.64 8.64 0 4.75 3.876 8.613 8.64 8.613 4.75 0 8.614-3.864 8.614-8.613C24 4.4 20.136.524 15.386.524zM.003 23.537h4.22V.524H.003z"/></svg>
+                            Patreon
+                        </a>
+                        <a href="#" class="social-link" onclick="copyEmail(event)">
+                            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z"/><polyline points="22,6 12,13 2,6"/></svg>
+                            Email
+                        </a>
                     </div>
                 </div>
             </div>
 
             <div class="nav-item">
-                <button class="nav-button"><span>💰</span> Road to 1k</button>
+                <button class="nav-button">
+                    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round"><line x1="12" y1="1" x2="12" y2="23"/><path d="M17 5H9.5a3.5 3.5 0 0 0 0 7h5a3.5 3.5 0 0 1 0 7H6"/></svg>
+                    Road to 1k
+                </button>
                 <div class="dropdown">
                     <a href="roadto1k/" class="dropdown-item">
-                        <strong>View All Episodes</strong>
-                        <small>See the full journey</small>
+                        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round"><line x1="8" y1="6" x2="21" y2="6"/><line x1="8" y1="12" x2="21" y2="12"/><line x1="8" y1="18" x2="21" y2="18"/><line x1="3" y1="6" x2="3.01" y2="6"/><line x1="3" y1="12" x2="3.01" y2="12"/><line x1="3" y1="18" x2="3.01" y2="18"/></svg>
+                        <span class="item-text">
+                            <strong>View All Episodes</strong>
+                            <small>See the full journey</small>
+                        </span>
                     </a>
                     <a href="roadto1k/ep0/" class="dropdown-item">
-                        <strong>Ep 0</strong>
-                        <small>MRR: $8/month</small>
+                        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="10"/><line x1="12" y1="6" x2="12" y2="18"/><path d="M15 9.5c0-1.38-1.34-2.5-3-2.5s-3 1.12-3 2.5 1.34 2.5 3 2.5 3 1.12 3 2.5-1.34 2.5-3 2.5"/></svg>
+                        <span class="item-text">
+                            <strong>Ep 0</strong>
+                            <small>MRR: $8/month</small>
+                        </span>
                     </a>
                     <a href="roadto1k/ep1/" class="dropdown-item">
-                        <strong>Ep 1</strong>
-                        <small>MRR: $13/month</small>
+                        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="10"/><line x1="12" y1="6" x2="12" y2="18"/><path d="M15 9.5c0-1.38-1.34-2.5-3-2.5s-3 1.12-3 2.5 1.34 2.5 3 2.5 3 1.12 3 2.5-1.34 2.5-3 2.5"/></svg>
+                        <span class="item-text">
+                            <strong>Ep 1</strong>
+                            <small>MRR: $13/month</small>
+                        </span>
                     </a>
                 </div>
             </div>
         </nav>
     </div>
 
+    <!-- Background Testimonials -->
+    <div class="testimonials-bg" id="testimonials-bg"></div>
+
+    <!-- Snake Game Canvas -->
+    <canvas id="snake-canvas"></canvas>
+
     <div class="toast" id="toast">Email copied!</div>
 
     <script>
         // Typewriter Animation
-        const words = ['build', 'code', 'ship', 'launch', 'monetise'];
+        const words = ['build', 'launch', 'monetise', 'design', 'code', 'ship', ];
         let wordIndex = 0;
         let charIndex = 0;
         let isDeleting = false;
@@ -300,25 +440,38 @@
             let typeSpeed = isDeleting ? 60 : 120;
 
             if (!isDeleting && charIndex === currentWord.length) {
-                typeSpeed = 2000; // Pause at end of word
+                typeSpeed = 2000;
                 isDeleting = true;
             } else if (isDeleting && charIndex === 0) {
                 isDeleting = false;
                 wordIndex = (wordIndex + 1) % words.length;
-                typeSpeed = 400; // Pause before typing next word
+                typeSpeed = 400;
             }
 
             setTimeout(type, typeSpeed);
         }
 
-        // Start typing animation
         setTimeout(type, 600);
+
+        // Load theme from localStorage on page load
+        (function initTheme() {
+            const savedTheme = localStorage.getItem('theme');
+            if (savedTheme) {
+                document.body.setAttribute('data-theme', savedTheme);
+            }
+        })();
 
         function toggleTheme(){
             const body=document.body;
             const next=body.getAttribute('data-theme')==='light'?'dark':'light';
             body.setAttribute('data-theme',next);
             localStorage.setItem('theme',next);
+            // Trigger a redraw for theme color updates with slight delay for CSS to apply
+            requestAnimationFrame(() => {
+                if (window.themeChangeCallback) {
+                    window.themeChangeCallback();
+                }
+            });
         }
 
         function copyEmail(e){
@@ -350,6 +503,527 @@
             if(!e.target.closest('.nav-item')) {
                 document.querySelectorAll('.nav-item').forEach(i => i.classList.remove('mobile-active'));
             }
+        });
+
+        // ==========================================
+        // SNAKE GAME - Illuminates Testimonials
+        // ==========================================
+
+        const testimonials = [
+            ["Best Flutter tutorials on YouTube", "Finally someone who explains clearly", "Launched my first app thanks to this", "The production quality is insane"],
+            ["Mitch's teaching style is incredible", "This changed how I approach dev", "Binge-watched the entire channel", "Underrated channel, deserves millions"],
+            ["Every video is packed with value", "Built my first profitable app", "No fluff, just pure knowledge", "The best Flutter content period"],
+            ["Wish I found this channel sooner", "Production quality rivals Netflix", "Learning Flutter has never been fun", "Inspired me to start my app business"],
+            ["Clean code, clean explanations", "My go-to resource for Flutter", "Actually makes coding enjoyable", "The aesthetic is next level"],
+            ["Finally quit my job, went indie", "Worth every minute of watch time", "The Road to 1k series is gold", "Subscribed after 30 seconds"],
+            ["Most practical content out there", "Got a job offer from these tutorials", "The editing is chef's kiss", "This is what quality looks like"],
+            ["Never thought I'd build an app", "Perfect balance of theory and practice", "Recommend to all my dev friends", "Makes complex topics feel simple"],
+            ["Zero to hero in 6 months", "Better than any paid course", "The UI designs are stunning", "This is my coding comfort zone"],
+            ["Genuinely excited for new uploads", "Built a 5 star app from this", "The passion shows in every frame", "Changed my entire approach"],
+            ["Every developer needs to see this", "Turned my hobby into side income", "The pacing is absolutely perfect", "Actual real-world solutions"],
+            ["My productivity doubled", "The attention to detail is unmatched", "Finally understand state management", "This is the gold standard"],
+            ["Started coding because of this", "The best investment of my time", "Makes me actually want to code", "Can't believe this is free"]
+        ];
+
+        // Wrap text in character spans for per-character illumination
+        function wrapChars(text) {
+            return text.split('').map(char =>
+                char === ' ' ? '<span class="testimonial-char">&nbsp;</span>' : `<span class="testimonial-char">${char}</span>`
+            ).join('');
+        }
+
+        // Generate testimonial rows
+        const testimonialsBg = document.getElementById('testimonials-bg');
+        testimonials.forEach((row, rowIndex) => {
+            const rowEl = document.createElement('div');
+            rowEl.className = 'testimonial-row';
+
+            // Offset each row for variety
+            const offset = (rowIndex % 3) * 100;
+            rowEl.style.paddingLeft = offset + 'px';
+
+            row.forEach((quote, i) => {
+                const item = document.createElement('div');
+                item.className = 'testimonial-item';
+                const wrappedQuote = `<span class="testimonial-char">"</span>${wrapChars(quote)}<span class="testimonial-char">"</span>`;
+                item.innerHTML = `<span class="testimonial-quote">${wrappedQuote}</span><span class="testimonial-dot testimonial-char"></span>`;
+                rowEl.appendChild(item);
+            });
+            testimonialsBg.appendChild(rowEl);
+        });
+
+        // Snake Game
+        const canvas = document.getElementById('snake-canvas');
+        const ctx = canvas.getContext('2d');
+
+        const gridSize = 15;
+        const snakeLength = 4;
+        let snake = [];
+        let direction = { x: 1, y: 0 };
+        let nextDirection = { x: 1, y: 0 };
+
+        // Grid dimensions
+        let gridCols, gridRows, maxX, maxY, centerCol, centerRow;
+
+        function updateGridDimensions() {
+            canvas.width = window.innerWidth;
+            canvas.height = window.innerHeight;
+            gridCols = Math.floor(canvas.width / gridSize);
+            gridRows = Math.floor(canvas.height / gridSize);
+            maxX = (gridCols - 1) * gridSize;
+            maxY = (gridRows - 1) * gridSize;
+            centerCol = Math.floor(gridCols / 2);
+            centerRow = Math.floor(gridRows / 2);
+        }
+        updateGridDimensions();
+
+        // Initialize snake in middle, moving right
+        function initSnake() {
+            snake = [];
+            const startX = centerCol * gridSize;
+            const startY = centerRow * gridSize;
+            for (let i = 0; i < snakeLength; i++) {
+                snake.push({ x: startX - i * gridSize, y: startY });
+            }
+            direction = { x: 1, y: 0 };
+            nextDirection = { x: 1, y: 0 };
+        }
+        initSnake();
+
+        // Arrow key controls
+        document.addEventListener('keydown', (e) => {
+            switch(e.key) {
+                case 'ArrowUp':
+                    if (direction.y !== 1) nextDirection = { x: 0, y: -1 };
+                    e.preventDefault();
+                    break;
+                case 'ArrowDown':
+                    if (direction.y !== -1) nextDirection = { x: 0, y: 1 };
+                    e.preventDefault();
+                    break;
+                case 'ArrowLeft':
+                    if (direction.x !== 1) nextDirection = { x: -1, y: 0 };
+                    e.preventDefault();
+                    break;
+                case 'ArrowRight':
+                    if (direction.x !== -1) nextDirection = { x: 1, y: 0 };
+                    e.preventDefault();
+                    break;
+            }
+        });
+
+        let cachedSnakeColor = null;
+
+        function getSnakeColor() {
+            if (!cachedSnakeColor) {
+                cachedSnakeColor = getComputedStyle(document.body).getPropertyValue('--snake-color').trim();
+            }
+            return cachedSnakeColor;
+        }
+
+        function updateSnakeColor() {
+            cachedSnakeColor = getComputedStyle(document.body).getPropertyValue('--snake-color').trim();
+        }
+
+        function updateSnake() {
+            direction = nextDirection;
+
+            // Calculate new head position
+            const head = snake[0];
+            let newX = head.x + direction.x * gridSize;
+            let newY = head.y + direction.y * gridSize;
+
+            // Wrap around edges (grid-aligned)
+            if (newX > maxX) newX = 0;
+            if (newX < 0) newX = maxX;
+            if (newY > maxY) newY = 0;
+            if (newY < 0) newY = maxY;
+
+            // Add new head
+            snake.unshift({ x: newX, y: newY });
+
+            // Remove tail
+            snake.pop();
+        }
+
+        // Food system
+        let food = null;
+
+        const foodAvoidRadius = 18; // Grid cells to avoid from center (main content area)
+
+        function spawnFood() {
+            for (let attempts = 0; attempts < 100; attempts++) {
+                const col = Math.floor(Math.random() * gridCols);
+                const row = Math.floor(Math.random() * gridRows);
+
+                // Avoid center area (uses pre-computed centerCol/centerRow)
+                if (Math.abs(col - centerCol) + Math.abs(row - centerRow) < foodAvoidRadius) continue;
+
+                const x = col * gridSize;
+                const y = row * gridSize;
+
+                // Avoid snake body
+                if (snake.some(seg => seg.x === x && seg.y === y)) continue;
+
+                food = { x, y };
+                return;
+            }
+            food = { x: 0, y: 0 }; // Fallback
+        }
+
+        function checkFoodCollision() {
+            if (!food) return;
+            const head = snake[0];
+            if (head.x === food.x && head.y === food.y) {
+                // Grow snake by adding segment at tail
+                const tail = snake[snake.length - 1];
+                snake.push({ x: tail.x, y: tail.y });
+                spawnFood();
+            }
+        }
+
+        // Initialize food
+        setTimeout(spawnFood, 500);
+
+        let foodPulse = 0;
+
+        function drawSnake(timestamp) {
+            ctx.clearRect(0, 0, canvas.width, canvas.height);
+            const color = getSnakeColor();
+            const size = gridSize - 2;
+            const radius = size / 3.5;
+
+            // Draw food with subtle pulse
+            if (food) {
+                foodPulse = (timestamp || 0) * 0.003;
+                const pulse = 0.85 + Math.sin(foodPulse) * 0.15;
+                ctx.fillStyle = '#22c55e';
+                ctx.globalAlpha = pulse;
+                ctx.beginPath();
+                ctx.roundRect(food.x + 1, food.y + 1, size, size, radius);
+                ctx.fill();
+            }
+
+            // Draw snake
+            snake.forEach((segment, index) => {
+                const alpha = 1 - Math.pow(index / (snake.length - 1), 1.5) * 0.7;
+                ctx.fillStyle = color;
+                ctx.globalAlpha = alpha;
+                ctx.beginPath();
+                ctx.roundRect(segment.x + 1, segment.y + 1, size, size, radius);
+                ctx.fill();
+            });
+
+            ctx.globalAlpha = 1;
+        }
+
+        // Get theme colors for interpolation
+        function getColors() {
+            const style = getComputedStyle(document.body);
+            const hidden = style.getPropertyValue('--text-hidden').trim();
+            const revealed = style.getPropertyValue('--text-revealed').trim();
+            return { hidden, revealed };
+        }
+
+        // Parse color to RGB (handles both hex and rgb() formats)
+        function parseColor(color) {
+            // Try hex format
+            const hexResult = /^#?([a-f\d]{2})([a-f\d]{2})([a-f\d]{2})$/i.exec(color);
+            if (hexResult) {
+                return {
+                    r: parseInt(hexResult[1], 16),
+                    g: parseInt(hexResult[2], 16),
+                    b: parseInt(hexResult[3], 16)
+                };
+            }
+            // Try rgb() format
+            const rgbResult = /rgb\((\d+),\s*(\d+),\s*(\d+)\)/.exec(color);
+            if (rgbResult) {
+                return {
+                    r: parseInt(rgbResult[1]),
+                    g: parseInt(rgbResult[2]),
+                    b: parseInt(rgbResult[3])
+                };
+            }
+            // Fallback
+            return { r: 128, g: 128, b: 128 };
+        }
+
+        // Interpolate between two colors
+        function lerpColor(color1, color2, t) {
+            const r = Math.round(color1.r + (color2.r - color1.r) * t);
+            const g = Math.round(color1.g + (color2.g - color1.g) * t);
+            const b = Math.round(color1.b + (color2.b - color1.b) * t);
+            return `rgb(${r},${g},${b})`;
+        }
+
+        // Cache character elements for performance
+        const charElements = document.querySelectorAll('.testimonial-char');
+        const charPositions = [];
+
+        function cacheCharPositions() {
+            charPositions.length = 0;
+            charElements.forEach(char => {
+                const rect = char.getBoundingClientRect();
+                charPositions.push({
+                    el: char,
+                    x: rect.left + rect.width / 2,
+                    y: rect.top + rect.height / 2
+                });
+            });
+        }
+        cacheCharPositions();
+
+        // Cache colors for performance
+        let cachedColors = null;
+        let cachedHiddenRgb = null;
+        let cachedRevealedRgb = null;
+
+        // Pre-compute color strings for each intensity level (0-10)
+        let colorLookup = [];
+        function buildColorLookup() {
+            colorLookup = [];
+            for (let i = 0; i <= 10; i++) {
+                colorLookup.push(lerpColor(cachedHiddenRgb, cachedRevealedRgb, i / 10));
+            }
+        }
+
+        function updateColorCache() {
+            cachedColors = getColors();
+            cachedHiddenRgb = parseColor(cachedColors.hidden);
+            cachedRevealedRgb = parseColor(cachedColors.revealed);
+            updateSnakeColor();
+            buildColorLookup();
+
+            // Reset all character colors to new hidden color on theme change
+            charPositions.forEach(({ el }, index) => {
+                el.style.color = colorLookup[0];
+                charColorState.set(index, 0);
+            });
+        }
+
+        // Set up theme change callback
+        window.themeChangeCallback = updateColorCache;
+
+        // Initialize color cache after DOM is ready and theme is set
+        // Use double requestAnimationFrame to ensure CSS is fully applied
+        requestAnimationFrame(() => {
+            requestAnimationFrame(() => {
+                updateColorCache();
+            });
+        });
+
+        // Illuminate characters near snake and food
+        const illuminationRadius = 150;
+        const foodIlluminationRadius = 160;
+        const illuminationRadiusSq = illuminationRadius * illuminationRadius;
+        const foodIlluminationRadiusSq = foodIlluminationRadius * foodIlluminationRadius;
+        let illuminationFrame = 0;
+
+        // Store previous color state to avoid unnecessary DOM updates
+        const charColorState = new Map();
+
+        function illuminateTestimonials() {
+            // Throttle: only run every 3rd frame for performance
+            illuminationFrame++;
+            if (illuminationFrame % 3 !== 0) return;
+
+            // Ensure colors are cached
+            if (!cachedColors || !cachedHiddenRgb || !cachedRevealedRgb) {
+                updateColorCache();
+                buildColorLookup();
+            }
+            if (colorLookup.length === 0) buildColorLookup();
+
+            // Calculate bounds for quick rejection
+            let minX = snake[0].x, maxX = snake[0].x, minY = snake[0].y, maxY = snake[0].y;
+            for (let i = 1; i < snake.length; i++) {
+                const seg = snake[i];
+                if (seg.x < minX) minX = seg.x;
+                else if (seg.x > maxX) maxX = seg.x;
+                if (seg.y < minY) minY = seg.y;
+                else if (seg.y > maxY) maxY = seg.y;
+            }
+
+            // Include food in bounds (use larger radius for food)
+            const maxRadius = Math.max(illuminationRadius, foodIlluminationRadius);
+            if (food) {
+                if (food.x - foodIlluminationRadius < minX) minX = food.x - foodIlluminationRadius + illuminationRadius;
+                if (food.x + foodIlluminationRadius > maxX) maxX = food.x + foodIlluminationRadius - illuminationRadius;
+                if (food.y - foodIlluminationRadius < minY) minY = food.y - foodIlluminationRadius + illuminationRadius;
+                if (food.y + foodIlluminationRadius > maxY) maxY = food.y + foodIlluminationRadius - illuminationRadius;
+            }
+
+            const boundsMinX = minX - illuminationRadius;
+            const boundsMaxX = maxX + illuminationRadius + gridSize;
+            const boundsMinY = minY - illuminationRadius;
+            const boundsMaxY = maxY + illuminationRadius + gridSize;
+
+            const halfGrid = gridSize / 2;
+            const foodCenterX = food ? food.x + halfGrid : 0;
+            const foodCenterY = food ? food.y + halfGrid : 0;
+
+            for (let index = 0; index < charPositions.length; index++) {
+                const pos = charPositions[index];
+                const x = pos.x, y = pos.y;
+
+                // Quick bounds check
+                if (x < boundsMinX || x > boundsMaxX || y < boundsMinY || y > boundsMaxY) {
+                    if (charColorState.get(index) !== 0) {
+                        charColorState.set(index, 0);
+                        pos.el.style.color = colorLookup[0];
+                    }
+                    continue;
+                }
+
+                // Find minimum distance to snake (squared)
+                let minDistSq = Infinity;
+                for (let i = 0; i < snake.length; i++) {
+                    const seg = snake[i];
+                    const dx = x - (seg.x + halfGrid);
+                    const dy = y - (seg.y + halfGrid);
+                    const distSq = dx * dx + dy * dy;
+                    if (distSq < minDistSq) minDistSq = distSq;
+                    if (distSq < 100) break; // Close enough, no need to check more
+                }
+
+                // Calculate snake intensity
+                let intensity = 0;
+                if (minDistSq < illuminationRadiusSq) {
+                    intensity = 1 - Math.sqrt(minDistSq) / illuminationRadius;
+                }
+
+                // Calculate food intensity
+                let foodIntensity = 0;
+                if (food) {
+                    const dx = x - foodCenterX;
+                    const dy = y - foodCenterY;
+                    const foodDistSq = dx * dx + dy * dy;
+                    if (foodDistSq < foodIlluminationRadiusSq) {
+                        foodIntensity = 1 - Math.sqrt(foodDistSq) / foodIlluminationRadius;
+                    }
+                }
+
+                // Combined intensity with easing
+                const combined = Math.max(intensity, foodIntensity);
+                const quantized = combined > 0 ? Math.round((1 - Math.pow(1 - combined, 3)) * 10) : 0;
+
+                if (charColorState.get(index) !== quantized) {
+                    charColorState.set(index, quantized);
+                    pos.el.style.color = colorLookup[quantized];
+                }
+            }
+        }
+
+        // Snake head hover detection
+        const navItems = document.querySelectorAll('.nav-item');
+        const dropdownItems = document.querySelectorAll('.dropdown-item, .social-link');
+        let currentHoveredNav = null;
+        let currentHoveredDropdownItem = null;
+        let hoverTimeout = null;
+
+        function checkSnakeNavHover() {
+            const head = snake[0];
+            const hx = head.x + gridSize / 2;
+            const hy = head.y + gridSize / 2;
+
+            // Check nav buttons
+            let foundNav = null;
+            for (const nav of navItems) {
+                const r = nav.getBoundingClientRect();
+                if (hx >= r.left - 15 && hx <= r.right + 15 && hy >= r.top - 15 && hy <= r.bottom + 15) {
+                    foundNav = nav;
+                    break;
+                }
+            }
+
+            // Check if snake is in dropdown area (including gap between button and dropdown)
+            let inDropdownArea = false;
+            if (currentHoveredNav) {
+                const dropdown = currentHoveredNav.querySelector('.dropdown');
+                if (dropdown) {
+                    const r = dropdown.getBoundingClientRect();
+                    // Extend bounds down to include the gap to the button
+                    if (hx >= r.left - 10 && hx <= r.right + 10 && hy >= r.top - 10 && hy <= r.bottom + 50) {
+                        inDropdownArea = true;
+                    }
+                }
+            }
+
+            // Check dropdown items (only visible ones)
+            let foundItem = null;
+            for (const item of dropdownItems) {
+                const r = item.getBoundingClientRect();
+                if (r.width === 0) continue;
+                if (hx >= r.left && hx <= r.right && hy >= r.top && hy <= r.bottom) {
+                    foundItem = item;
+                    break;
+                }
+            }
+
+            // Update dropdown item hover
+            if (foundItem !== currentHoveredDropdownItem) {
+                if (currentHoveredDropdownItem) currentHoveredDropdownItem.classList.remove('snake-hover');
+                if (foundItem) foundItem.classList.add('snake-hover');
+                currentHoveredDropdownItem = foundItem;
+            }
+
+            // Update nav hover
+            if (foundNav !== currentHoveredNav) {
+                if (hoverTimeout) { clearTimeout(hoverTimeout); hoverTimeout = null; }
+                if (foundNav) {
+                    if (currentHoveredNav) currentHoveredNav.classList.remove('snake-hover');
+                    foundNav.classList.add('snake-hover');
+                    currentHoveredNav = foundNav;
+                } else if (!foundItem && !inDropdownArea) {
+                    const toRemove = currentHoveredNav;
+                    hoverTimeout = setTimeout(() => {
+                        if (toRemove) toRemove.classList.remove('snake-hover');
+                        if (currentHoveredNav === toRemove) currentHoveredNav = null;
+                    }, 300);
+                    currentHoveredNav = null;
+                }
+            }
+        }
+
+        // Game loop with smooth timing
+        let lastUpdate = 0;
+        const updateInterval = 70; // Snake speed (lower = faster)
+
+        function gameLoop(timestamp) {
+            if (timestamp - lastUpdate >= updateInterval) {
+                updateSnake();
+                checkFoodCollision();
+                lastUpdate = timestamp;
+            }
+            drawSnake(timestamp);
+            illuminateTestimonials();
+            checkSnakeNavHover();
+            requestAnimationFrame(gameLoop);
+        }
+
+        // Start game loop after a brief delay for smooth initialization
+        setTimeout(() => requestAnimationFrame(gameLoop), 100);
+
+        // Debounced resize handler - consolidates all resize logic
+        let resizeTimeout = null;
+        window.addEventListener('resize', () => {
+            if (resizeTimeout) clearTimeout(resizeTimeout);
+            resizeTimeout = setTimeout(() => {
+                updateGridDimensions();
+                cacheCharPositions();
+                initSnake();
+                spawnFood();
+                // Clear snake hover states
+                if (currentHoveredNav) {
+                    currentHoveredNav.classList.remove('snake-hover');
+                    currentHoveredNav = null;
+                }
+                if (currentHoveredDropdownItem) {
+                    currentHoveredDropdownItem.classList.remove('snake-hover');
+                    currentHoveredDropdownItem = null;
+                }
+            }, 100);
         });
     </script>
 </body>

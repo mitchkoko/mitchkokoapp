@@ -1,0 +1,300 @@
+{
+  "instructions": "Replace the quotes and authors below with your real testimonials. Each row should have 4 unique testimonials (they get duplicated automatically in the code for the scrolling effect).",
+
+  "rows": [
+    {
+      "row": 1,
+      "testimonials": [
+        {
+          "quote": "Best Flutter tutorials on YouTube, hands down",
+          "author": "@devmaster_42"
+        },
+        {
+          "quote": "Finally someone who explains things without overcomplicating",
+          "author": "@indie_hacker"
+        },
+        {
+          "quote": "Launched my first app thanks to this channel",
+          "author": "@flutter_newbie"
+        },
+        {
+          "quote": "The production quality is insane",
+          "author": "@techreviewer"
+        }
+      ]
+    },
+    {
+      "row": 2,
+      "testimonials": [
+        {
+          "quote": "Mitch's teaching style is incredibly clear",
+          "author": "@sarah_codes"
+        },
+        {
+          "quote": "This changed how I approach app development",
+          "author": "@appbuilder99"
+        },
+        {
+          "quote": "Binge-watched the entire channel in a weekend",
+          "author": "@mobile_dev_mike"
+        },
+        {
+          "quote": "Underrated channel, deserves millions",
+          "author": "@codeenthusiast"
+        }
+      ]
+    },
+    {
+      "row": 3,
+      "testimonials": [
+        {
+          "quote": "Every video is packed with value",
+          "author": "@learner_daily"
+        },
+        {
+          "quote": "Built my first profitable app following these tutorials",
+          "author": "@side_hustle"
+        },
+        {
+          "quote": "No fluff, just pure knowledge",
+          "author": "@efficient_dev"
+        },
+        {
+          "quote": "The best Flutter content creator period",
+          "author": "@dart_fan"
+        }
+      ]
+    },
+    {
+      "row": 4,
+      "testimonials": [
+        {
+          "quote": "Wish I found this channel sooner",
+          "author": "@late_bloomer"
+        },
+        {
+          "quote": "Production quality rivals Netflix docs",
+          "author": "@cinema_coder"
+        },
+        {
+          "quote": "Learning Flutter has never been this fun",
+          "author": "@happy_student"
+        },
+        {
+          "quote": "Inspired me to start my own app business",
+          "author": "@future_founder"
+        }
+      ]
+    },
+    {
+      "row": 5,
+      "testimonials": [
+        {
+          "quote": "Clean code, clean explanations, clean UI",
+          "author": "@ux_designer"
+        },
+        {
+          "quote": "My go-to resource for Flutter",
+          "author": "@startup_dev"
+        },
+        {
+          "quote": "Actually makes coding enjoyable to watch",
+          "author": "@casual_viewer"
+        },
+        {
+          "quote": "The aesthetic of this channel is next level",
+          "author": "@design_nerd"
+        }
+      ]
+    },
+    {
+      "row": 6,
+      "testimonials": [
+        {
+          "quote": "Finally quit my job and went indie thanks to Mitch",
+          "author": "@indie_success"
+        },
+        {
+          "quote": "Worth every minute of watch time",
+          "author": "@busy_developer"
+        },
+        {
+          "quote": "The Road to 1k series is gold",
+          "author": "@aspiring_founder"
+        },
+        {
+          "quote": "Subscribed after 30 seconds",
+          "author": "@quick_convert"
+        }
+      ]
+    },
+    {
+      "row": 7,
+      "testimonials": [
+        {
+          "quote": "Most practical Flutter content out there",
+          "author": "@real_world_dev"
+        },
+        {
+          "quote": "Got a job offer after building apps from these tutorials",
+          "author": "@career_changer"
+        },
+        {
+          "quote": "The editing is just chef's kiss",
+          "author": "@video_editor_pro"
+        },
+        {
+          "quote": "This is what quality content looks like",
+          "author": "@content_curator"
+        }
+      ]
+    },
+    {
+      "row": 8,
+      "testimonials": [
+        {
+          "quote": "Never thought I'd build an app, now I have three",
+          "author": "@triple_threat"
+        },
+        {
+          "quote": "Perfect balance of theory and practice",
+          "author": "@balanced_learner"
+        },
+        {
+          "quote": "Recommend this to all my developer friends",
+          "author": "@network_effect"
+        },
+        {
+          "quote": "Makes complex topics feel simple",
+          "author": "@clarity_seeker"
+        }
+      ]
+    },
+    {
+      "row": 9,
+      "testimonials": [
+        {
+          "quote": "Zero to hero in 6 months thanks to this channel",
+          "author": "@fast_learner"
+        },
+        {
+          "quote": "Better than any paid course I've taken",
+          "author": "@course_veteran"
+        },
+        {
+          "quote": "The UI designs are always stunning",
+          "author": "@design_first"
+        },
+        {
+          "quote": "This is my coding comfort zone",
+          "author": "@cozy_coder"
+        }
+      ]
+    },
+    {
+      "row": 10,
+      "testimonials": [
+        {
+          "quote": "Genuinely excited every time there's a new upload",
+          "author": "@notification_squad"
+        },
+        {
+          "quote": "Built a 5 star app following these methods",
+          "author": "@five_star_dev"
+        },
+        {
+          "quote": "The passion shows in every frame",
+          "author": "@passion_seeker"
+        },
+        {
+          "quote": "Changed my entire approach to development",
+          "author": "@mindset_shift"
+        }
+      ]
+    },
+    {
+      "row": 11,
+      "testimonials": [
+        {
+          "quote": "Every developer needs to see this",
+          "author": "@must_watch"
+        },
+        {
+          "quote": "Turned my hobby into a side income",
+          "author": "@profit_maker"
+        },
+        {
+          "quote": "The pacing is absolutely perfect",
+          "author": "@timing_expert"
+        },
+        {
+          "quote": "Actual real-world solutions, not just theory",
+          "author": "@pragmatic_dev"
+        }
+      ]
+    },
+    {
+      "row": 12,
+      "testimonials": [
+        {
+          "quote": "My productivity doubled after these tips",
+          "author": "@efficiency_king"
+        },
+        {
+          "quote": "The attention to detail is unmatched",
+          "author": "@detail_oriented"
+        },
+        {
+          "quote": "Finally understand state management",
+          "author": "@state_master"
+        },
+        {
+          "quote": "This is the standard all tutorials should aim for",
+          "author": "@gold_standard"
+        }
+      ]
+    },
+    {
+      "row": 13,
+      "testimonials": [
+        {
+          "quote": "Started coding because of this channel",
+          "author": "@inspired_newbie"
+        },
+        {
+          "quote": "The best investment of my time",
+          "author": "@time_investor"
+        },
+        {
+          "quote": "Makes me actually want to code",
+          "author": "@motivated_dev"
+        },
+        {
+          "quote": "Can't believe this is free",
+          "author": "@grateful_viewer"
+        }
+      ]
+    },
+    {
+      "row": 14,
+      "testimonials": [
+        {
+          "quote": "Most practical Flutter content out there",
+          "author": "@real_world_dev"
+        },
+        {
+          "quote": "Got a job offer after building apps from these tutorials",
+          "author": "@career_changer"
+        },
+        {
+          "quote": "The editing is just chef's kiss",
+          "author": "@video_editor_pro"
+        },
+        {
+          "quote": "This is what quality content looks like",
+          "author": "@content_curator"
+        }
+      ]
+    }
+  ]
+}
