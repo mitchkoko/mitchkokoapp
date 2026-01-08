@@ -527,22 +527,86 @@
         // ==========================================
         // SNAKE GAME - Illuminates Testimonials
         // ==========================================
-
-        const testimonials = [
-            ["Best Flutter tutorials on YouTube", "Finally someone who explains clearly", "Launched my first app thanks to this", "The production quality is insane"],
-            ["Mitch's teaching style is incredible", "This changed how I approach dev", "Binge-watched the entire channel", "Underrated channel, deserves millions"],
-            ["Every video is packed with value", "Built my first profitable app", "No fluff, just pure knowledge", "The best Flutter content period"],
-            ["Wish I found this channel sooner", "Production quality rivals Netflix", "Learning Flutter has never been fun", "Inspired me to start my app business"],
-            ["Clean code, clean explanations", "My go-to resource for Flutter", "Actually makes coding enjoyable", "The aesthetic is next level"],
-            ["Finally quit my job, went indie", "Worth every minute of watch time", "The Road to 1k series is gold", "Subscribed after 30 seconds"],
-            ["Most practical content out there", "Got a job offer from these tutorials", "The editing is chef's kiss", "This is what quality looks like"],
-            ["Never thought I'd build an app", "Perfect balance of theory and practice", "Recommend to all my dev friends", "Makes complex topics feel simple"],
-            ["Zero to hero in 6 months", "Better than any paid course", "The UI designs are stunning", "This is my coding comfort zone"],
-            ["Genuinely excited for new uploads", "Built a 5 star app from this", "The passion shows in every frame", "Changed my entire approach"],
-            ["Every developer needs to see this", "Turned my hobby into side income", "The pacing is absolutely perfect", "Actual real-world solutions"],
-            ["My productivity doubled", "The attention to detail is unmatched", "Finally understand state management", "This is the gold standard"],
-            ["Started coding because of this", "The best investment of my time", "Makes me actually want to code", "Can't believe this is free"]
-        ];
+const testimonials = [
+    [
+        "@ahmedivy - Bro you teached me all flutter in 2 hours, while my professor is just teaching us dart for 3 weeks",
+        "@neozes - That is a really high value flutter lesson. One of the best I've seen.",
+        "@justthatpart - You changed the way I look at flutter! The best course I've seen so far!",
+        "@jm7974 - Truly appreciate that you spent the first hour showing how the UI pieces fit together."
+    ],
+    [
+        "@BrandonJF4 - You're a phenomenal instructor. Doing this while making it accessible and free is an insane benefit.",
+        "@nosjin666 - Starting my Flutter adventures right here with master Mitch cooking some smooth tutorials for us.",
+        "@codecandyhub - I'm a React.js Developer and the way Mitch is explaining is amazing, he's making things simple.",
+        "@rivindumunasinghe - This is the best Flutter tutorial."
+    ],
+    [
+        "@maicolmedina4946 - Este pana explica las bases y va añadiendo la complejidad de a poco. ¡Es lo máximo!",
+        "@iamtrapped09 - The perfect blend of practical knowledge and detailed explanation. Thank you so much!",
+        "@radnewiliw1330 - Great tutorial and the voice is so calm and clear, it is a perfect radio voice.",
+        "@Resilient_Wretch - THIS IS 'THE' FLUTTER TUTORIAL TO FOLLOW. AMAZING, QUICK AND TO THE POINT."
+    ],
+    [
+        "@sophiel7802 - This guy taught me more in 30 minutes than my professors did in 2 years. Huge thank you!",
+        "@amirhosseinmohammadi5718 - Awesome video!! thanks for making this!! very helpful.",
+        "@rowinaseidler315 - Such a great introduction back into coding after 20 years. Fantastic tutorial!",
+        "@tomoe1458 - By far the best flutter tutorial, everything on point, no dragging, just great information."
+    ],
+    [
+        "@adrianactro9028 - For me that I am an absolute beginner this is GOLD. Easy to follow and practical examples.",
+        "@FullStack_Pro - Respect to the author! These are the best Flutter video tutorials for beginners on all of YouTube!",
+        "@thisissarvar - I found 20 hour courses boring, but with just this 2 hours video I learned Dart and Flutter.",
+        "@hariprendo - After countless tutorials over many years this is the best I've seen, succinct and carefully planned."
+    ],
+    [
+        "@Jack_Ranold - Flutter is way simpler to use than react-native or this guy is a very good teacher.",
+        "@feyzaerturkmen5024 - Literally everything I need is here, like a cheatsheet. Thank you for making such a video.",
+        "@DominusZeikyu - Your explanation is exceptional and straight forward. That's 2 apps in the bag for my portfolio!",
+        "@Inaya-v3o7n - I really appreciate your way of Teaching. This is 'THE' best video I found."
+    ],
+    [
+        "@Prithvi-m5x - SERIOUSLY THE BEST TUTORIAL ON FLUTTER!!! THANKS A LOT FOR THIS MAN!",
+        "@SeanPizzaSpark - Dude! You really saved me. I was about to give up Flutter and this tutorial saved my life.",
+        "@HanaAlharithi-r8y - It is actually the BEST flutter course you can find! Omg thank you so much!",
+        "@my_wave_app - Thanks for demystifying mobile app development. It helped me build my social media app!"
+    ],
+    [
+        "@jondoe79 - The best tutorial so far, every explanation is crystal clear.",
+        "@superammar7719 - I landed a flutter dev job just by watching and implementing what I learn from you.",
+        "@fahimdeking - You are my best app development teacher, I can't express how much you're helping us.",
+        "@codecandyhub - I'm a React developer and now learning Flutter, Mitch is making things really simple."
+    ],
+    [
+        "@nosjin666 - Master Mitch is cooking some smooth and delicious tutorials for us right here.",
+        "@neozes - A really high value flutter lesson. One of the best I have seen on YouTube.",
+        "@Resilient_Wretch - IT WAS AMAZING, QUICK AND TO THE POINT AND EASY TO UNDERSTAND.",
+        "@sophiel7802 - Taught me more in 30 minutes than my professors did in 2 years. Huge thank you!"
+    ],
+    [
+        "@maicolmedina4946 - Recomiendo encarecidamente que chequeen este video. Explica las bases y añade complejidad poco a poco.",
+        "@hariprendo - So succinct and carefully planned. The best tutorial I've seen in many years.",
+        "@feyzaerturkmen5024 - Best video on YouTube about Flutter. Literally everything I need is here.",
+        "@BrandonJF4 - You're a phenomenal creator and instructor. Appreciate you, Mitch!"
+    ],
+    [
+        "@radnewiliw1330 - Great tutorial and the voice is so calm and clear, it's like a radio voice. Nice job!",
+        "@my_wave_app - Thank you for this video Mitch and your whole channel! Helped me build My Wave App.",
+        "@superammar7719 - Now I can consider myself a very good developer and create fully functional e-commerce apps.",
+        "@iamtrapped09 - This course is awesome, the other courses on YouTube are either too old or not the right intro."
+    ],
+    [
+        "@tomoe1458 - This was really informative, I really appreciate the effort you put in on making this video.",
+        "@jm7974 - Nobody else bothers to give big picture stuff. Understanding the 'why' is so important.",
+        "@SeanPizzaSpark - Thank you so much for being understanding! This tutorial alone saved my life.",
+        "@feyzaerturkmen5024 - Thank you for making this, it's like a cheatsheet for everything I need."
+    ],
+    [
+        "@fahimdeking - My humble request please never stop, continue teaching us. Take love sir!",
+        "@adrianactro9028 - This is quite brilliant. Easy to follow and practical examples for an absolute beginner.",
+        "@jondoe79 - Crystal clear explanation. The best tutorial so far for anyone learning Flutter.",
+        "@justthatpart - You changed the way I look at flutter! This is the perfect introduction."
+    ]
+];
 
         // Wrap text in character spans for per-character illumination
         function wrapChars(text) {
