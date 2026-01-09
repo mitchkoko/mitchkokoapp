@@ -231,10 +231,13 @@
             /* Fade out testimonials in center to keep main content clear */
             mask-image:radial-gradient(ellipse 50% 45% at 50% 50%, transparent 0%, transparent 35%, rgba(0,0,0,0.1) 50%, rgba(0,0,0,0.3) 60%, rgba(0,0,0,0.6) 70%, black 85%);
             -webkit-mask-image:radial-gradient(ellipse 50% 45% at 50% 50%, transparent 0%, transparent 35%, rgba(0,0,0,0.1) 50%, rgba(0,0,0,0.3) 60%, rgba(0,0,0,0.6) 70%, black 85%);
+            contain:layout style;
         }
         .testimonial-row{
             display:flex; justify-content:center; gap:0; flex-wrap:nowrap;
             white-space:nowrap; overflow:hidden;
+            transform:translateZ(0);
+            contain:layout style;
         }
         .testimonial-item{
             display:inline-flex; align-items:center; gap:0;
@@ -248,7 +251,7 @@
         .testimonial-char{
             display:inline-block;
             color:var(--text-hidden);
-            transition:color 0.15s cubic-bezier(0.4, 0, 0.2, 1);
+            transition:color 0.04s linear;
         }
         .testimonial-username{
             font-style:normal; font-weight:500; letter-spacing:0.02em;
@@ -687,7 +690,9 @@ const testimonials = [
 
         // Snake Game
         const canvas = document.getElementById('snake-canvas');
-        const ctx = canvas.getContext('2d');
+        const ctx = canvas.getContext('2d', { alpha: true });
+        // Disable image smoothing for crisp pixel art rendering
+        ctx.imageSmoothingEnabled = false;
 
         const gridSize = 15;
         const snakeLength = 4;
@@ -701,6 +706,8 @@ const testimonials = [
         function updateGridDimensions() {
             canvas.width = window.innerWidth;
             canvas.height = window.innerHeight;
+            // Restore context state after resize (canvas resize resets context)
+            ctx.imageSmoothingEnabled = false;
             gridCols = Math.floor(canvas.width / gridSize);
             gridRows = Math.floor(canvas.height / gridSize);
             maxX = (gridCols - 1) * gridSize;
@@ -787,12 +794,12 @@ const testimonials = [
         const foodAvoidRadius = 18; // Grid cells to avoid from center (main content area)
 
         function spawnFood() {
-            // First food spawn: bottom right area
+            // First food spawn: middle left area
             if (isFirstFoodSpawn) {
                 isFirstFoodSpawn = false;
-                // Bottom right: right 75%, bottom 80%
-                const col = Math.floor(gridCols * 0.75);
-                const row = Math.floor(gridRows * 0.8);
+                // Middle left: left 20%, vertically centered
+                const col = Math.floor(gridCols * 0.2);
+                const row = Math.floor(gridRows * 0.5);
                 food = { x: col * gridSize, y: row * gridSize };
                 return;
             }
@@ -948,8 +955,8 @@ const testimonials = [
         let cachedHiddenRgb = null;
         let cachedRevealedRgb = null;
 
-        // Pre-compute color strings for each intensity level (0-20 for smooth gradation)
-        const colorLevels = 20;
+        // Pre-compute color strings for each intensity level (0-32 for smooth gradation)
+        const colorLevels = 32;
         let colorLookup = [];
         function buildColorLookup() {
             colorLookup = [];
@@ -966,7 +973,7 @@ const testimonials = [
             buildColorLookup();
 
             // Reset all character colors to new hidden color on theme change
-            charColorState.clear();
+            if (charColorState) charColorState.fill(255);
             charPositions.forEach(({ el }) => {
                 el.style.color = colorLookup[0];
             });
@@ -989,8 +996,19 @@ const testimonials = [
         const illuminationRadiusSq = illuminationRadius * illuminationRadius;
         const foodIlluminationRadiusSq = foodIlluminationRadius * foodIlluminationRadius;
 
-        // Store previous color state to avoid unnecessary DOM updates
-        const charColorState = new Map();
+        // Store previous color state to avoid unnecessary DOM updates (Uint8Array is faster than Map for numeric indices)
+        let charColorState = null; // Will be initialized after charPositions is populated
+
+        // Pre-allocated array for snake segment centers (avoids per-frame allocation)
+        let snakeCenters = new Float32Array(200); // x,y pairs - supports up to 100 segments
+
+        // Initialize color state array
+        function initColorState() {
+            charColorState = new Uint8Array(charPositions.length);
+            // 255 = uninitialized, forces first update
+            charColorState.fill(255);
+        }
+        initColorState();
 
         function illuminateTestimonials() {
             // Ensure colors are cached
@@ -1000,55 +1018,65 @@ const testimonials = [
             }
             if (colorLookup.length === 0) buildColorLookup();
 
-            // Calculate bounds for quick rejection
-            let minX = snake[0].x, maxX = snake[0].x, minY = snake[0].y, maxY = snake[0].y;
-            for (let i = 1; i < snake.length; i++) {
+            const halfGrid = gridSize / 2;
+            const snakeLen = snake.length;
+
+            // Pre-compute snake segment centers and bounds in one pass
+            let minX = Infinity, maxX = -Infinity, minY = Infinity, maxY = -Infinity;
+            for (let i = 0; i < snakeLen; i++) {
                 const seg = snake[i];
-                if (seg.x < minX) minX = seg.x;
-                else if (seg.x > maxX) maxX = seg.x;
-                if (seg.y < minY) minY = seg.y;
-                else if (seg.y > maxY) maxY = seg.y;
+                const cx = seg.x + halfGrid;
+                const cy = seg.y + halfGrid;
+                snakeCenters[i * 2] = cx;
+                snakeCenters[i * 2 + 1] = cy;
+                if (cx < minX) minX = cx;
+                if (cx > maxX) maxX = cx;
+                if (cy < minY) minY = cy;
+                if (cy > maxY) maxY = cy;
             }
 
-            // Include food in bounds
+            // Include food in bounds (fixed calculation)
+            const foodCenterX = food ? food.x + halfGrid : 0;
+            const foodCenterY = food ? food.y + halfGrid : 0;
             if (food) {
-                if (food.x - foodIlluminationRadius < minX) minX = food.x - foodIlluminationRadius + illuminationRadius;
-                if (food.x + foodIlluminationRadius > maxX) maxX = food.x + foodIlluminationRadius - illuminationRadius;
-                if (food.y - foodIlluminationRadius < minY) minY = food.y - foodIlluminationRadius + illuminationRadius;
-                if (food.y + foodIlluminationRadius > maxY) maxY = food.y + foodIlluminationRadius - illuminationRadius;
+                const foodMinX = foodCenterX - foodIlluminationRadius;
+                const foodMaxX = foodCenterX + foodIlluminationRadius;
+                const foodMinY = foodCenterY - foodIlluminationRadius;
+                const foodMaxY = foodCenterY + foodIlluminationRadius;
+                if (foodMinX < minX) minX = foodMinX;
+                if (foodMaxX > maxX) maxX = foodMaxX;
+                if (foodMinY < minY) minY = foodMinY;
+                if (foodMaxY > maxY) maxY = foodMaxY;
             }
 
             const boundsMinX = minX - illuminationRadius;
-            const boundsMaxX = maxX + illuminationRadius + gridSize;
+            const boundsMaxX = maxX + illuminationRadius;
             const boundsMinY = minY - illuminationRadius;
-            const boundsMaxY = maxY + illuminationRadius + gridSize;
+            const boundsMaxY = maxY + illuminationRadius;
 
-            const halfGrid = gridSize / 2;
-            const foodCenterX = food ? food.x + halfGrid : 0;
-            const foodCenterY = food ? food.y + halfGrid : 0;
-
-            for (let index = 0; index < charPositions.length; index++) {
+            // Process characters
+            const charLen = charPositions.length;
+            for (let index = 0; index < charLen; index++) {
                 const pos = charPositions[index];
                 const x = pos.x, y = pos.y;
 
                 // Quick bounds check
                 if (x < boundsMinX || x > boundsMaxX || y < boundsMinY || y > boundsMaxY) {
-                    if (charColorState.get(index) !== 0) {
-                        charColorState.set(index, 0);
+                    if (charColorState[index] !== 0) {
+                        charColorState[index] = 0;
                         pos.el.style.color = colorLookup[0];
                     }
                     continue;
                 }
 
-                // Find minimum distance to snake (squared)
+                // Find minimum distance to snake using pre-computed centers
                 let minDistSq = Infinity;
-                for (let i = 0; i < snake.length; i++) {
-                    const seg = snake[i];
-                    const dx = x - (seg.x + halfGrid);
-                    const dy = y - (seg.y + halfGrid);
+                for (let i = 0; i < snakeLen; i++) {
+                    const dx = x - snakeCenters[i * 2];
+                    const dy = y - snakeCenters[i * 2 + 1];
                     const distSq = dx * dx + dy * dy;
                     if (distSq < minDistSq) minDistSq = distSq;
-                    if (distSq < 100) break; // Close enough
+                    if (distSq < 400) break; // Within ~20px, close enough for full intensity
                 }
 
                 // Calculate snake intensity
@@ -1070,12 +1098,12 @@ const testimonials = [
 
                 // Combined intensity with smooth easing
                 const combined = Math.max(intensity, foodIntensity);
-                // Smoother easing curve for gradual illumination
-                const eased = combined > 0 ? 1 - Math.pow(1 - combined, 2) : 0;
+                // Smoothstep easing for natural illumination (Hermite interpolation)
+                const eased = combined > 0 ? combined * combined * (3 - 2 * combined) : 0;
                 const quantized = Math.round(eased * colorLevels);
 
-                if (charColorState.get(index) !== quantized) {
-                    charColorState.set(index, quantized);
+                if (charColorState[index] !== quantized) {
+                    charColorState[index] = quantized;
                     pos.el.style.color = colorLookup[quantized];
                 }
             }
@@ -1154,7 +1182,9 @@ const testimonials = [
 
         // Game loop with smooth timing
         let lastUpdate = 0;
+        let lastIllumination = 0;
         const updateInterval = 70; // Snake speed (lower = faster)
+        const illuminationInterval = 50; // Illumination update rate (let CSS transitions handle smoothing)
 
         function gameLoop(timestamp) {
             if (timestamp - lastUpdate >= updateInterval) {
@@ -1163,7 +1193,11 @@ const testimonials = [
                 lastUpdate = timestamp;
             }
             drawSnake(timestamp);
-            illuminateTestimonials();
+            // Throttle illumination updates to let CSS transitions create smooth animations
+            if (timestamp - lastIllumination >= illuminationInterval) {
+                illuminateTestimonials();
+                lastIllumination = timestamp;
+            }
             checkSnakeNavHover();
             requestAnimationFrame(gameLoop);
         }
@@ -1178,11 +1212,10 @@ const testimonials = [
             resizeTimeout = setTimeout(() => {
                 updateGridDimensions();
                 cacheCharPositions();
+                initColorState(); // Reinitialize color state array for new char positions
                 initSnake();
-                isFirstFoodSpawn = true; // Reset flag so food spawns in bottom left
+                isFirstFoodSpawn = true; // Reset flag so food spawns in middle left
                 spawnFood();
-                // Reset color states on resize
-                charColorState.clear();
                 // Clear snake hover states
                 if (currentHoveredNav) {
                     currentHoveredNav.classList.remove('snake-hover');
