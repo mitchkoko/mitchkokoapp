@@ -227,34 +227,34 @@
             position:fixed; top:0; left:0; right:0; bottom:0;
             pointer-events:none; z-index:0; overflow:hidden;
             display:flex; flex-direction:column; justify-content:space-around;
-            padding:20px 0;
+            padding:25px 0;
             /* Fade out testimonials in center to keep main content clear */
-            mask-image:radial-gradient(ellipse 55% 50% at 50% 50%, transparent 0%, transparent 40%, rgba(0,0,0,0.15) 55%, rgba(0,0,0,0.4) 65%, rgba(0,0,0,0.7) 75%, black 90%);
-            -webkit-mask-image:radial-gradient(ellipse 55% 50% at 50% 50%, transparent 0%, transparent 40%, rgba(0,0,0,0.15) 55%, rgba(0,0,0,0.4) 65%, rgba(0,0,0,0.7) 75%, black 90%);
+            mask-image:radial-gradient(ellipse 50% 45% at 50% 50%, transparent 0%, transparent 35%, rgba(0,0,0,0.1) 50%, rgba(0,0,0,0.3) 60%, rgba(0,0,0,0.6) 70%, black 85%);
+            -webkit-mask-image:radial-gradient(ellipse 50% 45% at 50% 50%, transparent 0%, transparent 35%, rgba(0,0,0,0.1) 50%, rgba(0,0,0,0.3) 60%, rgba(0,0,0,0.6) 70%, black 85%);
         }
         .testimonial-row{
-            display:flex; justify-content:center; gap:30px; flex-wrap:nowrap;
+            display:flex; justify-content:center; gap:0; flex-wrap:nowrap;
             white-space:nowrap; overflow:hidden;
         }
         .testimonial-item{
-            display:inline-flex; align-items:center; gap:12px;
+            display:inline-flex; align-items:center; gap:0;
             font-size:.7rem;
             font-family:'Retropix', monospace;
+            flex-shrink:0;
+        }
+        .testimonial-separator{
+            margin:0 8px;
         }
         .testimonial-char{
             display:inline-block;
             color:var(--text-hidden);
-            transition:color 0.12s cubic-bezier(0.4, 0, 0.2, 1);
+            transition:color 0.15s cubic-bezier(0.4, 0, 0.2, 1);
+        }
+        .testimonial-username{
+            font-style:normal; font-weight:500; letter-spacing:0.02em;
         }
         .testimonial-quote{
             font-style:normal; font-weight:400; letter-spacing:0.02em;
-        }
-        .testimonial-author{
-            font-weight:400; font-size:.55rem; letter-spacing:0.01em;
-        }
-        .testimonial-dot{
-            width:3px; height:3px; border-radius:50%; flex-shrink:0;
-            background-color:currentColor; opacity:0.4;
         }
 
         /* Snake Canvas */
@@ -605,6 +605,36 @@ const testimonials = [
         "@adrianactro9028 - This is quite brilliant. Easy to follow and practical examples for an absolute beginner.",
         "@jondoe79 - Crystal clear explanation. The best tutorial so far for anyone learning Flutter.",
         "@justthatpart - You changed the way I look at flutter! This is the perfect introduction."
+    ],
+    [
+        "@ashishnath4719 - I cannot express how grateful I am. You literally taught me flutter from scratch and now I'm working on a major project.",
+        "@beril3027 - As a veeeery beginner, thank you so much for creating such an easy to understand video. You have no idea how much I appreciate this.",
+        "@naufalabdila330 - I've been enjoying your minimalistic app design, the look is appealing and the way you explain everything is easy to digest.",
+        "@the_cash_lab - I was instantly captivated by your teaching style. This is really great, way better than other videos I have tried!"
+    ],
+    [
+        "@okpunorpatrick853 - You are awesome man you are the reason i started learning flutter for mobile dev",
+        "@mrpianoanimalfarm4017 - Just scrolling around and I found Professor Mitch Koko the Albert Einstein of Programming",
+        "@Steinbolt - Your pacing, explanations, and difficulty scaling has taught me more than hours of other tutes. Mad props!",
+        "@aouadicharaf1038 - Congratulations for the 100k you deserve 1 Mill"
+    ],
+    [
+        "@kashyap5186 - Thank You sooo much I have been following you for a year. This is the most wanted video, I really mean it!",
+        "@musanisar994 - You know it's a good day when MITCH KOKO uploads",
+        "@patzdz - You are literally a wizard of flutter",
+        "@jrdev09 - I love the clean design of your app"
+    ],
+    [
+        "@shashwat_dubey_ - You have the best presentation style of any tutorial on the internet!",
+        "@gregoryinnovo11 - You are a legend!!!!",
+        "@obidov_isfandiyor - Super! You are a great teacher.",
+        "@developershub2024 - This was incredible bro, Keep teaching us. Perfect work."
+    ],
+    [
+        "@ijeomaemmanuella6880 - I downloaded your app. It came just right in time! I owe you so much for helping me be a good Flutter developer.",
+        "@muhweziblessings - I am definitely downloading Rituals",
+        "@gamernation5656 - Bro love you, because of you I got myself a developer job",
+        "@Nihallinux - Very clean UI. Your work inspired me to learn flutter. Thanks for the tutorials you made!"
     ]
 ];
 
@@ -617,21 +647,41 @@ const testimonials = [
 
         // Generate testimonial rows
         const testimonialsBg = document.getElementById('testimonials-bg');
+
         testimonials.forEach((row, rowIndex) => {
             const rowEl = document.createElement('div');
             rowEl.className = 'testimonial-row';
 
-            // Offset each row for variety
-            const offset = (rowIndex % 3) * 100;
+            // Stagger row offsets for visual variety
+            const offset = (rowIndex % 4) * 80;
             rowEl.style.paddingLeft = offset + 'px';
 
-            row.forEach((quote, i) => {
+            row.forEach((testimonial, index) => {
+                // Parse username and quote (format: "@username - quote text")
+                const parts = testimonial.split(' - ');
+                const username = parts[0];
+                const quote = parts.slice(1).join(' - '); // Rejoin in case quote contains " - "
+
                 const item = document.createElement('div');
                 item.className = 'testimonial-item';
+
+                // Format: @username - "quote text"
+                const wrappedUsername = wrapChars(username);
+                const wrappedDash = `<span class="testimonial-char">&nbsp;</span><span class="testimonial-char">-</span><span class="testimonial-char">&nbsp;</span>`;
                 const wrappedQuote = `<span class="testimonial-char">"</span>${wrapChars(quote)}<span class="testimonial-char">"</span>`;
-                item.innerHTML = `<span class="testimonial-quote">${wrappedQuote}</span><span class="testimonial-dot testimonial-char"></span>`;
+
+                item.innerHTML = `<span class="testimonial-username">${wrappedUsername}</span>${wrappedDash}<span class="testimonial-quote">${wrappedQuote}</span>`;
                 rowEl.appendChild(item);
+
+                // Add separator dash between testimonials (not after the last one)
+                if (index < row.length - 1) {
+                    const separator = document.createElement('span');
+                    separator.className = 'testimonial-separator';
+                    separator.innerHTML = '<span class="testimonial-char">&nbsp;</span><span class="testimonial-char">-</span><span class="testimonial-char">&nbsp;</span>';
+                    rowEl.appendChild(separator);
+                }
             });
+
             testimonialsBg.appendChild(rowEl);
         });
 
@@ -660,11 +710,12 @@ const testimonials = [
         }
         updateGridDimensions();
 
-        // Initialize snake in middle, moving right
+        // Initialize snake in top half, moving right
         function initSnake() {
             snake = [];
+            // Start in upper portion, centered horizontally
             const startX = centerCol * gridSize;
-            const startY = centerRow * gridSize;
+            const startY = Math.floor(gridRows * 0.2) * gridSize;
             for (let i = 0; i < snakeLength; i++) {
                 snake.push({ x: startX - i * gridSize, y: startY });
             }
@@ -731,10 +782,22 @@ const testimonials = [
 
         // Food system
         let food = null;
+        let isFirstFoodSpawn = true;
 
         const foodAvoidRadius = 18; // Grid cells to avoid from center (main content area)
 
         function spawnFood() {
+            // First food spawn: bottom right area
+            if (isFirstFoodSpawn) {
+                isFirstFoodSpawn = false;
+                // Bottom right: right 75%, bottom 80%
+                const col = Math.floor(gridCols * 0.75);
+                const row = Math.floor(gridRows * 0.8);
+                food = { x: col * gridSize, y: row * gridSize };
+                return;
+            }
+
+            // Subsequent spawns: random but avoid center
             for (let attempts = 0; attempts < 100; attempts++) {
                 const col = Math.floor(Math.random() * gridCols);
                 const row = Math.floor(Math.random() * gridRows);
@@ -810,9 +873,9 @@ const testimonials = [
                 ctx.fill();
             }
 
-            // Draw snake
+            // Draw snake with pixelated grid movement
             snake.forEach((segment, index) => {
-                const alpha = 1 - Math.pow(index / (snake.length - 1), 1.5) * 0.7;
+                const alpha = 1 - Math.pow(index / Math.max(snake.length - 1, 1), 1.5) * 0.7;
                 ctx.fillStyle = color;
                 ctx.globalAlpha = alpha;
                 ctx.beginPath();
@@ -885,12 +948,13 @@ const testimonials = [
         let cachedHiddenRgb = null;
         let cachedRevealedRgb = null;
 
-        // Pre-compute color strings for each intensity level (0-10)
+        // Pre-compute color strings for each intensity level (0-20 for smooth gradation)
+        const colorLevels = 20;
         let colorLookup = [];
         function buildColorLookup() {
             colorLookup = [];
-            for (let i = 0; i <= 10; i++) {
-                colorLookup.push(lerpColor(cachedHiddenRgb, cachedRevealedRgb, i / 10));
+            for (let i = 0; i <= colorLevels; i++) {
+                colorLookup.push(lerpColor(cachedHiddenRgb, cachedRevealedRgb, i / colorLevels));
             }
         }
 
@@ -902,9 +966,9 @@ const testimonials = [
             buildColorLookup();
 
             // Reset all character colors to new hidden color on theme change
-            charPositions.forEach(({ el }, index) => {
+            charColorState.clear();
+            charPositions.forEach(({ el }) => {
                 el.style.color = colorLookup[0];
-                charColorState.set(index, 0);
             });
         }
 
@@ -920,20 +984,15 @@ const testimonials = [
         });
 
         // Illuminate characters near snake and food
-        const illuminationRadius = 150;
-        const foodIlluminationRadius = 160;
+        const illuminationRadius = 170;
+        const foodIlluminationRadius = 180;
         const illuminationRadiusSq = illuminationRadius * illuminationRadius;
         const foodIlluminationRadiusSq = foodIlluminationRadius * foodIlluminationRadius;
-        let illuminationFrame = 0;
 
         // Store previous color state to avoid unnecessary DOM updates
         const charColorState = new Map();
 
         function illuminateTestimonials() {
-            // Throttle: only run every 3rd frame for performance
-            illuminationFrame++;
-            if (illuminationFrame % 3 !== 0) return;
-
             // Ensure colors are cached
             if (!cachedColors || !cachedHiddenRgb || !cachedRevealedRgb) {
                 updateColorCache();
@@ -951,8 +1010,7 @@ const testimonials = [
                 else if (seg.y > maxY) maxY = seg.y;
             }
 
-            // Include food in bounds (use larger radius for food)
-            const maxRadius = Math.max(illuminationRadius, foodIlluminationRadius);
+            // Include food in bounds
             if (food) {
                 if (food.x - foodIlluminationRadius < minX) minX = food.x - foodIlluminationRadius + illuminationRadius;
                 if (food.x + foodIlluminationRadius > maxX) maxX = food.x + foodIlluminationRadius - illuminationRadius;
@@ -990,7 +1048,7 @@ const testimonials = [
                     const dy = y - (seg.y + halfGrid);
                     const distSq = dx * dx + dy * dy;
                     if (distSq < minDistSq) minDistSq = distSq;
-                    if (distSq < 100) break; // Close enough, no need to check more
+                    if (distSq < 100) break; // Close enough
                 }
 
                 // Calculate snake intensity
@@ -1010,9 +1068,11 @@ const testimonials = [
                     }
                 }
 
-                // Combined intensity with easing
+                // Combined intensity with smooth easing
                 const combined = Math.max(intensity, foodIntensity);
-                const quantized = combined > 0 ? Math.round((1 - Math.pow(1 - combined, 3)) * 10) : 0;
+                // Smoother easing curve for gradual illumination
+                const eased = combined > 0 ? 1 - Math.pow(1 - combined, 2) : 0;
+                const quantized = Math.round(eased * colorLevels);
 
                 if (charColorState.get(index) !== quantized) {
                     charColorState.set(index, quantized);
@@ -1119,7 +1179,10 @@ const testimonials = [
                 updateGridDimensions();
                 cacheCharPositions();
                 initSnake();
+                isFirstFoodSpawn = true; // Reset flag so food spawns in bottom left
                 spawnFood();
+                // Reset color states on resize
+                charColorState.clear();
                 // Clear snake hover states
                 if (currentHoveredNav) {
                     currentHoveredNav.classList.remove('snake-hover');
@@ -1129,7 +1192,7 @@ const testimonials = [
                     currentHoveredDropdownItem.classList.remove('snake-hover');
                     currentHoveredDropdownItem = null;
                 }
-            }, 100);
+            }, 150);
         });
     </script>
 </body>
