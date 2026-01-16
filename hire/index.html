@@ -1,0 +1,1334 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Hire Me | Mitch Koko - Custom App Development</title>
+    <meta name="description" content="Get your app idea built and launched on the App Store. Custom iOS and Android development starting at $5,000. From concept to live app.">
+    <meta property="og:title" content="Hire Me | Mitch Koko">
+    <meta property="og:description" content="Get your app idea built and launched on the App Store. Custom iOS and Android development starting at $5,000.">
+    <meta property="og:type" content="website">
+    <meta property="og:url" content="https://mitchkoko.dev/hire">
+    <meta name="twitter:card" content="summary">
+    <link rel="icon" href="../favicon.ico" type="image/x-icon">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+    <style>
+        :root {
+            --bg: #f5f5f5;
+            --bg-hero: #ebebeb;
+            --surface: #ffffff;
+            --surface-elevated: #ffffff;
+            --text-primary: #111111;
+            --text-secondary: #555555;
+            --text-muted: #888888;
+            --border: #e0e0e0;
+            --border-light: #eaeaea;
+            --shadow-sm: 0 1px 2px rgba(0,0,0,.04);
+            --shadow-md: 0 4px 12px rgba(0,0,0,.06), 0 1px 3px rgba(0,0,0,.04);
+            --shadow-lg: 0 12px 32px rgba(0,0,0,.08), 0 4px 8px rgba(0,0,0,.04);
+            --accent: #111111;
+            --accent-bg: #111111;
+            --accent-text: #ffffff;
+            --transition: all .2s cubic-bezier(.4,0,.2,1);
+            --transition-smooth: all .3s cubic-bezier(.4,0,.2,1);
+        }
+
+        [data-theme="dark"] {
+            --bg: #161616;
+            --bg-hero: #0f0f0f;
+            --surface: #1f1f1f;
+            --surface-elevated: #252525;
+            --text-primary: #f5f5f5;
+            --text-secondary: #999999;
+            --text-muted: #666666;
+            --border: #2a2a2a;
+            --border-light: #222222;
+            --shadow-sm: 0 1px 2px rgba(0,0,0,.2);
+            --shadow-md: 0 4px 12px rgba(0,0,0,.25), 0 1px 3px rgba(0,0,0,.15);
+            --shadow-lg: 0 12px 32px rgba(0,0,0,.3), 0 4px 8px rgba(0,0,0,.2);
+            --accent: #ffffff;
+            --accent-bg: #ffffff;
+            --accent-text: #111111;
+        }
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+            background: var(--bg);
+            color: var(--text-primary);
+            line-height: 1.6;
+            min-height: 100vh;
+            transition: background .3s ease, color .3s ease;
+            -webkit-font-smoothing: antialiased;
+            -moz-osx-font-smoothing: grayscale;
+        }
+
+        .container {
+            max-width: 640px;
+            margin: 0 auto;
+            padding: 56px 24px 96px;
+        }
+
+        /* Back link - Fixed top left */
+        .back-link {
+            position: fixed;
+            top: 20px;
+            left: 20px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            width: 40px;
+            height: 40px;
+            background: var(--surface);
+            border: 1px solid var(--border);
+            border-radius: 50%;
+            color: var(--text-secondary);
+            text-decoration: none;
+            z-index: 1000;
+            box-shadow: var(--shadow-sm);
+            transition: var(--transition);
+        }
+
+        .back-link:hover {
+            color: var(--text-primary);
+            border-color: var(--text-muted);
+            transform: translateX(-2px);
+        }
+
+        .back-link svg {
+            width: 18px;
+            height: 18px;
+            stroke-width: 2;
+        }
+
+        /* Theme toggle */
+        .theme-toggle {
+            position: fixed;
+            top: 20px;
+            right: 20px;
+            width: 48px;
+            height: 26px;
+            background: var(--surface);
+            border: 1px solid var(--border);
+            border-radius: 999px;
+            cursor: pointer;
+            z-index: 1000;
+            box-shadow: var(--shadow-sm);
+            transition: var(--transition);
+        }
+
+        .theme-toggle:hover {
+            border-color: var(--text-muted);
+        }
+
+        .theme-toggle .toggle-circle {
+            position: absolute;
+            top: 3px;
+            left: 3px;
+            width: 18px;
+            height: 18px;
+            background: var(--text-primary);
+            border-radius: 50%;
+            transition: var(--transition-smooth);
+        }
+
+        [data-theme="dark"] .theme-toggle .toggle-circle {
+            transform: translateX(22px);
+        }
+
+        /* Hero - Full Width Banner */
+        .hero-banner {
+            background: var(--bg-hero);
+            padding: 100px 24px 80px;
+            margin-bottom: 0;
+            text-align: center;
+        }
+
+        .hero-content {
+            max-width: 560px;
+            margin: 0 auto;
+        }
+
+        .hero-eyebrow {
+            font-size: 0.8rem;
+            font-weight: 500;
+            text-transform: uppercase;
+            letter-spacing: 0.1em;
+            color: var(--text-muted);
+            margin-bottom: 16px;
+        }
+
+        .hero-banner h1 {
+            font-size: 3.25rem;
+            font-weight: 700;
+            letter-spacing: -0.04em;
+            line-height: 1.1;
+            margin-bottom: 20px;
+            background: linear-gradient(180deg, var(--text-primary) 0%, var(--text-secondary) 100%);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+        }
+
+        .hero-subtitle {
+            font-size: 1.1rem;
+            color: var(--text-secondary);
+            line-height: 1.7;
+            max-width: 400px;
+            margin: 0 auto;
+        }
+
+        /* Section */
+        .section {
+            margin-bottom: 56px;
+        }
+
+        .section-title {
+            font-size: 0.75rem;
+            font-weight: 600;
+            text-transform: uppercase;
+            letter-spacing: 0.08em;
+            color: var(--text-muted);
+            margin-bottom: 20px;
+        }
+
+        /* Portfolio */
+        .portfolio-grid {
+            display: flex;
+            gap: 12px;
+        }
+
+        .portfolio-item {
+            flex: 1;
+            display: flex;
+            align-items: center;
+            gap: 12px;
+            padding: 16px;
+            background: var(--surface);
+            border: 1px solid var(--border);
+            border-radius: 14px;
+            text-decoration: none;
+            color: var(--text-primary);
+            transition: var(--transition);
+        }
+
+        .portfolio-item:hover {
+            border-color: var(--text-muted);
+            transform: translateY(-2px);
+            box-shadow: var(--shadow-md);
+        }
+
+        .portfolio-icon-wrapper {
+            width: 44px;
+            height: 44px;
+            border-radius: 10px;
+            background: var(--bg);
+            border: 1px solid var(--border-light);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            flex-shrink: 0;
+        }
+
+        .portfolio-icon-wrapper svg {
+            width: 20px;
+            height: 20px;
+            color: var(--text-muted);
+        }
+
+        .portfolio-info {
+            display: flex;
+            flex-direction: column;
+            gap: 2px;
+            white-space: nowrap;
+        }
+
+        .portfolio-info strong {
+            font-size: 0.95rem;
+            font-weight: 600;
+        }
+
+        .portfolio-info span {
+            font-size: 0.8rem;
+            color: var(--text-muted);
+        }
+
+        /* Info tooltip */
+        .info-trigger {
+            position: relative;
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            width: 16px;
+            height: 16px;
+            margin-left: 6px;
+            cursor: pointer;
+            color: var(--text-muted);
+            transition: var(--transition);
+        }
+
+        .info-trigger:hover {
+            color: var(--text-primary);
+        }
+
+        .info-trigger svg {
+            width: 14px;
+            height: 14px;
+        }
+
+        .info-popup {
+            position: absolute;
+            bottom: calc(100% + 8px);
+            left: 50%;
+            transform: translateX(-50%) translateY(8px);
+            background: var(--surface-elevated);
+            border: 1px solid var(--border);
+            border-radius: 12px;
+            padding: 12px 16px;
+            width: 320px;
+            box-shadow: var(--shadow-lg);
+            opacity: 0;
+            visibility: hidden;
+            transition: all 0.2s ease;
+            z-index: 100;
+            font-size: 0.85rem;
+            line-height: 1.5;
+            color: var(--text-secondary);
+            text-transform: none;
+            letter-spacing: normal;
+            font-weight: 400;
+        }
+
+        .info-popup::after {
+            content: '';
+            position: absolute;
+            top: 100%;
+            left: 50%;
+            transform: translateX(-50%);
+            border: 6px solid transparent;
+            border-top-color: var(--border);
+        }
+
+        .info-trigger:hover .info-popup {
+            opacity: 1;
+            visibility: visible;
+            transform: translateX(-50%) translateY(0);
+        }
+
+        /* Pricing card */
+        .pricing-card {
+            background: var(--surface);
+            border: 1px solid var(--border);
+            border-radius: 20px;
+            padding: 28px;
+            box-shadow: var(--shadow-md);
+        }
+
+        .option-group {
+            margin-bottom: 24px;
+        }
+
+        .option-group:last-of-type {
+            margin-bottom: 0;
+        }
+
+        .option-label {
+            font-size: 0.875rem;
+            font-weight: 500;
+            color: var(--text-secondary);
+            margin-bottom: 10px;
+            display: flex;
+            align-items: center;
+            gap: 8px;
+        }
+
+        .option-label .hint {
+            font-size: 0.8rem;
+            font-weight: 400;
+            color: var(--text-muted);
+        }
+
+        /* Toggle buttons */
+        .toggle-group {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 8px;
+        }
+
+        .toggle-btn {
+            padding: 10px 18px;
+            border: 1px solid var(--border);
+            border-radius: 10px;
+            background: var(--bg);
+            color: var(--text-secondary);
+            font-size: 0.875rem;
+            font-weight: 500;
+            font-family: inherit;
+            cursor: pointer;
+            transition: var(--transition);
+            display: flex;
+            align-items: center;
+            gap: 8px;
+        }
+
+        .toggle-btn:hover {
+            border-color: var(--text-muted);
+            color: var(--text-primary);
+            background: var(--surface);
+        }
+
+        .toggle-btn.active {
+            background: var(--accent-bg);
+            color: var(--accent-text);
+            border-color: var(--accent-bg);
+        }
+
+        .toggle-btn .price-tag {
+            font-size: 0.75rem;
+            opacity: 0.7;
+            font-weight: 400;
+        }
+
+        .toggle-btn.active .price-tag {
+            opacity: 0.85;
+        }
+
+        /* Divider */
+        .divider {
+            height: 1px;
+            background: var(--border-light);
+            margin: 28px 0;
+        }
+
+        /* Price display */
+        .price-display {
+            text-align: center;
+            padding: 8px 0;
+        }
+
+        .price-label {
+            font-size: 0.8rem;
+            font-weight: 500;
+            color: var(--text-muted);
+            text-transform: uppercase;
+            letter-spacing: 0.04em;
+            margin-bottom: 8px;
+        }
+
+        .price-amount {
+            font-size: 3rem;
+            font-weight: 700;
+            letter-spacing: -0.03em;
+            line-height: 1;
+            margin-bottom: 8px;
+        }
+
+        .price-note {
+            font-size: 0.8rem;
+            color: var(--text-muted);
+        }
+
+        .price-range {
+            font-size: 0.85rem;
+            color: var(--text-secondary);
+            margin-top: 4px;
+        }
+
+        /* App Description */
+        .app-description {
+            margin-top: 28px;
+            padding-top: 28px;
+            border-top: 1px solid var(--border-light);
+        }
+
+        .app-description-label {
+            font-size: 0.875rem;
+            font-weight: 500;
+            color: var(--text-secondary);
+            margin-bottom: 10px;
+        }
+
+        .app-description-textarea {
+            width: 100%;
+            min-height: 120px;
+            padding: 14px 16px;
+            border: 1px solid var(--border);
+            border-radius: 12px;
+            background: var(--bg);
+            color: var(--text-primary);
+            font-size: 0.9rem;
+            font-family: inherit;
+            line-height: 1.6;
+            resize: vertical;
+            transition: var(--transition);
+        }
+
+        .app-description-textarea:focus {
+            outline: none;
+            border-color: var(--text-muted);
+            background: var(--surface);
+        }
+
+        .app-description-textarea::placeholder {
+            color: var(--text-muted);
+        }
+
+        .char-count {
+            font-size: 0.75rem;
+            color: var(--text-muted);
+            text-align: right;
+            margin-top: 8px;
+        }
+
+        /* Email input */
+        .email-input-group {
+            margin-top: 20px;
+        }
+
+        .email-input {
+            width: 100%;
+            padding: 14px 16px;
+            border: 1px solid var(--border);
+            border-radius: 12px;
+            background: var(--bg);
+            color: var(--text-primary);
+            font-size: 0.9rem;
+            font-family: inherit;
+            transition: var(--transition);
+        }
+
+        .email-input:focus {
+            outline: none;
+            border-color: var(--text-muted);
+            background: var(--surface);
+        }
+
+        .email-input::placeholder {
+            color: var(--text-muted);
+        }
+
+        .email-input.error {
+            border-color: #ef4444;
+        }
+
+        /* Submit Button inside card */
+        .submit-btn {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 10px;
+            width: 100%;
+            padding: 16px 32px;
+            margin-top: 24px;
+            background: var(--accent-bg);
+            color: var(--accent-text);
+            border: none;
+            border-radius: 12px;
+            font-size: 1rem;
+            font-weight: 600;
+            font-family: inherit;
+            cursor: pointer;
+            transition: var(--transition);
+        }
+
+        .submit-btn:hover {
+            opacity: 0.9;
+            transform: translateY(-1px);
+        }
+
+        .submit-btn:active {
+            transform: translateY(0);
+        }
+
+        .submit-btn svg {
+            width: 18px;
+            height: 18px;
+        }
+
+        .submit-btn:disabled {
+            opacity: 0.7;
+            cursor: not-allowed;
+            transform: none;
+        }
+
+        .submit-btn.loading .btn-text {
+            display: none;
+        }
+
+        .submit-btn.loading .btn-loading {
+            display: flex;
+        }
+
+        .submit-btn.success {
+            background: #22c55e;
+        }
+
+        .submit-btn.success .btn-text,
+        .submit-btn.success .btn-loading {
+            display: none;
+        }
+
+        .submit-btn.success .btn-success {
+            display: flex;
+        }
+
+        .btn-text {
+            display: flex;
+            align-items: center;
+            gap: 10px;
+        }
+
+        .btn-loading, .btn-success {
+            display: none;
+            align-items: center;
+            gap: 10px;
+        }
+
+        .spinner {
+            width: 18px;
+            height: 18px;
+            border: 2px solid transparent;
+            border-top-color: currentColor;
+            border-radius: 50%;
+            animation: spin 0.8s linear infinite;
+        }
+
+        @keyframes spin {
+            to { transform: rotate(360deg); }
+        }
+
+        .submit-note {
+            font-size: 0.8rem;
+            color: var(--text-muted);
+            text-align: center;
+            margin-top: 12px;
+        }
+
+        /* Process */
+        .process-list {
+            list-style: none;
+            display: flex;
+            flex-direction: column;
+            gap: 0;
+        }
+
+        .process-item {
+            display: flex;
+            gap: 16px;
+            padding: 16px 0;
+            border-bottom: 1px solid var(--border-light);
+        }
+
+        .process-item:first-child {
+            padding-top: 0;
+        }
+
+        .process-item:last-child {
+            border-bottom: none;
+            padding-bottom: 0;
+        }
+
+        .process-number {
+            width: 28px;
+            height: 28px;
+            background: var(--surface);
+            border: 1px solid var(--border);
+            color: var(--text-secondary);
+            border-radius: 8px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 0.8rem;
+            font-weight: 600;
+            flex-shrink: 0;
+        }
+
+        .process-content h3 {
+            font-size: 0.95rem;
+            font-weight: 600;
+            margin-bottom: 2px;
+            color: var(--text-primary);
+        }
+
+        .process-content p {
+            font-size: 0.875rem;
+            color: var(--text-secondary);
+            line-height: 1.5;
+        }
+
+        /* FAQ Accordion */
+        .faq-list {
+            display: flex;
+            flex-direction: column;
+        }
+
+        .faq-item {
+            border-bottom: 1px solid var(--border-light);
+        }
+
+        .faq-item:last-child {
+            border-bottom: none;
+        }
+
+        .faq-question {
+            width: 100%;
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            gap: 16px;
+            padding: 18px 0;
+            background: none;
+            border: none;
+            cursor: pointer;
+            text-align: left;
+            font-family: inherit;
+        }
+
+        .faq-question-text {
+            font-size: 0.95rem;
+            font-weight: 500;
+            color: var(--text-primary);
+            line-height: 1.4;
+        }
+
+        .faq-icon {
+            width: 20px;
+            height: 20px;
+            color: var(--text-muted);
+            flex-shrink: 0;
+            transition: transform .25s cubic-bezier(.4,0,.2,1);
+        }
+
+        .faq-item.open .faq-icon {
+            transform: rotate(45deg);
+        }
+
+        .faq-answer {
+            font-size: 0.9rem;
+            color: var(--text-secondary);
+            line-height: 1.7;
+            padding-bottom: 18px;
+            display: none;
+        }
+
+        .faq-item.open .faq-answer {
+            display: block;
+        }
+
+        /* Responsive */
+        @media (max-width: 640px) {
+            .container {
+                padding: 0 20px 80px;
+            }
+
+            .back-link {
+                width: 36px;
+                height: 36px;
+                top: 16px;
+                left: 16px;
+            }
+
+            .back-link svg {
+                width: 16px;
+                height: 16px;
+            }
+
+            .theme-toggle {
+                top: 16px;
+                right: 16px;
+            }
+
+            .hero-banner {
+                padding: 80px 20px 60px;
+            }
+
+            .hero h1 {
+                font-size: 2.25rem;
+            }
+
+            .hero-subtitle {
+                font-size: 1rem;
+            }
+
+            .hero-eyebrow {
+                font-size: 0.75rem;
+            }
+
+            .portfolio-grid {
+                flex-direction: column;
+            }
+
+            .pricing-card {
+                padding: 24px 20px;
+                border-radius: 16px;
+            }
+
+            .toggle-group {
+                flex-direction: column;
+            }
+
+            .toggle-btn {
+                width: 100%;
+                justify-content: center;
+            }
+
+            .price-amount {
+                font-size: 2.5rem;
+            }
+        }
+
+        /* Animation */
+        @keyframes fadeInUp {
+            from {
+                opacity: 0;
+                transform: translateY(16px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        .animate-in {
+            animation: fadeInUp 0.5s cubic-bezier(.4,0,.2,1) forwards;
+        }
+
+        .delay-1 { animation-delay: 0.05s; opacity: 0; }
+        .delay-2 { animation-delay: 0.1s; opacity: 0; }
+        .delay-3 { animation-delay: 0.15s; opacity: 0; }
+        .delay-4 { animation-delay: 0.2s; opacity: 0; }
+    </style>
+</head>
+<body>
+    <!-- Theme Toggle -->
+    <div class="theme-toggle" role="button" aria-label="Toggle theme" onclick="toggleTheme()">
+        <div class="toggle-circle"></div>
+    </div>
+
+    <!-- Back Link - Fixed -->
+    <a href="../" class="back-link" aria-label="Go back">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round">
+            <path d="M19 12H5M12 19l-7-7 7-7"/>
+        </svg>
+    </a>
+
+    <!-- Hero Banner - Full Width -->
+    <header class="hero-banner animate-in">
+        <div class="hero-content">
+            <p class="hero-eyebrow">App Development Service</p>
+            <h1>Let's Build Your App</h1>
+            <p class="hero-subtitle">Your idea → I design, build & launch it on the stores.</p>
+        </div>
+    </header>
+
+    <div class="container">
+
+        <!-- Pricing Calculator -->
+        <section class="section animate-in delay-2">
+            <h2 class="section-title">Configure Your App</h2>
+            <div class="pricing-card">
+                <!-- Platform -->
+                <div class="option-group">
+                    <div class="option-label">
+                        Platform
+                        <span class="info-trigger">
+                            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="10"/><line x1="12" y1="16" x2="12" y2="12"/><line x1="12" y1="8" x2="12.01" y2="8"/></svg>
+                            <div class="info-popup"><strong>iOS</strong> = iPhone & iPad (App Store)<br><strong>Android</strong> = Samsung, Google Pixel, etc. (Google Play)</div>
+                        </span>
+                    </div>
+                    <div class="toggle-group">
+                        <button class="toggle-btn active" data-group="platform" data-value="ios" data-price="0">iOS</button>
+                        <button class="toggle-btn" data-group="platform" data-value="android" data-price="2500">Android</button>
+                    </div>
+                </div>
+
+                <!-- Authentication -->
+                <div class="option-group">
+                    <div class="option-label">
+                        Authentication
+                        <span class="info-trigger">
+                            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="10"/><line x1="12" y1="16" x2="12" y2="12"/><line x1="12" y1="8" x2="12.01" y2="8"/></svg>
+                            <div class="info-popup">Does your app need user accounts?<br><br><strong>Email/Password</strong> = Traditional sign up<br><strong>Social Login</strong> = Sign in with Google/Apple<br><br>Select none if no accounts needed.</div>
+                        </span>
+                    </div>
+                    <div class="toggle-group">
+                        <button class="toggle-btn" data-group="auth" data-value="email" data-price="1000">Email/Password</button>
+                        <button class="toggle-btn" data-group="auth" data-value="social" data-price="1200">Social Login</button>
+                    </div>
+                </div>
+
+                <!-- Monetization -->
+                <div class="option-group">
+                    <div class="option-label">
+                        Monetization
+                        <span class="info-trigger">
+                            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="10"/><line x1="12" y1="16" x2="12" y2="12"/><line x1="12" y1="8" x2="12.01" y2="8"/></svg>
+                            <div class="info-popup">How will your app make money?<br><br><strong>Ads</strong> = Banner or video ads<br><strong>In-App Purchase</strong> = One-time unlock (e.g. "Remove Ads")<br><strong>Subscription</strong> = Monthly/yearly payments</div>
+                        </span>
+                    </div>
+                    <div class="toggle-group">
+                        <button class="toggle-btn" data-group="monetization" data-value="ads" data-price="1000">Ads</button>
+                        <button class="toggle-btn" data-group="monetization" data-value="iap" data-price="1200">In-App Purchase</button>
+                        <button class="toggle-btn" data-group="monetization" data-value="subscription" data-price="1500">Subscription</button>
+                    </div>
+                </div>
+
+                <!-- Extras -->
+                <div class="option-group">
+                    <div class="option-label">
+                        Extras
+                        <span class="info-trigger">
+                            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="10"/><line x1="12" y1="16" x2="12" y2="12"/><line x1="12" y1="8" x2="12.01" y2="8"/></svg>
+                            <div class="info-popup"><strong>Push Notifications</strong> = Send alerts to users<br><strong>Home Widgets</strong> = Quick glance on home screen<br><strong>Analytics</strong> = Track how users use your app<br><strong>Landing Page</strong> = Marketing website for your app</div>
+                        </span>
+                    </div>
+                    <div class="toggle-group">
+                        <button class="toggle-btn" data-group="extras" data-value="notifications" data-price="1000">Push Notifications</button>
+                        <button class="toggle-btn" data-group="extras" data-value="widgets" data-price="1000">Home Widgets</button>
+                        <button class="toggle-btn" data-group="extras" data-value="analytics" data-price="1500">Analytics Dashboard</button>
+                        <button class="toggle-btn" data-group="extras" data-value="landing" data-price="1500">Landing Page</button>
+                    </div>
+                </div>
+
+                <div class="divider"></div>
+
+                <!-- Price Display -->
+                <div class="price-display">
+                    <div class="price-label">Estimated Total</div>
+                    <div class="price-amount" id="total-price">$5,000</div>
+                    <div class="price-note">Starting at $5,000</div>
+                    <div class="price-range" id="price-range"></div>
+                </div>
+
+                <!-- App Description -->
+                <div class="app-description">
+                    <div class="app-description-label">Describe your app idea</div>
+                    <textarea
+                        class="app-description-textarea"
+                        id="app-description"
+                        placeholder="What does your app do? Who is it for? What problem does it solve? Include any key features or functionality you have in mind..."
+                        maxlength="1000"
+                    ></textarea>
+                    <div class="char-count"><span id="char-count">0</span>/1000</div>
+                </div>
+
+                <!-- Email -->
+                <div class="email-input-group">
+                    <div class="app-description-label">Your email</div>
+                    <input
+                        type="email"
+                        class="email-input"
+                        id="applicant-email"
+                        placeholder="you@example.com"
+                        required
+                    >
+                </div>
+
+                <!-- Submit Button -->
+                <button class="submit-btn" id="cta-btn" onclick="submitApplication()">
+                    <span class="btn-text">
+                        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                            <line x1="22" y1="2" x2="11" y2="13"/><polygon points="22 2 15 22 11 13 2 9 22 2"/>
+                        </svg>
+                        Submit Application
+                    </span>
+                    <span class="btn-loading">
+                        <span class="spinner"></span>
+                        Submitting...
+                    </span>
+                    <span class="btn-success">
+                        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                            <polyline points="20 6 9 17 4 12"/>
+                        </svg>
+                        Application Sent!
+                    </span>
+                </button>
+                <p class="submit-note" id="submit-note">I'll review and respond within 48 hours</p>
+            </div>
+        </section>
+
+        <!-- Process -->
+        <section class="section animate-in delay-3">
+            <h2 class="section-title">How It Works</h2>
+            <ol class="process-list">
+                <li class="process-item">
+                    <span class="process-number">1</span>
+                    <div class="process-content">
+                        <h3>Apply</h3>
+                        <p>Submit your app idea using the form above. Include as much detail as you can.</p>
+                    </div>
+                </li>
+                <li class="process-item">
+                    <span class="process-number">2</span>
+                    <div class="process-content">
+                        <h3>Consult</h3>
+                        <p>I'll review your application. If it's a good fit, we'll schedule a call to finalize the scope.</p>
+                    </div>
+                </li>
+                <li class="process-item">
+                    <span class="process-number">3</span>
+                    <div class="process-content">
+                        <h3>Build</h3>
+                        <p>Pay 50% deposit to begin. I'll design and develop your app with regular progress updates.</p>
+                    </div>
+                </li>
+                <li class="process-item">
+                    <span class="process-number">4</span>
+                    <div class="process-content">
+                        <h3>Launch</h3>
+                        <p>Your app goes live on the stores. Pay the remaining 50% and receive full ownership.</p>
+                    </div>
+                </li>
+            </ol>
+        </section>
+
+        <!-- Portfolio / Proof -->
+        <section class="section animate-in delay-4">
+            <h2 class="section-title">Live on the App Store</h2>
+            <div class="portfolio-grid">
+                <a href="https://ritualz.app" target="_blank" rel="noopener" class="portfolio-item">
+                    <div class="portfolio-icon-wrapper">
+                        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><rect x="5" y="2" width="14" height="20" rx="2" ry="2"/><line x1="12" y1="18" x2="12.01" y2="18"/></svg>
+                    </div>
+                    <div class="portfolio-info">
+                        <strong>Ritualz</strong>
+                        <span>Habit Tracker</span>
+                    </div>
+                </a>
+                <a href="https://expensif.app" target="_blank" rel="noopener" class="portfolio-item">
+                    <div class="portfolio-icon-wrapper">
+                        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><rect x="5" y="2" width="14" height="20" rx="2" ry="2"/><line x1="12" y1="18" x2="12.01" y2="18"/></svg>
+                    </div>
+                    <div class="portfolio-info">
+                        <strong>Expensif</strong>
+                        <span>Expense Tracker</span>
+                    </div>
+                </a>
+                <a href="https://tuteee.app" target="_blank" rel="noopener" class="portfolio-item">
+                    <div class="portfolio-icon-wrapper">
+                        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><rect x="5" y="2" width="14" height="20" rx="2" ry="2"/><line x1="12" y1="18" x2="12.01" y2="18"/></svg>
+                    </div>
+                    <div class="portfolio-info">
+                        <strong>Tuteee</strong>
+                        <span>AI Tutor</span>
+                    </div>
+                </a>
+            </div>
+        </section>
+
+        <!-- FAQ -->
+        <section class="section animate-in delay-4">
+            <h2 class="section-title">FAQ</h2>
+            <div class="faq-list">
+                <div class="faq-item">
+                    <button class="faq-question" onclick="toggleFaq(this)">
+                        <span class="faq-question-text">What's included in the delivery?</span>
+                        <svg class="faq-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                            <line x1="12" y1="5" x2="12" y2="19"/><line x1="5" y1="12" x2="19" y2="12"/>
+                        </svg>
+                    </button>
+                    <div class="faq-answer">Complete source code, your app live on the App Store and/or Google Play, all store assets (icon, screenshots, description), and a handoff guide. You own 100% of everything.</div>
+                </div>
+                <div class="faq-item">
+                    <button class="faq-question" onclick="toggleFaq(this)">
+                        <span class="faq-question-text">Do I need a developer account?</span>
+                        <svg class="faq-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                            <line x1="12" y1="5" x2="12" y2="19"/><line x1="5" y1="12" x2="19" y2="12"/>
+                        </svg>
+                    </button>
+                    <div class="faq-answer">Yes. Apple Developer is $99/year and Google Play is a $25 one-time fee. I'll build your app and publish it under your name on the stores.</div>
+                </div>
+                <div class="faq-item">
+                    <button class="faq-question" onclick="toggleFaq(this)">
+                        <span class="faq-question-text">What happens after launch?</span>
+                        <svg class="faq-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                            <line x1="12" y1="5" x2="12" y2="19"/><line x1="5" y1="12" x2="19" y2="12"/>
+                        </svg>
+                    </button>
+                    <div class="faq-answer">Price includes 2 weeks of maintenance after launch to make sure everything runs smoothly. Ongoing support or new features can be discussed separately.</div>
+                </div>
+                <div class="faq-item">
+                    <button class="faq-question" onclick="toggleFaq(this)">
+                        <span class="faq-question-text">How long does it take?</span>
+                        <svg class="faq-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                            <line x1="12" y1="5" x2="12" y2="19"/><line x1="5" y1="12" x2="19" y2="12"/>
+                        </svg>
+                    </button>
+                    <div class="faq-answer">Most apps take 4-8 weeks from start to App Store launch. Timeline depends on complexity and will be discussed during our consultation call.</div>
+                </div>
+                <div class="faq-item">
+                    <button class="faq-question" onclick="toggleFaq(this)">
+                        <span class="faq-question-text">Can I request changes during development?</span>
+                        <svg class="faq-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                            <line x1="12" y1="5" x2="12" y2="19"/><line x1="5" y1="12" x2="19" y2="12"/>
+                        </svg>
+                    </button>
+                    <div class="faq-answer">Yes. You'll receive regular progress updates and can provide feedback throughout. Minor adjustments are included; major scope changes may affect the price.</div>
+                </div>
+                <div class="faq-item">
+                    <button class="faq-question" onclick="toggleFaq(this)">
+                        <span class="faq-question-text">What if my app idea is more complex?</span>
+                        <svg class="faq-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                            <line x1="12" y1="5" x2="12" y2="19"/><line x1="5" y1="12" x2="19" y2="12"/>
+                        </svg>
+                    </button>
+                    <div class="faq-answer">This service is designed for focused MVPs. If your project needs a custom backend or advanced features, mention it in your application and we'll discuss pricing.</div>
+                </div>
+            </div>
+        </section>
+
+    </div>
+
+    <script>
+        // Theme
+        function initTheme() {
+            const saved = localStorage.getItem('theme');
+            if (saved) {
+                document.documentElement.setAttribute('data-theme', saved);
+            } else if (window.matchMedia('(prefers-color-scheme: dark)').matches) {
+                document.documentElement.setAttribute('data-theme', 'dark');
+            }
+        }
+
+        function toggleTheme() {
+            const current = document.documentElement.getAttribute('data-theme');
+            const next = current === 'dark' ? 'light' : 'dark';
+            document.documentElement.setAttribute('data-theme', next);
+            localStorage.setItem('theme', next);
+        }
+
+        initTheme();
+
+        // FAQ Accordion
+        function toggleFaq(btn) {
+            const item = btn.closest('.faq-item');
+            item.classList.toggle('open');
+        }
+
+        // Character counter
+        const textarea = document.getElementById('app-description');
+        const charCount = document.getElementById('char-count');
+
+        textarea.addEventListener('input', () => {
+            charCount.textContent = textarea.value.length;
+        });
+
+        // Pricing Calculator
+        const BASE_PRICE = 5000;
+
+        const state = {
+            platform: { ios: true, android: false },
+            auth: { email: false, social: false },
+            monetization: { ads: false, iap: false, subscription: false },
+            extras: { notifications: false, widgets: false, analytics: false, landing: false }
+        };
+
+        const platformPrices = { ios: 0, android: 2500 };
+        const authPrices = { email: 1000, social: 1200 };
+        const monetizationPrices = { ads: 1000, iap: 1200, subscription: 1500 };
+        const extrasPrices = { notifications: 1000, widgets: 1000, analytics: 1500, landing: 1500 };
+
+        // Toggle button handlers
+        document.querySelectorAll('.toggle-btn').forEach(btn => {
+            btn.addEventListener('click', () => {
+                const group = btn.dataset.group;
+                const value = btn.dataset.value;
+
+                // Multi-select groups
+                if (group === 'platform') {
+                    // Platform: if deselecting the only one, auto-select the other
+                    const willBeActive = !btn.classList.contains('active');
+                    const otherValue = value === 'ios' ? 'android' : 'ios';
+                    const otherSelected = state.platform[otherValue];
+
+                    if (!willBeActive && !otherSelected) {
+                        // Deselecting only one - auto select the other
+                        const otherBtn = document.querySelector(`[data-group="platform"][data-value="${otherValue}"]`);
+                        otherBtn.classList.add('active');
+                        state.platform[otherValue] = true;
+                    }
+                    btn.classList.toggle('active');
+                    state.platform[value] = btn.classList.contains('active');
+                } else if (group === 'auth') {
+                    btn.classList.toggle('active');
+                    state.auth[value] = btn.classList.contains('active');
+                } else if (group === 'monetization') {
+                    btn.classList.toggle('active');
+                    state.monetization[value] = btn.classList.contains('active');
+                } else if (group === 'extras') {
+                    btn.classList.toggle('active');
+                    state.extras[value] = btn.classList.contains('active');
+                }
+
+                updatePrice();
+            });
+        });
+
+        // Update price display
+        function updatePrice() {
+            // Calculate platform price
+            // Single platform (iOS or Android) = $0 extra, Both platforms = +$2,500
+            let platformPrice = 0;
+            const platformCount = (state.platform.ios ? 1 : 0) + (state.platform.android ? 1 : 0);
+            if (platformCount === 2) {
+                platformPrice = 2500; // Both platforms selected
+            }
+
+            // Calculate auth price
+            let authPrice = 0;
+            if (state.auth.email) authPrice += authPrices.email;
+            if (state.auth.social) authPrice += authPrices.social;
+
+            // Calculate monetization price
+            let monetizationPrice = 0;
+            if (state.monetization.ads) monetizationPrice += monetizationPrices.ads;
+            if (state.monetization.iap) monetizationPrice += monetizationPrices.iap;
+            if (state.monetization.subscription) monetizationPrice += monetizationPrices.subscription;
+
+            // Calculate extras price
+            let extrasPrice = 0;
+            if (state.extras.notifications) extrasPrice += extrasPrices.notifications;
+            if (state.extras.widgets) extrasPrice += extrasPrices.widgets;
+            if (state.extras.analytics) extrasPrice += extrasPrices.analytics;
+            if (state.extras.landing) extrasPrice += extrasPrices.landing;
+
+            let total = BASE_PRICE + platformPrice + authPrice + monetizationPrice + extrasPrice;
+
+            const priceEl = document.getElementById('total-price');
+            const rangeEl = document.getElementById('price-range');
+
+            priceEl.textContent = `$${total.toLocaleString()}`;
+            rangeEl.textContent = '';
+        }
+
+        // Google Sheets Web App URL - Replace with your deployed script URL
+        const GOOGLE_SHEETS_URL = 'https://script.google.com/macros/s/AKfycbzl9wFwQLkLvjZDymcTuLxYWUuMu2pgVJzYUUGXuKPx3W7mYuWjy3WaYk9Gzwc8NYOF/exec';
+
+        // Submit application
+        async function submitApplication() {
+            const description = document.getElementById('app-description').value.trim();
+            const email = document.getElementById('applicant-email').value.trim();
+            const btn = document.getElementById('cta-btn');
+            const note = document.getElementById('submit-note');
+
+            // Validate description
+            if (!description) {
+                document.getElementById('app-description').focus();
+                document.getElementById('app-description').style.borderColor = '#ef4444';
+                setTimeout(() => {
+                    document.getElementById('app-description').style.borderColor = '';
+                }, 2000);
+                return;
+            }
+
+            // Validate email
+            const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+            if (!email || !emailRegex.test(email)) {
+                document.getElementById('applicant-email').focus();
+                document.getElementById('applicant-email').classList.add('error');
+                setTimeout(() => {
+                    document.getElementById('applicant-email').classList.remove('error');
+                }, 2000);
+                return;
+            }
+
+            // Calculate prices
+            let platformPrice = 0;
+            const platformCount = (state.platform.ios ? 1 : 0) + (state.platform.android ? 1 : 0);
+            if (platformCount === 2) {
+                platformPrice = 2500;
+            }
+
+            let authPrice = 0;
+            if (state.auth.email) authPrice += authPrices.email;
+            if (state.auth.social) authPrice += authPrices.social;
+
+            let monetizationPrice = 0;
+            if (state.monetization.ads) monetizationPrice += monetizationPrices.ads;
+            if (state.monetization.iap) monetizationPrice += monetizationPrices.iap;
+            if (state.monetization.subscription) monetizationPrice += monetizationPrices.subscription;
+
+            let extrasPrice = 0;
+            if (state.extras.notifications) extrasPrice += extrasPrices.notifications;
+            if (state.extras.widgets) extrasPrice += extrasPrices.widgets;
+            if (state.extras.analytics) extrasPrice += extrasPrices.analytics;
+            if (state.extras.landing) extrasPrice += extrasPrices.landing;
+
+            let total = BASE_PRICE + platformPrice + authPrice + monetizationPrice + extrasPrice;
+
+            // Build labels
+            const platformList = [];
+            if (state.platform.ios) platformList.push('iOS');
+            if (state.platform.android) platformList.push('Android');
+            const platformLabel = platformList.join(' + ');
+
+            const authList = [];
+            if (state.auth.email) authList.push('Email/Password');
+            if (state.auth.social) authList.push('Social Login');
+            const authLabel = authList.length > 0 ? authList.join(', ') : 'None';
+
+            const monetizationList = [];
+            if (state.monetization.ads) monetizationList.push('Ads');
+            if (state.monetization.iap) monetizationList.push('In-App Purchase');
+            if (state.monetization.subscription) monetizationList.push('Subscription');
+            const monetizationLabel = monetizationList.length > 0 ? monetizationList.join(', ') : 'None';
+
+            const extrasList = [];
+            if (state.extras.notifications) extrasList.push('Push Notifications');
+            if (state.extras.widgets) extrasList.push('Home Widgets');
+            if (state.extras.analytics) extrasList.push('Analytics Dashboard');
+            if (state.extras.landing) extrasList.push('Landing Page');
+            const extrasLabel = extrasList.length > 0 ? extrasList.join(', ') : 'None';
+
+            // Prepare data for Google Sheets
+            const data = {
+                timestamp: new Date().toISOString(),
+                email: email,
+                platform: platformLabel,
+                authentication: authLabel,
+                monetization: monetizationLabel,
+                extras: extrasLabel,
+                estimatedPrice: `$${total.toLocaleString()}`,
+                appIdea: description
+            };
+
+            // Show loading state
+            btn.disabled = true;
+            btn.classList.add('loading');
+
+            try {
+                const response = await fetch(GOOGLE_SHEETS_URL, {
+                    method: 'POST',
+                    mode: 'no-cors',
+                    headers: {
+                        'Content-Type': 'application/json',
+                    },
+                    body: JSON.stringify(data)
+                });
+
+                // Success (no-cors doesn't return response, so we assume success)
+                btn.classList.remove('loading');
+                btn.classList.add('success');
+                note.textContent = 'Thank you! I\'ll be in touch soon.';
+
+            } catch (error) {
+                // Error - reset button
+                btn.disabled = false;
+                btn.classList.remove('loading');
+                note.textContent = 'Something went wrong. Please try again.';
+                note.style.color = '#ef4444';
+                console.error('Submission error:', error);
+            }
+        }
+
+        updatePrice();
+    </script>
+</body>
+</html>
