@@ -874,7 +874,7 @@
                         </span>
                     </div>
                     <div class="toggle-group">
-                        <button class="toggle-btn" data-group="monetization" data-value="ads" data-price="1000">Ads</button>
+                        <button class="toggle-btn" data-group="monetization" data-value="ads" data-price="1200">Ads</button>
                         <button class="toggle-btn" data-group="monetization" data-value="iap" data-price="1200">In-App Purchase</button>
                         <button class="toggle-btn" data-group="monetization" data-value="subscription" data-price="1500">Subscription</button>
                     </div>
@@ -886,14 +886,15 @@
                         Extras
                         <span class="info-trigger">
                             <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="10"/><line x1="12" y1="16" x2="12" y2="12"/><line x1="12" y1="8" x2="12.01" y2="8"/></svg>
-                            <div class="info-popup"><strong>Push Notifications</strong> = Send alerts to users<br><strong>Home Widgets</strong> = Quick glance on home screen<br><strong>Analytics</strong> = Track how users use your app<br><strong>Landing Page</strong> = Marketing website for your app</div>
+                            <div class="info-popup"><strong>Push Notifications</strong> = Send alerts to users<br><strong>Home Widgets</strong> = Quick glance on home screen<br><strong>Analytics</strong> = Track how users use your app<br><strong>Landing Page</strong> = Marketing website for your app<br><strong>Icons & Assets</strong> = Custom icon, screenshots & description</div>
                         </span>
                     </div>
                     <div class="toggle-group">
                         <button class="toggle-btn" data-group="extras" data-value="notifications" data-price="1000">Push Notifications</button>
-                        <button class="toggle-btn" data-group="extras" data-value="widgets" data-price="1000">Home Widgets</button>
+                        <button class="toggle-btn" data-group="extras" data-value="widgets" data-price="1500">Home Widgets</button>
                         <button class="toggle-btn" data-group="extras" data-value="analytics" data-price="1500">Analytics Dashboard</button>
                         <button class="toggle-btn" data-group="extras" data-value="landing" data-price="1500">Landing Page</button>
+                        <button class="toggle-btn" data-group="extras" data-value="assets" data-price="1000">Icons & Assets</button>
                     </div>
                 </div>
 
@@ -1127,13 +1128,13 @@
             platform: { ios: true, android: false },
             auth: { email: false, social: false },
             monetization: { ads: false, iap: false, subscription: false },
-            extras: { notifications: false, widgets: false, analytics: false, landing: false }
+            extras: { notifications: false, widgets: false, analytics: false, landing: false, assets: false }
         };
 
         const platformPrices = { ios: 0, android: 2500 };
         const authPrices = { email: 1000, social: 1200 };
-        const monetizationPrices = { ads: 1000, iap: 1200, subscription: 1500 };
-        const extrasPrices = { notifications: 1000, widgets: 1000, analytics: 1500, landing: 1500 };
+        const monetizationPrices = { ads: 1200, iap: 1200, subscription: 1500 };
+        const extrasPrices = { notifications: 1000, widgets: 1500, analytics: 1500, landing: 1500, assets: 1000 };
 
         // Toggle button handlers
         document.querySelectorAll('.toggle-btn').forEach(btn => {
@@ -1198,6 +1199,7 @@
             if (state.extras.widgets) extrasPrice += extrasPrices.widgets;
             if (state.extras.analytics) extrasPrice += extrasPrices.analytics;
             if (state.extras.landing) extrasPrice += extrasPrices.landing;
+            if (state.extras.assets) extrasPrice += extrasPrices.assets;
 
             let total = BASE_PRICE + platformPrice + authPrice + monetizationPrice + extrasPrice;
 
@@ -1260,6 +1262,7 @@
             if (state.extras.widgets) extrasPrice += extrasPrices.widgets;
             if (state.extras.analytics) extrasPrice += extrasPrices.analytics;
             if (state.extras.landing) extrasPrice += extrasPrices.landing;
+            if (state.extras.assets) extrasPrice += extrasPrices.assets;
 
             let total = BASE_PRICE + platformPrice + authPrice + monetizationPrice + extrasPrice;
 
@@ -1285,6 +1288,7 @@
             if (state.extras.widgets) extrasList.push('Home Widgets');
             if (state.extras.analytics) extrasList.push('Analytics Dashboard');
             if (state.extras.landing) extrasList.push('Landing Page');
+            if (state.extras.assets) extrasList.push('Icons & Assets');
             const extrasLabel = extrasList.length > 0 ? extrasList.join(', ') : 'None';
 
             // Prepare data for Google Sheets
