@@ -1427,7 +1427,7 @@
         }
 
         // Google Sheets Web App URL - Replace with your deployed script URL
-        const GOOGLE_SHEETS_URL = 'https://script.google.com/macros/s/AKfycbzl9wFwQLkLvjZDymcTuLxYWUuMu2pgVJzYUUGXuKPx3W7mYuWjy3WaYk9Gzwc8NYOF/exec';
+        const GOOGLE_SHEETS_URL = 'https://script.google.com/macros/s/AKfycbzTOvarkQPU4_eb-zlf_-D5hmzsltDHgyLGotfsXZF0w6qW_3oePe6PVir0ToXQiFmc/exec';
 
         // Submit application
         async function submitApplication() {
@@ -1539,6 +1539,10 @@
                 estimatedPrice: `$${total.toLocaleString()}`,
                 appIdea: description
             };
+
+            // Debug: log data being sent
+            console.log('Submitting data:', data);
+            console.log('Timeline value:', state.timeline, '-> Label:', timelineLabel);
 
             // Show loading state
             btn.disabled = true;
