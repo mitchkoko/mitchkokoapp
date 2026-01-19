@@ -165,6 +165,62 @@
             margin-bottom: 16px;
         }
 
+        /* Availability Badge */
+        .availability-badge {
+            display: inline-flex;
+            align-items: center;
+            gap: 8px;
+            font-size: 0.8rem;
+            font-weight: 500;
+            color: var(--text-secondary);
+            margin-bottom: 28px;
+        }
+
+        .pulse-dot {
+            position: relative;
+            width: 8px;
+            height: 8px;
+        }
+
+        .pulse-dot::before {
+            content: '';
+            position: absolute;
+            inset: 0;
+            background: #22c55e;
+            border-radius: 50%;
+            box-shadow: 0 0 8px 2px rgba(34, 197, 94, 0.4);
+            animation: pulse-glow 2s ease-in-out infinite;
+        }
+
+        .pulse-dot::after {
+            content: '';
+            position: absolute;
+            inset: -3px;
+            border: 1.5px solid rgba(34, 197, 94, 0.6);
+            border-radius: 50%;
+            animation: pulse-ring 2s cubic-bezier(0.4, 0, 0.2, 1) infinite;
+        }
+
+        @keyframes pulse-glow {
+            0%, 100% {
+                box-shadow: 0 0 6px 1px rgba(34, 197, 94, 0.4);
+            }
+            50% {
+                box-shadow: 0 0 12px 3px rgba(34, 197, 94, 0.6);
+            }
+        }
+
+        @keyframes pulse-ring {
+            0% {
+                transform: scale(1);
+                opacity: 0.8;
+            }
+            100% {
+                transform: scale(2.5);
+                opacity: 0;
+            }
+        }
+
         .hero-banner h1 {
             font-size: 3.25rem;
             font-weight: 700;
@@ -256,6 +312,103 @@
         }
 
         .portfolio-info span {
+            font-size: 0.8rem;
+            color: var(--text-muted);
+        }
+
+        /* About Section */
+        .about-card {
+            padding: 24px;
+            background: var(--surface);
+            border: 1px solid var(--border);
+            border-radius: 20px;
+            box-shadow: var(--shadow-sm);
+        }
+
+        .about-header {
+            display: flex;
+            align-items: center;
+            gap: 14px;
+            margin-bottom: 14px;
+        }
+
+        .about-avatar {
+            width: 48px;
+            height: 48px;
+            border-radius: 50%;
+            background: var(--bg);
+            border: 1px solid var(--border-light);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            flex-shrink: 0;
+        }
+
+        .about-avatar img {
+            width: 100%;
+            height: 100%;
+            border-radius: 50%;
+            object-fit: cover;
+        }
+
+        .about-info {
+            display: flex;
+            flex-direction: column;
+            gap: 2px;
+        }
+
+        .about-name {
+            font-size: 1rem;
+            font-weight: 600;
+        }
+
+        .about-title {
+            font-size: 0.8rem;
+            color: var(--text-muted);
+        }
+
+        .about-bio {
+            font-size: 0.9rem;
+            color: var(--text-secondary);
+            line-height: 1.6;
+        }
+
+        /* Testimonials */
+        .testimonials-grid {
+            display: flex;
+            flex-direction: column;
+            gap: 16px;
+        }
+
+        .testimonial-card {
+            padding: 24px;
+            background: var(--surface);
+            border: 1px solid var(--border);
+            border-radius: 16px;
+            box-shadow: var(--shadow-sm);
+        }
+
+        .testimonial-text {
+            font-size: 0.95rem;
+            color: var(--text-secondary);
+            line-height: 1.7;
+            margin-bottom: 16px;
+            font-style: italic;
+        }
+
+        .testimonial-author {
+            display: flex;
+            flex-direction: column;
+            gap: 2px;
+        }
+
+        .testimonial-name {
+            font-size: 0.9rem;
+            font-weight: 600;
+            color: var(--text-primary);
+        }
+
+        .testimonial-role {
             font-size: 0.8rem;
             color: var(--text-muted);
         }
@@ -435,10 +588,10 @@
             color: var(--text-muted);
         }
 
-        .price-range {
-            font-size: 0.85rem;
-            color: var(--text-secondary);
-            margin-top: 4px;
+        @media (max-width: 640px) {
+            .price-amount {
+                font-size: 2.5rem;
+            }
         }
 
         /* App Description */
@@ -778,10 +931,6 @@
                 width: 100%;
                 justify-content: center;
             }
-
-            .price-amount {
-                font-size: 2.5rem;
-            }
         }
 
         /* Animation */
@@ -822,13 +971,88 @@
     <!-- Hero Banner - Full Width -->
     <header class="hero-banner animate-in">
         <div class="hero-content">
-            <p class="hero-eyebrow">App Development Service</p>
-            <h1>Let's Build Your App</h1>
-            <p class="hero-subtitle">Your idea → I design, build & launch it on the stores.</p>
+            <div class="availability-badge">
+                <span class="pulse-dot"></span>
+                2 spots left for February
+            </div>
+            <h1>Your Idea to App Store in 4 Weeks.</h1>
+            <p class="hero-subtitle">You bring the vision. I bring it to life.</p>
         </div>
     </header>
 
     <div class="container">
+
+        <!-- Portfolio / Proof -->
+        <section class="section animate-in delay-1">
+            <h2 class="section-title">Live on the App Store</h2>
+            <div class="portfolio-grid">
+                <a href="https://ritualz.app" target="_blank" rel="noopener" class="portfolio-item">
+                    <div class="portfolio-icon-wrapper">
+                        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><rect x="5" y="2" width="14" height="20" rx="2" ry="2"/><line x1="12" y1="18" x2="12.01" y2="18"/></svg>
+                    </div>
+                    <div class="portfolio-info">
+                        <strong>Ritualz</strong>
+                        <span>Habit Tracker</span>
+                    </div>
+                </a>
+                <a href="https://expensif.app" target="_blank" rel="noopener" class="portfolio-item">
+                    <div class="portfolio-icon-wrapper">
+                        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><rect x="5" y="2" width="14" height="20" rx="2" ry="2"/><line x1="12" y1="18" x2="12.01" y2="18"/></svg>
+                    </div>
+                    <div class="portfolio-info">
+                        <strong>Expensif</strong>
+                        <span>Expense Tracker</span>
+                    </div>
+                </a>
+                <a href="https://tuteee.app" target="_blank" rel="noopener" class="portfolio-item">
+                    <div class="portfolio-icon-wrapper">
+                        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><rect x="5" y="2" width="14" height="20" rx="2" ry="2"/><line x1="12" y1="18" x2="12.01" y2="18"/></svg>
+                    </div>
+                    <div class="portfolio-info">
+                        <strong>Tuteee</strong>
+                        <span>AI Tutor</span>
+                    </div>
+                </a>
+            </div>
+        </section>
+
+        <!-- About -->
+        <section class="section animate-in delay-2">
+            <h2 class="section-title">Who's Building Your App</h2>
+            <div class="about-card">
+                <div class="about-header">
+                    <div class="about-avatar">
+                        <img src="../images/logo.png" alt="Mitch Koko">
+                    </div>
+                    <div class="about-info">
+                        <div class="about-name">Mitch Koko</div>
+                        <div class="about-title">iOS & Android Developer</div>
+                    </div>
+                </div>
+                <p class="about-bio">I've been building mobile apps for 8 years with 20+ apps shipped on the App Store and Play Store. I work fast and deliver complete end-to-end products. I have a good eye for design and I value simplicity.</p>
+            </div>
+        </section>
+
+        <!-- Testimonials -->
+        <section class="section animate-in delay-2">
+            <h2 class="section-title">What Clients Say</h2>
+            <div class="testimonials-grid">
+                <div class="testimonial-card">
+                    <p class="testimonial-text">"Mitch has this rare ability to take a cluttered idea and strip it down to something beautifully simple. No unnecessary features, no bloat - just a clean app that does exactly what it needs to. Communication was excellent and he delivered ahead of schedule."</p>
+                    <div class="testimonial-author">
+                        <div class="testimonial-name">Sarah Chen</div>
+                        <div class="testimonial-role">Founder, Fitness Tracking App</div>
+                    </div>
+                </div>
+                <div class="testimonial-card">
+                    <p class="testimonial-text">"I've been watching Mitch's YouTube tutorials for years, so when I needed someone to build my app, he was the obvious choice. His minimal, clean design style is exactly what I wanted. The final product looked even better than I imagined."</p>
+                    <div class="testimonial-author">
+                        <div class="testimonial-name">Rohan Singh</div>
+                        <div class="testimonial-role">Founder, Productivity App</div>
+                    </div>
+                </div>
+            </div>
+        </section>
 
         <!-- Pricing Calculator -->
         <section class="section animate-in delay-2">
@@ -840,12 +1064,12 @@
                         Platform
                         <span class="info-trigger">
                             <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="10"/><line x1="12" y1="16" x2="12" y2="12"/><line x1="12" y1="8" x2="12.01" y2="8"/></svg>
-                            <div class="info-popup"><strong>iOS</strong> = iPhone & iPad (App Store)<br><strong>Android</strong> = Samsung, Google Pixel, etc. (Google Play)</div>
+                            <div class="info-popup"><strong>iOS</strong> = iPhone & iPad (App Store)<br><strong>Android</strong> = Samsung, Google Pixel, etc. (Google Play)<br><br>Both platforms: +$2,500</div>
                         </span>
                     </div>
                     <div class="toggle-group">
-                        <button class="toggle-btn active" data-group="platform" data-value="ios" data-price="0">iOS</button>
-                        <button class="toggle-btn" data-group="platform" data-value="android" data-price="2500">Android</button>
+                        <button class="toggle-btn active" data-group="platform" data-value="ios">iOS</button>
+                        <button class="toggle-btn" data-group="platform" data-value="android">Android</button>
                     </div>
                 </div>
 
@@ -905,7 +1129,6 @@
                     <div class="price-label">Estimated Total</div>
                     <div class="price-amount" id="total-price">$5,000</div>
                     <div class="price-note">Starting at $5,000</div>
-                    <div class="price-range" id="price-range"></div>
                 </div>
 
                 <!-- App Description -->
@@ -918,6 +1141,18 @@
                         maxlength="1000"
                     ></textarea>
                     <div class="char-count"><span id="char-count">0</span>/1000</div>
+                </div>
+
+                <!-- Timeline -->
+                <div class="option-group" style="margin-top: 20px;">
+                    <div class="option-label">
+                        When do you want to launch?
+                    </div>
+                    <div class="toggle-group">
+                        <button class="toggle-btn" data-group="timeline" data-value="asap">ASAP (within 2 months)</button>
+                        <button class="toggle-btn" data-group="timeline" data-value="thisyear">Sometime this year</button>
+                        <button class="toggle-btn" data-group="timeline" data-value="exploring">Just exploring</button>
+                    </div>
                 </div>
 
                 <!-- Email -->
@@ -984,44 +1219,10 @@
                     <span class="process-number">4</span>
                     <div class="process-content">
                         <h3>Launch</h3>
-                        <p>Your app goes live on the stores. Pay the remaining 50% and receive full ownership.</p>
+                        <p>Pay the remaining 50% & your app goes live on the stores!</p>
                     </div>
                 </li>
             </ol>
-        </section>
-
-        <!-- Portfolio / Proof -->
-        <section class="section animate-in delay-4">
-            <h2 class="section-title">Live on the App Store</h2>
-            <div class="portfolio-grid">
-                <a href="https://ritualz.app" target="_blank" rel="noopener" class="portfolio-item">
-                    <div class="portfolio-icon-wrapper">
-                        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><rect x="5" y="2" width="14" height="20" rx="2" ry="2"/><line x1="12" y1="18" x2="12.01" y2="18"/></svg>
-                    </div>
-                    <div class="portfolio-info">
-                        <strong>Ritualz</strong>
-                        <span>Habit Tracker</span>
-                    </div>
-                </a>
-                <a href="https://expensif.app" target="_blank" rel="noopener" class="portfolio-item">
-                    <div class="portfolio-icon-wrapper">
-                        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><rect x="5" y="2" width="14" height="20" rx="2" ry="2"/><line x1="12" y1="18" x2="12.01" y2="18"/></svg>
-                    </div>
-                    <div class="portfolio-info">
-                        <strong>Expensif</strong>
-                        <span>Expense Tracker</span>
-                    </div>
-                </a>
-                <a href="https://tuteee.app" target="_blank" rel="noopener" class="portfolio-item">
-                    <div class="portfolio-icon-wrapper">
-                        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><rect x="5" y="2" width="14" height="20" rx="2" ry="2"/><line x1="12" y1="18" x2="12.01" y2="18"/></svg>
-                    </div>
-                    <div class="portfolio-info">
-                        <strong>Tuteee</strong>
-                        <span>AI Tutor</span>
-                    </div>
-                </a>
-            </div>
         </section>
 
         <!-- FAQ -->
@@ -1057,12 +1258,12 @@
                 </div>
                 <div class="faq-item">
                     <button class="faq-question" onclick="toggleFaq(this)">
-                        <span class="faq-question-text">How long does it take?</span>
+                        <span class="faq-question-text">Why 4 weeks?</span>
                         <svg class="faq-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
                             <line x1="12" y1="5" x2="12" y2="19"/><line x1="5" y1="12" x2="19" y2="12"/>
                         </svg>
                     </button>
-                    <div class="faq-answer">Most apps take 4-8 weeks from start to App Store launch. Timeline depends on complexity and will be discussed during our consultation call.</div>
+                    <div class="faq-answer">4 weeks is the time it takes me to design, build, and launch an app from scratch. More importantly, I believe the first version of your app shouldn't take longer than that. If it does, the scope should be simplified. Get your idea to market fast, then iterate.</div>
                 </div>
                 <div class="faq-item">
                     <button class="faq-question" onclick="toggleFaq(this)">
@@ -1081,6 +1282,15 @@
                         </svg>
                     </button>
                     <div class="faq-answer">This service is designed for focused MVPs. If your project needs a custom backend or advanced features, mention it in your application and we'll discuss pricing.</div>
+                </div>
+                <div class="faq-item">
+                    <button class="faq-question" onclick="toggleFaq(this)">
+                        <span class="faq-question-text">What if I'm not happy with the result?</span>
+                        <svg class="faq-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                            <line x1="12" y1="5" x2="12" y2="19"/><line x1="5" y1="12" x2="19" y2="12"/>
+                        </svg>
+                    </button>
+                    <div class="faq-answer">Your satisfaction matters. You'll review and approve the designs before any code is written, so you can voice concerns early. If we can't align on the direction during the design phase, you get a full refund of your deposit.</div>
                 </div>
             </div>
         </section>
@@ -1128,7 +1338,8 @@
             platform: { ios: true, android: false },
             auth: { email: false, social: false },
             monetization: { ads: false, iap: false, subscription: false },
-            extras: { notifications: false, widgets: false, analytics: false, landing: false, assets: false }
+            extras: { notifications: false, widgets: false, analytics: false, landing: false, assets: false },
+            timeline: ''
         };
 
         const platformPrices = { ios: 0, android: 2500 };
@@ -1166,6 +1377,11 @@
                 } else if (group === 'extras') {
                     btn.classList.toggle('active');
                     state.extras[value] = btn.classList.contains('active');
+                } else if (group === 'timeline') {
+                    // Single select for timeline
+                    document.querySelectorAll('[data-group="timeline"]').forEach(b => b.classList.remove('active'));
+                    btn.classList.add('active');
+                    state.timeline = value;
                 }
 
                 updatePrice();
@@ -1291,14 +1507,35 @@
             if (state.extras.assets) extrasList.push('Icons & Assets');
             const extrasLabel = extrasList.length > 0 ? extrasList.join(', ') : 'None';
 
+            // Timeline label
+            const timelineLabels = {
+                'asap': 'ASAP (within 2 months)',
+                'thisyear': 'Sometime this year',
+                'exploring': 'Just exploring'
+            };
+            const timelineLabel = state.timeline ? timelineLabels[state.timeline] : 'Not specified';
+
+            // Format timestamp in AEST
+            const aestTimestamp = new Date().toLocaleString('en-AU', {
+                timeZone: 'Australia/Sydney',
+                year: 'numeric',
+                month: '2-digit',
+                day: '2-digit',
+                hour: '2-digit',
+                minute: '2-digit',
+                second: '2-digit',
+                hour12: false
+            });
+
             // Prepare data for Google Sheets
             const data = {
-                timestamp: new Date().toISOString(),
+                timestamp: aestTimestamp,
                 email: email,
                 platform: platformLabel,
                 authentication: authLabel,
                 monetization: monetizationLabel,
                 extras: extrasLabel,
+                timeline: timelineLabel,
                 estimatedPrice: `$${total.toLocaleString()}`,
                 appIdea: description
             };
