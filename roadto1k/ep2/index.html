@@ -1,0 +1,626 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+    <title>Road to $1k/Month App – Episode 2 | Mitch Koko</title>
+    <style>
+        * { margin:0; padding:0; box-sizing:border-box; }
+
+        :root{
+            --bg:#f5f5f5;
+            --surface:#ffffff;
+            --surface-hover:#fafafa;
+            --border:#e5e5e5;
+            --border-hover:#d4d4d8;
+            --text-primary:#2c2c2c;
+            --text-secondary:#6c6c6c;
+            --text-muted:#a1a1aa;
+            --hover-bg:#f0f0f0;
+            --shadow-sm:0 1px 3px rgba(0,0,0,.05),0 1px 2px rgba(0,0,0,.03);
+            --shadow-md:0 4px 12px rgba(0,0,0,.08),0 2px 4px rgba(0,0,0,.04);
+            --shadow-lg:0 8px 24px rgba(0,0,0,.12),0 4px 8px rgba(0,0,0,.06);
+            --shadow-xl:0 12px 32px rgba(0,0,0,.15),0 6px 12px rgba(0,0,0,.08);
+            --accent-red:#ff0000;
+            --accent-red-dark:#dc2626;
+            --transition:all .3s cubic-bezier(.4,0,.2,1);
+            --transition-bounce:all .4s cubic-bezier(.175,.885,.32,1.275);
+            --border-radius:12px;
+            --border-radius-lg:16px;
+            --accent-pill:#e5f6ff;
+        }
+
+        [data-theme="dark"]{
+            --bg:#1f1f1f;
+            --surface:#1a1a1a;
+            --surface-hover:#252525;
+            --border:#2a2a2a;
+            --border-hover:#404040;
+            --text-primary:#f0f0f0;
+            --text-secondary:#a0a0a0;
+            --text-muted:#71717a;
+            --hover-bg:#252525;
+            --shadow-sm:0 1px 3px rgba(0,0,0,.2),0 1px 2px rgba(0,0,0,.1);
+            --shadow-md:0 4px 12px rgba(0,0,0,.3),0 2px 4px rgba(0,0,0,.15);
+            --shadow-lg:0 8px 24px rgba(0,0,0,.4),0 4px 8px rgba(0,0,0,.2);
+            --shadow-xl:0 12px 32px rgba(0,0,0,.5),0 6px 12px rgba(0,0,0,.25);
+            --accent-red:#ff4444;
+            --accent-red-dark:#ff6666;
+            --accent-pill:#042f2e;
+        }
+
+        html,body{height:100vh; overflow:auto;}
+        body{
+            font-family:-apple-system,BlinkMacSystemFont,'Segoe UI',Roboto,'Helvetica Neue',Arial,sans-serif;
+            background:var(--bg);
+            color:var(--text-primary);
+            line-height:1.7;
+            transition:var(--transition);
+            display:flex; justify-content:center;
+            font-synthesis:none; text-rendering:optimizeLegibility;
+            -webkit-font-smoothing:antialiased; -moz-osx-font-smoothing:grayscale;
+            padding:24px 12px 40px;
+        }
+
+        .theme-toggle{
+            position:fixed; top:20px; right:20px; width:52px; height:26px;
+            background:var(--surface); border:1px solid var(--border); border-radius:13px;
+            cursor:pointer; display:flex; align-items:center; padding:2px;
+            transition:var(--transition); z-index:1000; box-shadow:var(--shadow-sm);
+        }
+        .theme-toggle:hover{ box-shadow:var(--shadow-lg); border-color:var(--border-hover); transform:translateY(-1px); }
+        .theme-toggle-circle{
+            width:22px; height:22px; background:var(--text-primary); border-radius:50%;
+            transition:var(--transition-bounce); display:flex; align-items:center; justify-content:center; font-size:10px;
+            box-shadow:0 2px 4px rgba(0,0,0,.1);
+        }
+        [data-theme="dark"] .theme-toggle-circle{ transform:translateX(26px); }
+
+        .container{
+            width:100%;
+            max-width:900px;
+            animation:fadeInUp .8s cubic-bezier(.4,0,.2,1);
+        }
+        @keyframes fadeInUp{ from{opacity:0; transform:translateY(30px);} to{opacity:1; transform:translateY(0);} }
+
+        header{
+            display:flex;
+            gap:16px;
+            align-items:center;
+            margin-bottom:28px;
+        }
+
+        .logo{
+            width:64px; height:64px; object-fit:contain;
+            border-radius:12px; box-shadow:var(--shadow-sm);
+            animation:float 3s ease-in-out infinite;
+        }
+        @keyframes float{
+            0%,100%{ transform:translateY(0px) rotate(0deg); }
+            50%{ transform:translateY(-6px) rotate(1deg); }
+        }
+
+        .header-text{
+            display:flex;
+            flex-direction:column;
+            gap:4px;
+        }
+
+        .home-link{
+            font-size:.85rem;
+            color:var(--text-muted);
+            text-decoration:none;
+            display:inline-flex;
+            align-items:center;
+            gap:4px;
+            margin-bottom:4px;
+        }
+        .home-link:hover{
+            color:var(--text-secondary);
+        }
+
+        h1{
+            font-size:1.9rem;
+            font-weight:700;
+            letter-spacing:-.02em;
+        }
+
+        .episode-meta{
+            display:flex;
+            flex-wrap:wrap;
+            gap:8px;
+            margin-top:6px;
+            font-size:.8rem;
+            color:var(--text-muted);
+        }
+
+        .pill{
+            display:inline-flex;
+            align-items:center;
+            gap:6px;
+            padding:3px 9px;
+            border-radius:999px;
+            background:var(--surface);
+            color:var(--text-secondary);
+            border:1px solid var(--border);
+            font-size:.8rem;
+            text-decoration:none;
+            transition:var(--transition);
+        }
+
+        a.pill:hover{
+            transform:translateY(-2px);
+            box-shadow:var(--shadow-md);
+            border-color:var(--text-primary);
+            background:var(--surface-hover);
+            cursor:pointer;
+        }
+
+        .divider{
+            width:100%;
+            height:1px;
+            background:linear-gradient(90deg, transparent, var(--border), transparent);
+            margin:20px 0 24px;
+        }
+
+        .episode-body{
+            background:var(--surface);
+            border-radius:var(--border-radius-lg);
+            border:1px solid var(--border);
+            box-shadow:var(--shadow-md);
+            padding:24px 22px 26px;
+        }
+
+        .episode-body h2{
+            font-size:1.2rem;
+            margin:18px 0 8px;
+        }
+
+        .episode-body h3{
+            font-size:1rem;
+            margin:14px 0 6px;
+        }
+
+        .episode-body p{
+            font-size:.95rem;
+            color:var(--text-secondary);
+            margin-bottom:12px;
+        }
+
+        .episode-body a{
+            color:inherit;
+            text-decoration:underline;
+            text-decoration-thickness:1px;
+            text-underline-offset:2px;
+            transition:var(--transition);
+        }
+
+        .episode-body a:hover{
+            color:var(--text-primary);
+            text-decoration-thickness:2px;
+        }
+
+        .episode-body figcaption a{
+            color:inherit;
+        }
+
+        .episode-body ul{
+            margin:8px 0 16px 20px;
+            padding-left:4px;
+        }
+
+        .episode-body li{
+            font-size:.95rem;
+            color:var(--text-secondary);
+            margin-bottom:6px;
+        }
+
+        .intro-highlight{
+            font-size:.96rem;
+            margin-bottom:18px;
+        }
+
+        .download-box{
+            margin:16px 0 22px;
+            padding:14px 14px;
+            border-radius:var(--border-radius);
+            border:1px solid var(--border);
+            background:var(--surface-hover);
+            display:flex;
+            flex-wrap:wrap;
+            gap:10px;
+            justify-content:space-between;
+            align-items:center;
+        }
+
+        .download-box p{
+            margin:0;
+            font-size:.9rem;
+        }
+
+        .download-btn{
+            display:inline-flex;
+            align-items:center;
+            justify-content:center;
+            padding:8px 14px;
+            border-radius:999px;
+            border:1px solid var(--text-primary);
+            background:var(--text-primary);
+            color:var(--bg);
+            font-size:.9rem;
+            font-weight:600;
+            text-decoration:none;
+            transition:var(--transition);
+            white-space:nowrap;
+        }
+
+        .download-btn:hover{
+            transform:translateY(-2px);
+            box-shadow:var(--shadow-lg);
+            background:var(--surface);
+            color:var(--text-primary);
+        }
+
+        .episode-image{
+            margin:18px 0 22px;
+            border-radius:var(--border-radius-lg);
+            border:1px solid var(--border);
+            background:var(--surface-hover);
+            box-shadow:var(--shadow-sm);
+            overflow:hidden;
+        }
+
+        .episode-image img{
+            display:block;
+            width:100%;
+            height:auto;
+        }
+
+        .episode-image figcaption{
+            padding:8px 12px 10px;
+            font-size:.8rem;
+            color:var(--text-muted);
+            text-align:center;
+        }
+
+        .footnote{
+            margin-top:18px;
+            font-size:.8rem;
+            color:var(--text-muted);
+        }
+
+        /* signoff section */
+        .signoff{
+            margin-top:26px;
+            padding-top:18px;
+            border-top:1px dashed var(--border);
+        }
+        .signoff p{
+            margin-bottom:10px;
+            font-size:.9rem;
+        }
+        .signoff-hello{
+            font-style:italic;
+        }
+        .signoff-links{
+            display:flex;
+            flex-wrap:wrap;
+            gap:10px;
+            margin-top:6px;
+        }
+        .signoff-link{
+            display:inline-flex;
+            align-items:center;
+            justify-content:center;
+            padding:8px 14px;
+            border-radius:999px;
+            border:1px solid var(--border);
+            background:var(--surface-hover);
+            color:var(--text-primary);
+            font-size:.9rem;
+            font-weight:500;
+            text-decoration:none;
+            transition:var(--transition);
+        }
+        .signoff-link:hover{
+            transform:translateY(-2px);
+            box-shadow:var(--shadow-md);
+            border-color:var(--text-primary);
+            background:var(--surface);
+        }
+
+        /* image row for side by side */
+        .image-row{
+            display:grid;
+            grid-template-columns:repeat(2, 1fr);
+            gap:14px;
+            margin:18px 0 22px;
+        }
+
+        .image-row .episode-image{
+            margin:0;
+        }
+
+        /* stats grid */
+        .stats-grid{
+            display:grid;
+            grid-template-columns:repeat(2, 1fr);
+            gap:12px;
+            margin:16px 0 20px;
+        }
+
+        .stat-card{
+            background:var(--surface-hover);
+            border:1px solid var(--border);
+            border-radius:var(--border-radius);
+            padding:14px 16px;
+        }
+
+        .stat-label{
+            font-size:.78rem;
+            color:var(--text-muted);
+            margin-bottom:4px;
+        }
+
+        .stat-value{
+            font-size:1.4rem;
+            font-weight:700;
+            color:var(--text-primary);
+        }
+
+        .stat-subtext{
+            font-size:.75rem;
+            color:var(--text-muted);
+            margin-top:2px;
+        }
+
+        @media (max-width:640px){
+            body{ padding:18px 10px 26px; }
+            header{
+                flex-direction:row;
+                align-items:center;
+            }
+            .logo{ width:56px; height:56px; }
+            h1{ font-size:1.6rem; }
+            .episode-body{ padding:18px 16px 20px; }
+            .download-box{
+                flex-direction:column;
+                align-items:flex-start;
+            }
+            .signoff-links{
+                flex-direction:column;
+                align-items:flex-start;
+            }
+            .stats-grid{
+                grid-template-columns:1fr;
+            }
+            .image-row{
+                grid-template-columns:1fr;
+            }
+        }
+
+        @media (prefers-reduced-motion:reduce){
+            *{ animation-duration:.01ms !important; animation-iteration-count:1 !important; transition-duration:.01ms !important; }
+        }
+    </style>
+</head>
+<body data-theme="light">
+    <div class="theme-toggle" onclick="toggleTheme()" role="button" tabindex="0" aria-label="Toggle dark mode">
+        <div class="theme-toggle-circle"></div>
+    </div>
+
+    <div class="container">
+        <header>
+            <img src="../../images/logo.png" alt="Mitch Koko logo" class="logo" />
+            <div class="header-text">
+                <a href="../" class="home-link">← Back to episodes</a>
+                <h1>Road to $1k/Month App • Launched Tuteee</h1>
+                <div class="episode-meta">
+                    <span class="pill">💰 Goal: $1,000/month</span>
+                    <span class="pill">💰 Current: $18/month</span>
+                    <a href="https://ritualz.app" target="_blank" rel="noopener noreferrer" class="pill">🔥📱 Ritualz</a>
+                    <a href="https://expensif.app" target="_blank" rel="noopener noreferrer" class="pill">💳📱 Expensif</a>
+                    <a href="https://tuteee.app" target="_blank" rel="noopener noreferrer" class="pill">💬📱 Tuteee</a>
+                </div>
+            </div>
+        </header>
+
+        <div class="divider"></div>
+
+        <main class="episode-body">
+            <p class="intro-highlight">
+                Big month. I launched a new app called <a href="https://tuteee.app" target="_blank" rel="noopener noreferrer">Tuteee</a> - an AI math tutor. This one is different from <a href="https://ritualz.app" target="_blank" rel="noopener noreferrer">Ritualz</a> and <a href="https://expensif.app" target="_blank" rel="noopener noreferrer">Expensif</a> because it has real potential to charge more. I also shipped Flutter web versions of all my apps, analytics dashboards, and monetisation across the board.
+            </p>
+
+            <figure class="episode-image">
+                <img src="tuteee_landing_page.png" alt="Tuteee landing page" loading="lazy">
+                <figcaption><a href="https://tuteee.app" target="_blank" rel="noopener noreferrer">Tuteee</a> - Your Personal AI Math Tutor.</figcaption>
+            </figure>
+
+            <!-- CURRENT NUMBERS -->
+            <h2>CURRENT NUMBERS</h2>
+            <p><strong>MRR: $18/month</strong> (up from $13/month in Episode 1)</p>
+
+            <div class="stats-grid">
+                <div class="stat-card">
+                    <div class="stat-label">Ritualz Avg DAU</div>
+                    <div class="stat-value">34</div>
+                    <div class="stat-subtext">1,071 total users</div>
+                </div>
+                <div class="stat-card">
+                    <div class="stat-label">Expensif Avg DAU</div>
+                    <div class="stat-value">8</div>
+                    <div class="stat-subtext">478 total users</div>
+                </div>
+            </div>
+
+            <div class="image-row">
+                <figure class="episode-image">
+                    <img src="ritualz_analytics_dashboard_jan_2026.png" alt="Ritualz analytics dashboard" loading="lazy">
+                    <figcaption><a href="https://ritualz.app" target="_blank" rel="noopener noreferrer">Ritualz</a> - 1,071 users, 34 avg DAU</figcaption>
+                </figure>
+                <figure class="episode-image">
+                    <img src="expensif_analytics_dashboard_jan_2026.png" alt="Expensif analytics dashboard" loading="lazy">
+                    <figcaption><a href="https://expensif.app" target="_blank" rel="noopener noreferrer">Expensif</a> - 478 users, 8 avg DAU</figcaption>
+                </figure>
+            </div>
+
+            <p>
+                The numbers are still small but they're real users actually using my apps daily. Ritualz is doing well with 34 daily active users on average. Expensif is smaller but still growing. And now Tuteee is in the mix which is exciting.
+            </p>
+
+            <!-- WHAT I BUILT / SHIPPED -->
+            <h2>WHAT I BUILT / SHIPPED</h2>
+
+            <h3>💬 Tuteee - AI Math Tutor</h3>
+            <p>
+                This is the big one this month. <a href="https://tuteee.app" target="_blank" rel="noopener noreferrer">Tuteee</a> is an AI-powered personal math tutor. This one is special to me because I've been a math tutor my whole life. Before I found my love for coding, I found my love for math. So this app is kind of a passion project - combining my two loves: math and building apps.
+            </p>
+            <p>
+                Unlike Ritualz and Expensif which are just trackers, Tuteee actually provides real educational value. The AI tutor can guide students through math problems step by step and adapt to their level. And because it's education, I can realistically charge more - thinking around $9/month.
+            </p>
+
+            <h3>🌐 Flutter Web Versions</h3>
+            <p>
+                I shipped Flutter web versions of all my apps using WASM (WebAssembly). This was actually a good learning experience because Flutter web with WASM is still relatively new. Now you can use Ritualz, Expensif, and Tuteee right in the browser without downloading anything.
+            </p>
+
+            <h3>📊 Analytics Dashboards</h3>
+            <p>
+                I built analytics dashboards for all my apps. This is so important because I need to understand how users are actually using the apps. Without data you're just guessing. Now I can see daily active users, what platforms they're on, how often they're completing actions, etc.
+            </p>
+
+            <h3>💰 Monetisation on All Apps</h3>
+            <p>
+                All three apps now have monetisation in place. The model I've settled on is: free to use with ads, or subscribe to pro to remove ads and unlock premium features. I've also been experimenting with rewarded ads - watch an ad to get a reward. This feels like a nice balance where users can choose.
+            </p>
+
+            <h3>🔗 Social Share Feature (Ritualz)</h3>
+            <p>
+                Added a new social share feature to Ritualz where users can share their habit streaks. This could help with organic growth if users share their progress on social media.
+            </p>
+
+            <h3>📝 Feedback Board</h3>
+            <p>
+                Added a feedback board for users to submit feature requests and bug reports. It's important to have a direct line to users so I can understand what they actually want.
+            </p>
+
+            <!-- WHAT I LEARNED -->
+            <h2>WHAT I LEARNED</h2>
+
+            <h3>🌐 Flutter Web with WASM</h3>
+            <p>
+                Flutter web has gotten a lot better with WASM support. The performance is noticeably smoother than the old JavaScript renderer. It's not perfect but it's good enough to ship web versions of mobile apps now.
+            </p>
+
+            <h3>💰 Monetisation Strategies</h3>
+            <p>
+                I've been thinking a lot about monetisation. The "watch an ad for a reward" model feels good because it gives users a choice. Either pay for pro, or watch an ad to get the benefit temporarily. It doesn't feel as intrusive as forced ads. I'll keep experimenting with this.
+            </p>
+
+            <h3>🔔 Supabase Edge Functions - Push Notifications</h3>
+            <p>
+                Learned how to set up push notifications using Supabase Edge Functions. This is important for habit apps like Ritualz because reminders help users stay consistent. Edge functions are pretty powerful for running server-side code without managing your own backend.
+            </p>
+
+            <!-- WHAT WILL MOVE THE NEEDLE -->
+            <h2>WHAT WILL MOVE THE NEEDLE</h2>
+
+            <h3>💬 Tuteee - Passion + Business</h3>
+            <p>
+                Ritualz and Expensif are just habit and expense trackers. They're useful but there are a million of them out there. Tuteee is different - it's an AI tutor that can actually help students learn math. Education is a space where people are willing to pay real money. I can realistically charge $9/month for Tuteee which is much more than the $0.99-$2.99 I charge for the trackers. Plus it's a passion project for me as a long-time math tutor, so I'm extra motivated to make this one great.
+            </p>
+
+            <h3>📢 Marketing and Exposure</h3>
+            <p>
+                Building is getting easier with AI. The bottleneck now is getting users to discover the apps. I need to focus more on content creation - YouTube videos, social media posts, etc. Marketing is an area I need to improve.
+            </p>
+
+            <h3>🎮 Viral Game Idea</h3>
+            <p>
+                I have this idea for a simple viral game with a monetisation model I really want to try: finite lives (like 3 lives per 24 hours), watch an ad for an extra life, or subscribe to pro for unlimited lives. The key is finding the right simple game mechanic that's addictive enough. I'm excited about this one.
+            </p>
+
+            <!-- GOALS FOR NEXT EPISODE -->
+            <h2>GOALS FOR NEXT EPISODE</h2>
+            <ul>
+                <li><strong>Make Tuteee production-ready:</strong> It needs to be much more usable and durable. I want to design a universal math syllabus and make the AI tutor smarter at judging the student's current ability and tracking their progress over time.</li>
+                <li><strong>Get Tuteee to real users:</strong> Give it to actual students to test and get feedback.</li>
+                <li><strong>Release the viral game:</strong> Implement the finite lives monetisation model. Need to find the right simple game mechanic first but I'm excited to ship this.</li>
+                <li><strong>Keep growing DAU:</strong> Focus on retention and getting more daily active users across all apps.</li>
+            </ul>
+
+            <!-- SIGNOFF -->
+            <section class="signoff">
+                <p class="signoff-hello">Thanks for reading — Download <a href="https://ritualz.app" target="_blank" rel="noopener noreferrer">Ritualz</a>, <a href="https://expensif.app" target="_blank" rel="noopener noreferrer">Expensif</a>, or <a href="https://tuteee.app" target="_blank" rel="noopener noreferrer">Tuteee</a> and follow along as I try to turn these into real $1k/month apps..</p>
+                <p>
+                    If you want to follow along more closely or learn how I build this stuff:
+                </p>
+                <div class="signoff-links">
+                    <a
+                        href="https://ritualz.app"
+                        target="_blank"
+                        rel="noopener noreferrer"
+                        class="signoff-link"
+                    >
+                        🔥📱 Download Ritualz
+                    </a>
+                    <a
+                        href="https://expensif.app"
+                        target="_blank"
+                        rel="noopener noreferrer"
+                        class="signoff-link"
+                    >
+                        💳📱 Download Expensif
+                    </a>
+                    <a
+                        href="https://tuteee.app"
+                        target="_blank"
+                        rel="noopener noreferrer"
+                        class="signoff-link"
+                    >
+                        💬📱 Download Tuteee
+                    </a>
+                    <a
+                        href="https://youtube.com/mitchkoko"
+                        target="_blank"
+                        rel="noopener noreferrer"
+                        class="signoff-link"
+                    >
+                        📺 YouTube Tutorials
+                    </a>
+                </div>
+            </section>
+        </main>
+    </div>
+
+    <script>
+        function toggleTheme(){
+            const body=document.body;
+            const current=body.getAttribute('data-theme');
+            const next=current==='light'?'dark':'light';
+            body.setAttribute('data-theme',next);
+            try{ localStorage.setItem('theme',next); }catch(e){ console.warn('Could not save theme preference:',e); }
+        }
+
+        document.addEventListener('DOMContentLoaded',()=>{
+            let theme='light';
+            try{
+                const saved=localStorage.getItem('theme');
+                const systemDark=window.matchMedia('(prefers-color-scheme: dark)').matches;
+                theme=saved || (systemDark?'dark':'light');
+            }catch(e){ console.warn('Could not access theme preference:',e); }
+            document.body.setAttribute('data-theme',theme);
+        });
+
+        const mediaQuery=window.matchMedia('(prefers-color-scheme: dark)');
+        mediaQuery.addEventListener('change',(e)=>{
+            try{
+                if(!localStorage.getItem('theme')){
+                    document.body.setAttribute('data-theme', e.matches?'dark':'light');
+                }
+            }catch(err){ console.warn('Could not update theme:',err); }
+        });
+    </script>
+</body>
+</html>
