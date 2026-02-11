@@ -1,91 +1,139 @@
 <!DOCTYPE html>
 <html lang="en">
-
 <head>
     <meta charset="UTF-8"/>
     <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
     <title>Minimal Calculator - Privacy Policy</title>
-
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+    <link rel="icon" href="images/logo.png" type="image/png">
     <style>
+        * { margin:0; padding:0; box-sizing:border-box; }
+
+        :root {
+            --bg:#f5f5f5;
+            --surface:#ffffff;
+            --border:#e5e5e5;
+            --border-hover:#d4d4d8;
+            --text-primary:#2c2c2c;
+            --text-secondary:#6c6c6c;
+            --text-muted:#a1a1aa;
+            --shadow-sm:0 1px 3px rgba(0,0,0,.05),0 1px 2px rgba(0,0,0,.03);
+            --transition:all .3s cubic-bezier(.4,0,.2,1);
+        }
+
+        [data-theme="dark"] {
+            --bg:#1f1f1f;
+            --surface:#1a1a1a;
+            --border:#2a2a2a;
+            --border-hover:#404040;
+            --text-primary:#f0f0f0;
+            --text-secondary:#a0a0a0;
+            --text-muted:#71717a;
+            --shadow-sm:0 1px 3px rgba(0,0,0,.2),0 1px 2px rgba(0,0,0,.1);
+        }
+
         body {
-            font-family: sans-serif;
-            text-align: center;
-            margin: 0;
-            color: #333;
+            font-family:'Inter',-apple-system,BlinkMacSystemFont,'Segoe UI',Roboto,sans-serif;
+            background:var(--bg);
+            color:var(--text-primary);
+            line-height:1.7;
+            transition:var(--transition);
+            -webkit-font-smoothing:antialiased;
+            -moz-osx-font-smoothing:grayscale;
         }
 
-        nav {
-            background-color: #f5f5f5;
-            padding: 20px;
-            text-align: right;
+        .theme-toggle {
+            position:fixed; top:20px; right:20px; width:48px; height:26px;
+            background:var(--surface); border:1px solid var(--border); border-radius:999px;
+            cursor:pointer; display:flex; align-items:center; padding:3px;
+            transition:var(--transition); z-index:1000; box-shadow:var(--shadow-sm);
         }
+        .theme-toggle:hover { border-color:var(--border-hover); }
+        .theme-toggle-circle {
+            width:20px; height:20px; background:var(--text-primary); border-radius:50%;
+            transition:var(--transition);
+        }
+        [data-theme="dark"] .theme-toggle-circle { transform:translateX(22px); }
 
-        nav a {
-            margin: 10px;
-            color: #686868;
-            text-decoration: none;
-            font-weight: 500;
+        .back-link {
+            position:fixed; top:20px; left:20px;
+            display:flex; align-items:center; justify-content:center;
+            width:36px; height:36px;
+            background:var(--surface); border:1px solid var(--border); border-radius:50%;
+            color:var(--text-muted); text-decoration:none;
+            z-index:1000; box-shadow:var(--shadow-sm); transition:var(--transition);
         }
-
-        nav a:hover {
-            color: #333;
-        }
+        .back-link:hover { color:var(--text-primary); border-color:var(--border-hover); }
+        .back-link svg { width:16px; height:16px; }
 
         header {
-            background-color: #f5f5f5;
-            padding: 80px 20px;
+            padding:80px 20px 40px;
+            text-align:center;
         }
 
         header h1 {
-            font-size: 3rem;
-            margin-bottom: 16px;
-            color: #2A2A2A;
+            font-size:2rem; font-weight:700; letter-spacing:-.02em;
+            margin-bottom:8px;
         }
 
-        header h2 {
-            font-size: 1.25rem;
-            font-weight: 400;
-            color: #666;
-            margin-bottom: 40px;
+        header p {
+            font-size:.9rem; color:var(--text-muted);
         }
 
         main {
-            padding: 40px 20px;
-            text-align: left;
-            max-width: 800px;
-            margin: auto;
-            line-height: 1.6;
+            max-width:640px; margin:0 auto;
+            padding:0 24px 80px;
         }
 
-        main section {
-            margin-bottom: 40px;
+        section {
+            margin-bottom:32px;
         }
 
         main h2 {
-            color: #2A2A2A;
-            border-bottom: 1px solid #eee;
-            padding-bottom: 8px;
-            margin-top: 30px;
+            font-size:1.05rem; font-weight:600;
+            margin-bottom:8px; padding-bottom:8px;
+            border-bottom:1px solid var(--border);
+            color:var(--text-primary);
+        }
+
+        main p {
+            font-size:.9rem; color:var(--text-secondary); margin-bottom:12px;
+        }
+
+        @media (max-width:640px) {
+            header { padding:70px 20px 30px; }
+            header h1 { font-size:1.6rem; }
+            main { padding:0 20px 60px; }
+        }
+
+        @media (prefers-reduced-motion:reduce) {
+            * { animation-duration:.01ms !important; transition-duration:.01ms !important; }
         }
     </style>
 </head>
+<body data-theme="light">
+    <div class="theme-toggle" onclick="toggleTheme()" role="button" tabindex="0" aria-label="Toggle dark mode">
+        <div class="theme-toggle-circle"></div>
+    </div>
 
-<body>
-    <nav>
-        <a href="index.html">Home</a>
-        <a href="privacy-policy-calculator">Privacy Policy</a>
-    </nav>
+    <a href="index.html" class="back-link" aria-label="Go back">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+            <path d="M19 12H5M12 19l-7-7 7-7"/>
+        </svg>
+    </a>
 
     <header>
         <h1>Privacy Policy</h1>
-        <h2>Effective Date: May 18, 2025</h2>
+        <p>Effective Date: May 18, 2025</p>
     </header>
 
     <main>
         <section>
             <h2>1. Introduction</h2>
             <p>
-                Minimal Calculator ("we," "us," or "our") respects your privacy. 
+                Minimal Calculator ("we," "us," or "our") respects your privacy.
                 This Privacy Policy explains that our app does not collect, store, or share any personal data from users.
             </p>
         </section>
@@ -94,7 +142,7 @@
             <h2>2. Information We Collect</h2>
             <p>
                 Minimal Calculator does <strong>not collect any personal information</strong>.
-                The app performs all calculations locally on your device. 
+                The app performs all calculations locally on your device.
                 No data is transmitted to any server or third party.
             </p>
         </section>
@@ -137,5 +185,22 @@
             </p>
         </section>
     </main>
+
+    <script>
+        function toggleTheme(){
+            const body=document.body;
+            const next=body.getAttribute('data-theme')==='light'?'dark':'light';
+            body.setAttribute('data-theme',next);
+            try{localStorage.setItem('theme',next);}catch(e){}
+        }
+        (function(){
+            try{
+                const saved=localStorage.getItem('theme');
+                const systemDark=window.matchMedia('(prefers-color-scheme: dark)').matches;
+                const theme=saved || (systemDark?'dark':'light');
+                document.body.setAttribute('data-theme',theme);
+            }catch(e){}
+        })();
+    </script>
 </body>
 </html>

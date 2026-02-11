@@ -594,33 +594,6 @@
         </main>
     </div>
 
-    <script>
-        function toggleTheme(){
-            const body=document.body;
-            const current=body.getAttribute('data-theme');
-            const next=current==='light'?'dark':'light';
-            body.setAttribute('data-theme',next);
-            try{ localStorage.setItem('theme',next); }catch(e){ console.warn('Could not save theme preference:',e); }
-        }
-
-        document.addEventListener('DOMContentLoaded',()=>{
-            let theme='light';
-            try{
-                const saved=localStorage.getItem('theme');
-                const systemDark=window.matchMedia('(prefers-color-scheme: dark)').matches;
-                theme=saved || (systemDark?'dark':'light');
-            }catch(e){ console.warn('Could not access theme preference:',e); }
-            document.body.setAttribute('data-theme',theme);
-        });
-
-        const mediaQuery=window.matchMedia('(prefers-color-scheme: dark)');
-        mediaQuery.addEventListener('change',(e)=>{
-            try{
-                if(!localStorage.getItem('theme')){
-                    document.body.setAttribute('data-theme', e.matches?'dark':'light');
-                }
-            }catch(err){ console.warn('Could not update theme:',err); }
-        });
-    </script>
+    <script src="../shared.js"></script>
 </body>
 </html>

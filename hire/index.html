@@ -8,9 +8,9 @@
     <meta property="og:title" content="Hire Me | Mitch Koko">
     <meta property="og:description" content="Get your app idea built and launched on the App Store. Custom iOS and Android development starting at $5,000.">
     <meta property="og:type" content="website">
-    <meta property="og:url" content="https://mitchkoko.dev/hire">
+    <meta property="og:url" content="https://mitchkoko.app/hire">
     <meta name="twitter:card" content="summary">
-    <link rel="icon" href="../favicon.ico" type="image/x-icon">
+    <link rel="icon" href="../images/logo.png" type="image/png">
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
@@ -955,7 +955,7 @@
         .delay-4 { animation-delay: 0.2s; opacity: 0; }
     </style>
 </head>
-<body>
+<body data-theme="light">
     <!-- Theme Toggle -->
     <div class="theme-toggle" role="button" aria-label="Toggle theme" onclick="toggleTheme()">
         <div class="toggle-circle"></div>
@@ -973,7 +973,7 @@
         <div class="hero-content">
             <div class="availability-badge">
                 <span class="pulse-dot"></span>
-                2 spots left for February
+                Currently accepting new projects
             </div>
             <h1>Your Idea to App Store in 4 Weeks.</h1>
             <p class="hero-subtitle">You bring the vision. I bring it to life.</p>
@@ -1302,16 +1302,16 @@
         function initTheme() {
             const saved = localStorage.getItem('theme');
             if (saved) {
-                document.documentElement.setAttribute('data-theme', saved);
+                document.body.setAttribute('data-theme', saved);
             } else if (window.matchMedia('(prefers-color-scheme: dark)').matches) {
-                document.documentElement.setAttribute('data-theme', 'dark');
+                document.body.setAttribute('data-theme', 'dark');
             }
         }
 
         function toggleTheme() {
-            const current = document.documentElement.getAttribute('data-theme');
+            const current = document.body.getAttribute('data-theme');
             const next = current === 'dark' ? 'light' : 'dark';
-            document.documentElement.setAttribute('data-theme', next);
+            document.body.setAttribute('data-theme', next);
             localStorage.setItem('theme', next);
         }
 
@@ -1420,10 +1420,7 @@
             let total = BASE_PRICE + platformPrice + authPrice + monetizationPrice + extrasPrice;
 
             const priceEl = document.getElementById('total-price');
-            const rangeEl = document.getElementById('price-range');
-
             priceEl.textContent = `$${total.toLocaleString()}`;
-            rangeEl.textContent = '';
         }
 
         // Google Sheets Web App URL - Replace with your deployed script URL
