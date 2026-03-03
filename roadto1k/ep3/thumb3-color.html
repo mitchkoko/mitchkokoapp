@@ -1,0 +1,275 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<style>
+  @import url('https://fonts.googleapis.com/css2?family=Inter:wght@800;900&display=swap');
+  * { margin: 0; padding: 0; box-sizing: border-box; }
+
+  body {
+    width: 1280px; height: 720px;
+    font-family: 'Inter', sans-serif;
+    background: #E0956A; position: relative;
+  }
+
+  .bg {
+    position: absolute; inset: 28px; border-radius: 32px;
+    background:
+      radial-gradient(ellipse at 28% 40%, rgba(255,255,255,0.12) 0%, transparent 55%),
+      radial-gradient(ellipse at 78% 62%, rgba(0,0,0,0.14) 0%, transparent 45%),
+      radial-gradient(ellipse at 55% 25%, rgba(255,255,255,0.06) 0%, transparent 35%),
+      linear-gradient(140deg, #E09070 0%, #D07848 25%, #C06838 50%, #A85030 100%);
+  }
+
+  .poly {
+    position: absolute; inset: 0; z-index: 1; opacity: 0.07;
+  }
+  .poly svg { width: 100%; height: 100%; }
+
+  .noise {
+    position: absolute; inset: 0; opacity: 0.025;
+    background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 256 256' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)'/%3E%3C/svg%3E");
+    background-size: 256px 256px;
+    z-index: 51; pointer-events: none;
+  }
+
+  .frame {
+    position: absolute; inset: 28px; border-radius: 32px;
+    background: linear-gradient(140deg, #E09070 0%, #D07848 25%, #C06838 50%, #A85030 100%);
+  }
+
+  .main-text {
+    position: absolute; left: 55px; top: 50%;
+    transform: translateY(-42%); z-index: 10;
+  }
+
+  .main-text h1 {
+    font-size: 155px; font-weight: 900;
+    line-height: 0.88; letter-spacing: -4px; text-transform: uppercase;
+  }
+
+  .main-text h1 .t-claude {
+    color: white;
+    text-shadow:
+      0 0 35px rgba(255,255,255,0.6),
+      0 0 70px rgba(255,255,255,0.32),
+      0 0 120px rgba(255,255,255,0.16),
+      0 0 200px rgba(255,255,255,0.08);
+  }
+
+  .main-text h1 .t-code {
+    color: rgba(255,255,255,0.65);
+    text-shadow:
+      0 0 30px rgba(255,255,255,0.35),
+      0 0 60px rgba(255,255,255,0.18),
+      0 0 100px rgba(255,255,255,0.06);
+  }
+
+  .text-glow {
+    position: absolute; left: 10px; top: 42%;
+    transform: translateY(-50%);
+    width: 540px; height: 370px;
+    background: radial-gradient(ellipse, rgba(255,255,255,0.06) 0%, transparent 65%);
+    z-index: 1;
+  }
+
+  .terminal-shadow {
+    position: absolute; right: -40px; top: 50%;
+    transform: translateY(-48%) rotate(-6deg);
+    width: 530px; height: 610px;
+    background: linear-gradient(150deg, rgba(0,0,0,0.08) 0%, rgba(0,0,0,0.14) 100%);
+    border-radius: 28px; z-index: 53;
+    border: 1.5px solid rgba(255,255,255,0.06);
+    box-shadow: 0 20px 50px rgba(0,0,0,0.12);
+  }
+
+  .terminal-float {
+    position: absolute; right: -18px; top: 50%;
+    transform: translateY(-50%) rotate(-6deg);
+    width: 530px; height: 610px;
+    background: linear-gradient(150deg, rgba(0,0,0,0.18) 0%, rgba(0,0,0,0.3) 100%);
+    border-radius: 28px;
+    border: 2px solid rgba(255,220,190,0.16);
+    overflow: hidden; z-index: 55;
+    box-shadow:
+      0 40px 100px rgba(0,0,0,0.28),
+      inset 0 1px 0 rgba(255,255,255,0.06);
+  }
+
+  .terminal-header {
+    height: 48px; background: rgba(0,0,0,0.24);
+    display: flex; align-items: center; padding: 0 20px; gap: 10px;
+    border-bottom: 1px solid rgba(255,255,255,0.05);
+  }
+
+  .dot { width: 14px; height: 14px; border-radius: 50%; }
+  .dot:nth-child(1) { background: #ff5f57; }
+  .dot:nth-child(2) { background: #febc2e; }
+  .dot:nth-child(3) { background: #28c840; }
+
+  .terminal-body {
+    padding: 28px 26px;
+    font-family: 'SF Mono', 'Fira Code', 'Courier New', monospace;
+    font-size: 21px; line-height: 2;
+    color: rgba(255,255,255,0.42);
+  }
+
+  .p { color: #FFB890; font-weight: bold; }
+  .c { color: rgba(255,255,255,0.82); }
+  .d { color: rgba(255,255,255,0.24); }
+  .s { color: #34d058; }
+  .cm { color: rgba(255,255,255,0.18); font-style: italic; }
+  .cur {
+    display: inline-block; width: 12px; height: 24px;
+    background: #FFB890; vertical-align: text-bottom;
+    margin-left: 2px; opacity: 0.9;
+  }
+</style>
+</head>
+<body>
+  <div class="bg"></div>
+
+  <div class="poly">
+    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1280 720" preserveAspectRatio="none">
+      <defs>
+        <linearGradient id="pg1" x1="0%" y1="0%" x2="100%" y2="100%">
+          <stop offset="0%" style="stop-color:#fff;stop-opacity:0.55"/>
+          <stop offset="100%" style="stop-color:#fff;stop-opacity:0.1"/>
+        </linearGradient>
+        <linearGradient id="pg2" x1="100%" y1="0%" x2="0%" y2="100%">
+          <stop offset="0%" style="stop-color:#fff;stop-opacity:0.35"/>
+          <stop offset="100%" style="stop-color:#fff;stop-opacity:0.05"/>
+        </linearGradient>
+      </defs>
+      <polygon points="0,0 128,0 64,72" fill="url(#pg1)" opacity="0.3"/>
+      <polygon points="128,0 256,0 192,72 64,72" fill="url(#pg2)" opacity="0.2"/>
+      <polygon points="256,0 384,0 320,72 192,72" fill="url(#pg1)" opacity="0.4"/>
+      <polygon points="384,0 512,0 448,72 320,72" fill="url(#pg2)" opacity="0.15"/>
+      <polygon points="512,0 640,0 576,72 448,72" fill="url(#pg1)" opacity="0.32"/>
+      <polygon points="640,0 768,0 704,72 576,72" fill="url(#pg2)" opacity="0.25"/>
+      <polygon points="768,0 896,0 832,72 704,72" fill="url(#pg1)" opacity="0.35"/>
+      <polygon points="896,0 1024,0 960,72 832,72" fill="url(#pg2)" opacity="0.18"/>
+      <polygon points="1024,0 1152,0 1088,72 960,72" fill="url(#pg1)" opacity="0.28"/>
+      <polygon points="1152,0 1280,0 1216,72 1088,72" fill="url(#pg2)" opacity="0.22"/>
+      <polygon points="64,72 192,72 128,144" fill="url(#pg2)" opacity="0.28"/>
+      <polygon points="192,72 320,72 256,144 128,144" fill="url(#pg1)" opacity="0.38"/>
+      <polygon points="320,72 448,72 384,144 256,144" fill="url(#pg2)" opacity="0.2"/>
+      <polygon points="448,72 576,72 512,144 384,144" fill="url(#pg1)" opacity="0.35"/>
+      <polygon points="576,72 704,72 640,144 512,144" fill="url(#pg2)" opacity="0.15"/>
+      <polygon points="704,72 832,72 768,144 640,144" fill="url(#pg1)" opacity="0.3"/>
+      <polygon points="832,72 960,72 896,144 768,144" fill="url(#pg2)" opacity="0.22"/>
+      <polygon points="960,72 1088,72 1024,144 896,144" fill="url(#pg1)" opacity="0.36"/>
+      <polygon points="1088,72 1216,72 1152,144 1024,144" fill="url(#pg2)" opacity="0.18"/>
+      <polygon points="0,144 128,144 64,216" fill="url(#pg1)" opacity="0.22"/>
+      <polygon points="128,144 256,144 192,216 64,216" fill="url(#pg2)" opacity="0.35"/>
+      <polygon points="256,144 384,144 320,216 192,216" fill="url(#pg1)" opacity="0.18"/>
+      <polygon points="384,144 512,144 448,216 320,216" fill="url(#pg2)" opacity="0.4"/>
+      <polygon points="512,144 640,144 576,216 448,216" fill="url(#pg1)" opacity="0.25"/>
+      <polygon points="640,144 768,144 704,216 576,216" fill="url(#pg2)" opacity="0.3"/>
+      <polygon points="768,144 896,144 832,216 704,216" fill="url(#pg1)" opacity="0.15"/>
+      <polygon points="896,144 1024,144 960,216 832,216" fill="url(#pg2)" opacity="0.32"/>
+      <polygon points="1024,144 1152,144 1088,216 960,216" fill="url(#pg1)" opacity="0.2"/>
+      <polygon points="1152,144 1280,144 1216,216 1088,216" fill="url(#pg2)" opacity="0.28"/>
+      <polygon points="64,216 192,216 128,288" fill="url(#pg1)" opacity="0.32"/>
+      <polygon points="192,216 320,216 256,288 128,288" fill="url(#pg2)" opacity="0.2"/>
+      <polygon points="320,216 448,216 384,288 256,288" fill="url(#pg1)" opacity="0.38"/>
+      <polygon points="448,216 576,216 512,288 384,288" fill="url(#pg2)" opacity="0.15"/>
+      <polygon points="576,216 704,216 640,288 512,288" fill="url(#pg1)" opacity="0.28"/>
+      <polygon points="704,216 832,216 768,288 640,288" fill="url(#pg2)" opacity="0.35"/>
+      <polygon points="832,216 960,216 896,288 768,288" fill="url(#pg1)" opacity="0.22"/>
+      <polygon points="960,216 1088,216 1024,288 896,288" fill="url(#pg2)" opacity="0.4"/>
+      <polygon points="1088,216 1216,216 1152,288 1024,288" fill="url(#pg1)" opacity="0.18"/>
+      <polygon points="0,288 128,288 64,360" fill="url(#pg2)" opacity="0.25"/>
+      <polygon points="128,288 256,288 192,360 64,360" fill="url(#pg1)" opacity="0.38"/>
+      <polygon points="256,288 384,288 320,360 192,360" fill="url(#pg2)" opacity="0.2"/>
+      <polygon points="384,288 512,288 448,360 320,360" fill="url(#pg1)" opacity="0.32"/>
+      <polygon points="512,288 640,288 576,360 448,360" fill="url(#pg2)" opacity="0.28"/>
+      <polygon points="640,288 768,288 704,360 576,360" fill="url(#pg1)" opacity="0.15"/>
+      <polygon points="768,288 896,288 832,360 704,360" fill="url(#pg2)" opacity="0.35"/>
+      <polygon points="896,288 1024,288 960,360 832,360" fill="url(#pg1)" opacity="0.22"/>
+      <polygon points="1024,288 1152,288 1088,360 960,360" fill="url(#pg2)" opacity="0.3"/>
+      <polygon points="1152,288 1280,288 1216,360 1088,360" fill="url(#pg1)" opacity="0.18"/>
+      <polygon points="64,360 192,360 128,432" fill="url(#pg2)" opacity="0.3"/>
+      <polygon points="192,360 320,360 256,432 128,432" fill="url(#pg1)" opacity="0.22"/>
+      <polygon points="320,360 448,360 384,432 256,432" fill="url(#pg2)" opacity="0.35"/>
+      <polygon points="448,360 576,360 512,432 384,432" fill="url(#pg1)" opacity="0.18"/>
+      <polygon points="576,360 704,360 640,432 512,432" fill="url(#pg2)" opacity="0.32"/>
+      <polygon points="704,360 832,360 768,432 640,432" fill="url(#pg1)" opacity="0.25"/>
+      <polygon points="832,360 960,360 896,432 768,432" fill="url(#pg2)" opacity="0.38"/>
+      <polygon points="960,360 1088,360 1024,432 896,432" fill="url(#pg1)" opacity="0.2"/>
+      <polygon points="1088,360 1216,360 1152,432 1024,432" fill="url(#pg2)" opacity="0.28"/>
+      <polygon points="0,432 128,432 64,504" fill="url(#pg1)" opacity="0.2"/>
+      <polygon points="128,432 256,432 192,504 64,504" fill="url(#pg2)" opacity="0.35"/>
+      <polygon points="256,432 384,432 320,504 192,504" fill="url(#pg1)" opacity="0.28"/>
+      <polygon points="384,432 512,432 448,504 320,504" fill="url(#pg2)" opacity="0.15"/>
+      <polygon points="512,432 640,432 576,504 448,504" fill="url(#pg1)" opacity="0.38"/>
+      <polygon points="640,432 768,432 704,504 576,504" fill="url(#pg2)" opacity="0.22"/>
+      <polygon points="768,432 896,432 832,504 704,504" fill="url(#pg1)" opacity="0.3"/>
+      <polygon points="896,432 1024,432 960,504 832,504" fill="url(#pg2)" opacity="0.18"/>
+      <polygon points="1024,432 1152,432 1088,504 960,504" fill="url(#pg1)" opacity="0.32"/>
+      <polygon points="1152,432 1280,432 1216,504 1088,504" fill="url(#pg2)" opacity="0.25"/>
+      <polygon points="64,504 192,504 128,576" fill="url(#pg1)" opacity="0.35"/>
+      <polygon points="192,504 320,504 256,576 128,576" fill="url(#pg2)" opacity="0.18"/>
+      <polygon points="320,504 448,504 384,576 256,576" fill="url(#pg1)" opacity="0.3"/>
+      <polygon points="448,504 576,504 512,576 384,576" fill="url(#pg2)" opacity="0.25"/>
+      <polygon points="576,504 704,504 640,576 512,576" fill="url(#pg1)" opacity="0.38"/>
+      <polygon points="704,504 832,504 768,576 640,576" fill="url(#pg2)" opacity="0.15"/>
+      <polygon points="832,504 960,504 896,576 768,576" fill="url(#pg1)" opacity="0.32"/>
+      <polygon points="960,504 1088,504 1024,576 896,576" fill="url(#pg2)" opacity="0.22"/>
+      <polygon points="1088,504 1216,504 1152,576 1024,576" fill="url(#pg1)" opacity="0.28"/>
+      <polygon points="0,576 128,576 64,648" fill="url(#pg2)" opacity="0.22"/>
+      <polygon points="128,576 256,576 192,648 64,648" fill="url(#pg1)" opacity="0.3"/>
+      <polygon points="256,576 384,576 320,648 192,648" fill="url(#pg2)" opacity="0.38"/>
+      <polygon points="384,576 512,576 448,648 320,648" fill="url(#pg1)" opacity="0.18"/>
+      <polygon points="512,576 640,576 576,648 448,648" fill="url(#pg2)" opacity="0.32"/>
+      <polygon points="640,576 768,576 704,648 576,648" fill="url(#pg1)" opacity="0.25"/>
+      <polygon points="768,576 896,576 832,648 704,648" fill="url(#pg2)" opacity="0.35"/>
+      <polygon points="896,576 1024,576 960,648 832,648" fill="url(#pg1)" opacity="0.2"/>
+      <polygon points="1024,576 1152,576 1088,648 960,648" fill="url(#pg2)" opacity="0.28"/>
+      <polygon points="1152,576 1280,576 1216,648 1088,648" fill="url(#pg1)" opacity="0.15"/>
+      <polygon points="64,648 192,648 128,720" fill="url(#pg1)" opacity="0.25"/>
+      <polygon points="192,648 320,648 256,720 128,720" fill="url(#pg2)" opacity="0.32"/>
+      <polygon points="320,648 448,648 384,720 256,720" fill="url(#pg1)" opacity="0.18"/>
+      <polygon points="448,648 576,648 512,720 384,720" fill="url(#pg2)" opacity="0.35"/>
+      <polygon points="576,648 704,648 640,720 512,720" fill="url(#pg1)" opacity="0.22"/>
+      <polygon points="704,648 832,648 768,720 640,720" fill="url(#pg2)" opacity="0.28"/>
+      <polygon points="832,648 960,648 896,720 768,720" fill="url(#pg1)" opacity="0.38"/>
+      <polygon points="960,648 1088,648 1024,720 896,720" fill="url(#pg2)" opacity="0.15"/>
+      <polygon points="1088,648 1216,648 1152,720 1024,720" fill="url(#pg1)" opacity="0.3"/>
+    </svg>
+  </div>
+
+  <div class="noise"></div>
+
+  <div class="frame">
+    <div class="text-glow"></div>
+
+    <div class="main-text">
+      <h1><span class="t-claude">CLAUDE</span><br><span class="t-code">CODE</span></h1>
+    </div>
+
+  </div>
+
+  <div class="terminal-shadow"></div>
+
+  <div class="terminal-float">
+    <div class="terminal-header">
+      <div class="dot"></div>
+      <div class="dot"></div>
+      <div class="dot"></div>
+    </div>
+    <div class="terminal-body">
+      <div><span class="p">~ $</span> <span class="c">claude</span></div>
+      <div><span class="d">&nbsp;&nbsp;Starting Claude Code...</span></div>
+      <div><span class="s">&nbsp;&nbsp;&#10003; Ready</span></div>
+      <div>&nbsp;</div>
+      <div><span class="p">&#10095;</span> <span class="c">Build a full-stack</span></div>
+      <div><span class="c">&nbsp;&nbsp;SaaS app and deploy</span></div>
+      <div><span class="c">&nbsp;&nbsp;to production</span><span class="cur"></span></div>
+      <div>&nbsp;</div>
+      <div><span class="cm"># Claude writes code,</span></div>
+      <div><span class="cm"># runs tests, deploys.</span></div>
+    </div>
+  </div>
+</body>
+</html>
