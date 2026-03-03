@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
-    <title>Road to $1k/mo – Episode 3 | Mitch Koko</title>
+    <title>Road to $1k/mo App – Episode 3 | Mitch Koko</title>
     <style>
         * { margin:0; padding:0; box-sizing:border-box; }
 
@@ -419,7 +419,7 @@
             <img src="../../images/logo.png" alt="Mitch Koko logo" class="logo" />
             <div class="header-text">
                 <a href="../" class="home-link">&larr; Back to episodes</a>
-                <h1>Road to $1k/mo <span style="font-weight:400; color:var(--text-muted); font-size:.5em; margin-left:8px;">Ep 3 &middot; Feb 2026</span></h1>
+                <h1>Road to $1k/mo<span style="font-weight:400; color:var(--text-muted); font-size:.5em; margin-left:8px;">26 Feb 2026</span></h1>
                 <div class="episode-meta">
                     <span class="pill">&#x1F4B0; $18/mo</span>
                     <a href="https://ritualz.app" target="_blank" rel="noopener noreferrer" class="pill">&#x1F525; Ritualz</a>
@@ -434,7 +434,7 @@
 
         <main class="episode-body">
             <p class="intro-highlight">
-                Released a new game - <a href="https://blinkbattle.gg" target="_blank" rel="noopener noreferrer">Blink Battle</a>. I have 4 apps now that I want to focus on moving forward.
+                Released a new game, <a href="https://blinkbattle.gg" target="_blank" rel="noopener noreferrer">Blink Battle</a>. $1k MRR is the goal. These are the 4 apps I'm focusing on.
             </p>
 
             <div class="image-row" style="grid-template-columns:repeat(4, 1fr);">
@@ -464,36 +464,90 @@
                 </figure>
             </div>
 
-            <!-- CURRENT NUMBERS -->
+            <!-- MRR -->
             <div class="divider"></div>
-            <p><strong>MRR: $18/month</strong> (same as last month)</p>
+            <h2>MRR = $18/month <span style="font-weight:400; font-size:.6em; color:var(--text-muted);">as of 26 Feb 2026</span></h2>
 
-            <p>
-                I have been too focused on building lately. Now it's time to focus more on marketing, getting users (and retaining them).
-            </p>
+            <p>To grow this I need to understand my users better. So I built analytics dashboards for each app.</p>
 
+            <!-- ANALYTICS -->
             <div class="image-row" style="grid-template-columns:repeat(4, 1fr);">
                 <figure class="episode-image" style="border-radius:8px;">
                     <img class="theme-img-light" src="ritualz_analytics_light.png" alt="Ritualz analytics" loading="lazy">
                     <img class="theme-img-dark" src="ritualz_analytics_dark.png" alt="Ritualz analytics" loading="lazy">
-                    <figcaption>Analytics Dashboard</figcaption>
+                    <figcaption><a href="https://ritualz.app" target="_blank" rel="noopener noreferrer">Ritualz</a> Analytics</figcaption>
                 </figure>
                 <figure class="episode-image" style="border-radius:8px;">
                     <img class="theme-img-light" src="expensif_analytics_light.png" alt="Expensif analytics" loading="lazy">
                     <img class="theme-img-dark" src="expensif_analytics_dark.png" alt="Expensif analytics" loading="lazy">
-                    <figcaption>Analytics Dashboard</figcaption>
+                    <figcaption><a href="https://expensif.app" target="_blank" rel="noopener noreferrer">Expensif</a> Analytics</figcaption>
                 </figure>
                 <figure class="episode-image" style="border-radius:8px;">
                     <img class="theme-img-light" src="tuteee_analytics_light.png" alt="Tuteee analytics" loading="lazy">
                     <img class="theme-img-dark" src="tuteee_analytics_dark.png" alt="Tuteee analytics" loading="lazy">
-                    <figcaption>Analytics Dashboard</figcaption>
+                    <figcaption><a href="https://tuteee.app" target="_blank" rel="noopener noreferrer">Tuteee</a> Analytics</figcaption>
                 </figure>
                 <figure class="episode-image" style="border-radius:8px;">
                     <img class="theme-img-light" src="blinkbattle_analytics_light.png" alt="Blink Battle analytics" loading="lazy">
                     <img class="theme-img-dark" src="blinkbattle_analytics_dark.png" alt="Blink Battle analytics" loading="lazy">
-                    <figcaption>Analytics Dashboard</figcaption>
+                    <figcaption><a href="https://blinkbattle.gg" target="_blank" rel="noopener noreferrer">Blink Battle</a> Analytics</figcaption>
                 </figure>
             </div>
+
+            <p>I also set up a bot to send me a daily analytics summary every morning.</p>
+
+            <figure class="episode-image" style="background:var(--bg);">
+                <video id="telegram-video" autoplay loop muted playsinline style="width:100%; object-fit:contain; transition:opacity .5s ease;">
+                    <source src="telegram-demo.mp4" type="video/mp4">
+                </video>
+                <figcaption style="background:var(--surface-hover);">Daily analytics summary via Telegram</figcaption>
+            </figure>
+            <script>
+                (function(){
+                    var v=document.getElementById('telegram-video');
+                    v.addEventListener('timeupdate',function(){
+                        if(v.duration-v.currentTime<0.5) v.style.opacity='0';
+                    });
+                    v.addEventListener('seeked',function(){
+                        if(v.currentTime<0.5) v.style.opacity='1';
+                    });
+                })();
+            </script>
+
+            <!-- TECH STACK -->
+            <div class="divider"></div>
+            <h2>Tech Stack</h2>
+            <ul>
+                <li><strong>Flutter</strong> + native iOS/Android</li>
+                <li><strong>Supabase + Firebase</strong></li>
+                <li><strong>RevenueCat</strong> - subscriptions, one time payments</li>
+                <li><strong>Google AdMob</strong></li>
+            </ul>
+
+            <!-- AI -->
+            <div class="divider"></div>
+            <h2>AI</h2>
+            <p>
+                I use Claude Code for pretty much everything now. Coding feels solved at this point. It's turning me more into a product person, a designer, a marketer.
+            </p>
+
+            <figure class="episode-image" style="background:var(--bg);">
+                <video autoplay loop muted playsinline poster="thumb3-color.png" style="width:100%; object-fit:contain;">
+                    <source src="thumb3-color-video.mp4" type="video/mp4">
+                </video>
+            </figure>
+
+            <!-- WHAT'S NEXT -->
+            <div class="divider"></div>
+            <h2>What's Next</h2>
+            <ul>
+                <li>More users. Marketing and distribution.</li>
+                <li>Listen to feedback. Watch user behaviour.</li>
+                <li>Improve retention. Track day 1, 2, 3 drop-off.</li>
+            </ul>
+
+            <div class="divider"></div>
+            <p>If you're reading this.. download the apps below!</p>
 
         </main>
 
