@@ -159,7 +159,7 @@
         .divider{
             width:100%;
             height:1px;
-            background:linear-gradient(90deg, transparent, var(--border), transparent);
+            background:linear-gradient(90deg, transparent 0%, var(--border) 8%, var(--border) 92%, transparent 100%);
             margin:20px 0 24px;
         }
 
@@ -173,7 +173,7 @@
 
         .episode-body h2{
             font-size:1.2rem;
-            margin:18px 0 8px;
+            margin:0 0 8px;
         }
 
         .episode-body h3{
@@ -297,10 +297,19 @@
 
         .app-updates{
             margin-top:8px;
-            padding:12px 14px;
+            padding:14px 14px 12px;
             border-radius:var(--border-radius);
             background:var(--surface-hover);
             border:1px solid var(--border);
+        }
+
+        .app-updates-title{
+            font-size:.7rem;
+            font-weight:600;
+            text-transform:uppercase;
+            letter-spacing:.06em;
+            color:var(--text-muted);
+            margin-bottom:6px;
         }
 
         .app-updates p{
@@ -319,6 +328,25 @@
             letter-spacing:.04em;
             color:var(--text-muted);
             margin-right:6px;
+        }
+
+        /* insight box */
+        .insight-box{
+            padding:16px 18px;
+            border-radius:var(--border-radius);
+            border:1px solid var(--border);
+            background:var(--surface-hover);
+        }
+        .insight-box p{
+            margin-bottom:0;
+        }
+        .insight-label{
+            font-size:.7rem;
+            font-weight:600;
+            text-transform:uppercase;
+            letter-spacing:.06em;
+            color:var(--text-muted);
+            margin-bottom:8px;
         }
 
         /* signoff section */
@@ -393,6 +421,7 @@
             bottom:33px;
             height:calc(100% - 33px);
             object-fit:contain;
+            transform:scale(1.15);
         }
         .app-card .image-row .episode-image:first-child figcaption{
             margin-top:auto;
@@ -488,8 +517,6 @@
             </div>
         </header>
 
-        <div class="divider"></div>
-
         <main class="episode-body">
             <p class="intro-highlight">
                 $1k MRR is the goal. These are the 4 apps I'm focusing on moving forward.
@@ -497,25 +524,25 @@
 
             <div class="image-row" style="grid-template-columns:repeat(4, 1fr);">
                 <figure class="episode-image" style="background:var(--bg);">
-                    <video autoplay loop muted playsinline style="max-height:480px; width:100%; object-fit:contain;">
+                    <video autoplay loop muted playsinline style="max-height:480px; width:100%; object-fit:contain; transform:scale(1.15);">
                         <source src="ritualz_demo_dark.mp4" type="video/mp4">
                     </video>
                     <figcaption style="background:var(--surface-hover);"><a href="https://ritualz.app" target="_blank" rel="noopener noreferrer">Ritualz</a></figcaption>
                 </figure>
                 <figure class="episode-image" style="background:var(--bg);">
-                    <video autoplay loop muted playsinline style="max-height:480px; width:100%; object-fit:contain;">
+                    <video autoplay loop muted playsinline style="max-height:480px; width:100%; object-fit:contain; transform:scale(1.15);">
                         <source src="expensif_demo_dark.mp4" type="video/mp4">
                     </video>
                     <figcaption style="background:var(--surface-hover);"><a href="https://expensif.app" target="_blank" rel="noopener noreferrer">Expensif</a></figcaption>
                 </figure>
                 <figure class="episode-image" style="background:var(--bg);">
-                    <video autoplay loop muted playsinline style="max-height:480px; width:100%; object-fit:contain;">
+                    <video autoplay loop muted playsinline style="max-height:480px; width:100%; object-fit:contain; transform:scale(1.15);">
                         <source src="tuteee_demo_dark.mp4" type="video/mp4">
                     </video>
                     <figcaption style="background:var(--surface-hover);"><a href="https://tuteee.app" target="_blank" rel="noopener noreferrer">Tuteee</a></figcaption>
                 </figure>
                 <figure class="episode-image" style="background:var(--bg);">
-                    <video autoplay loop muted playsinline style="max-height:480px; width:100%; object-fit:contain;">
+                    <video autoplay loop muted playsinline style="max-height:480px; width:100%; object-fit:contain; transform:scale(1.15);">
                         <source src="blink_battle_demo_final.mp4" type="video/mp4">
                     </video>
                     <figcaption style="background:var(--surface-hover);"><a href="https://blinkbattle.gg" target="_blank" rel="noopener noreferrer">Blink Battle</a></figcaption>
@@ -523,16 +550,10 @@
             </div>
 
             <!-- MRR -->
-            <div class="divider"></div>
-            <h2>&#x1F4B0; MRR = $18/month <span style="font-weight:400; font-size:.6em; color:var(--text-muted);"> (26 Feb 2026)</span></h2>
 
-            <p>Revenue comes from rewarded ads (via Google AdMob) and subscriptions/one-time purchases (via RevenueCat). No banner ads.</p>
+            <h2>&#x1F4B0; $18 / $1,000 <span style="font-weight:400; font-size:.8em; color:var(--text-muted);"> MRR</span></h2>
 
-            <!-- ANALYTICS -->
-            <div class="divider"></div>
-            <h2>Analytics</h2>
-
-            <p>To grow I need to understand my users better. So I built analytics dashboards for each app.</p>
+            <p>This revenue is mostly from <a href="https://ritualz.app" target="_blank" rel="noopener noreferrer">Ritualz</a> and <a href="https://expensif.app" target="_blank" rel="noopener noreferrer">Expensif</a> since they currently have the most users but both of these apps have limited monetisation potential. Recently I released <a href="https://tuteee.app" target="_blank" rel="noopener noreferrer">Tuteee</a> and <a href="https://blinkbattle.gg" target="_blank" rel="noopener noreferrer">Blink Battle</a> which both have the potential for higher engagement and better monetisation. I need to focus on marketing and distribution particularly for my newer apps.</p>
 
             <div class="image-row" style="grid-template-columns:repeat(4, 1fr);">
                 <figure class="episode-image" style="border-radius:8px;">
@@ -558,17 +579,21 @@
             </div>
 
             <!-- THE APPS -->
-            <div class="divider"></div>
+
 
             <div class="app-card">
-                <h3>&#x1F525; <a href="https://ritualz.app" target="_blank" rel="noopener noreferrer">Ritualz</a> <span style="font-weight:400; font-size:.75em; color:var(--text-muted);">Minimal Habit Tracker</span></h3>
+                <h2>&#x1F525; <a href="https://ritualz.app" target="_blank" rel="noopener noreferrer">Ritualz</a> <span style="font-weight:400; font-size:.8em; color:var(--text-muted);">Minimal Habit Tracker</span></h2>
                 <p>Beautiful heatmap to visualise your habits, plus home screen widgets.</p>
+                <div class="app-updates">
+                    <div class="app-updates-title">Notes</div>
+                    <p>Added social features: share a habit using a code to track it together as a group, a streak leaderboard, and sharing your heatmap as an image. Building towards a natural viral loop. Now I need to actually show these off. Update the landing page, market it properly.</p>
+                </div>
                 <div class="image-row">
                     <figure class="episode-image" style="background:var(--bg);">
                         <video autoplay loop muted playsinline style="width:100%; object-fit:contain;">
                             <source src="ritualz_demo_dark.mp4" type="video/mp4">
                         </video>
-                        <figcaption style="background:var(--surface-hover);"><a href="https://ritualz.app" target="_blank" rel="noopener noreferrer">Ritualz</a> App</figcaption>
+                        <figcaption style="background:var(--surface-hover);"><a href="https://ritualz.app" target="_blank" rel="noopener noreferrer">Ritualz App</a></figcaption>
                     </figure>
                     <figure class="episode-image" style="border-radius:8px;">
                         <img class="theme-img-light" src="ritualz_analytics_light.png" alt="Ritualz analytics" loading="lazy">
@@ -576,20 +601,23 @@
                         <figcaption>Analytics</figcaption>
                     </figure>
                 </div>
-                <div class="app-updates">
-                    <p>Added social features: share a habit using a code to track it together as a group, a streak leaderboard, and sharing your heatmap as an image. Building towards a natural viral loop. Now I need to actually show these off. Update the landing page, market it properly.</p>
-                </div>
             </div>
 
+
+
             <div class="app-card">
-                <h3>&#x1F4B3; <a href="https://expensif.app" target="_blank" rel="noopener noreferrer">Expensif</a> <span style="font-weight:400; font-size:.75em; color:var(--text-muted);">Personal Finance</span></h3>
+                <h2>&#x1F4B3; <a href="https://expensif.app" target="_blank" rel="noopener noreferrer">Expensif</a> <span style="font-weight:400; font-size:.8em; color:var(--text-muted);">Personal Finance</span></h2>
                 <p>Premium UI with overview grids and graphs. Smart CSV import for any bank data.</p>
+                <div class="app-updates">
+                    <div class="app-updates-title">Notes</div>
+                    <p>Evolved from expense tracking to full income and expense tracking. Built a smart CSV import using the Claude API to handle any bank format. App is solid now, just need to get it in front of more people.</p>
+                </div>
                 <div class="image-row">
                     <figure class="episode-image" style="background:var(--bg);">
                         <video autoplay loop muted playsinline style="width:100%; object-fit:contain;">
                             <source src="expensif_demo_dark.mp4" type="video/mp4">
                         </video>
-                        <figcaption style="background:var(--surface-hover);"><a href="https://expensif.app" target="_blank" rel="noopener noreferrer">Expensif</a> App</figcaption>
+                        <figcaption style="background:var(--surface-hover);"><a href="https://expensif.app" target="_blank" rel="noopener noreferrer">Expensif App</a></figcaption>
                     </figure>
                     <figure class="episode-image" style="border-radius:8px;">
                         <img class="theme-img-light" src="expensif_analytics_light.png" alt="Expensif analytics" loading="lazy">
@@ -597,20 +625,23 @@
                         <figcaption>Analytics</figcaption>
                     </figure>
                 </div>
-                <div class="app-updates">
-                    <p>Evolved from expense tracking to full income and expense tracking. Built a smart CSV import using the Claude API to handle any bank format. App is solid now, just need to get it in front of more people.</p>
-                </div>
             </div>
 
+
+
             <div class="app-card">
-                <h3>&#x1F4AC; <a href="https://tuteee.app" target="_blank" rel="noopener noreferrer">Tuteee</a> <span style="font-weight:400; font-size:.75em; color:var(--text-muted);">AI Math Tutor</span></h3>
+                <h2>&#x1F4AC; <a href="https://tuteee.app" target="_blank" rel="noopener noreferrer">Tuteee</a> <span style="font-weight:400; font-size:.8em; color:var(--text-muted);">AI Math Tutor</span></h2>
                 <p>100-level game to master math with a personal AI tutor.</p>
+                <div class="app-updates">
+                    <div class="app-updates-title">Notes</div>
+                    <p>Added a graph input feature so users can draw and input graphs directly. Need to get it in front of actual students now and watch how they use it.</p>
+                </div>
                 <div class="image-row">
                     <figure class="episode-image" style="background:var(--bg);">
                         <video autoplay loop muted playsinline style="width:100%; object-fit:contain;">
                             <source src="tuteee_demo_dark.mp4" type="video/mp4">
                         </video>
-                        <figcaption style="background:var(--surface-hover);"><a href="https://tuteee.app" target="_blank" rel="noopener noreferrer">Tuteee</a> App</figcaption>
+                        <figcaption style="background:var(--surface-hover);"><a href="https://tuteee.app" target="_blank" rel="noopener noreferrer">Tuteee App</a></figcaption>
                     </figure>
                     <figure class="episode-image" style="border-radius:8px;">
                         <img class="theme-img-light" src="tuteee_analytics_light.png" alt="Tuteee analytics" loading="lazy">
@@ -618,20 +649,23 @@
                         <figcaption>Analytics</figcaption>
                     </figure>
                 </div>
-                <div class="app-updates">
-                    <p>Added a graph input feature so users can draw and input graphs directly. Need to get it in front of actual students now and watch how they use it.</p>
-                </div>
             </div>
 
+
+
             <div class="app-card">
-                <h3>&#x1F3AE; <a href="https://blinkbattle.gg" target="_blank" rel="noopener noreferrer">Blink Battle</a> <span style="font-weight:400; font-size:.75em; color:var(--text-muted);">Game</span></h3>
+                <h2>&#x1F3AE; <a href="https://blinkbattle.gg" target="_blank" rel="noopener noreferrer">Blink Battle</a> <span style="font-weight:400; font-size:.8em; color:var(--text-muted);">Game</span></h2>
                 <p>Inspired by StarCraft. You get 3 lives.</p>
+                <div class="app-updates">
+                    <div class="app-updates-title">Notes</div>
+                    <p>Just launched. Testing one-time in-app purchases for lives, or watch an ad to earn them. Way too hard right now though. Users can't get past level 2. Need to make it easier and more rewarding early on.</p>
+                </div>
                 <div class="image-row">
                     <figure class="episode-image" style="background:var(--bg);">
                         <video autoplay loop muted playsinline style="width:100%; object-fit:contain;">
                             <source src="blink_battle_demo_final.mp4" type="video/mp4">
                         </video>
-                        <figcaption style="background:var(--surface-hover);"><a href="https://blinkbattle.gg" target="_blank" rel="noopener noreferrer">Blink Battle</a> App</figcaption>
+                        <figcaption style="background:var(--surface-hover);"><a href="https://blinkbattle.gg" target="_blank" rel="noopener noreferrer">Blink Battle Game</a></figcaption>
                     </figure>
                     <figure class="episode-image" style="border-radius:8px;">
                         <img class="theme-img-light" src="blinkbattle_analytics_light.png" alt="Blink Battle analytics" loading="lazy">
@@ -639,18 +673,15 @@
                         <figcaption>Analytics</figcaption>
                     </figure>
                 </div>
-                <div class="app-updates">
-                    <p>Just launched. Testing one-time in-app purchases for lives, or watch an ad to earn them. Way too hard right now though. Users can't get past level 2. Need to make it easier and more rewarding early on.</p>
-                </div>
             </div>
 
-            <p>I also set up a bot to send me a daily analytics summary every morning.</p>
+
 
             <figure class="episode-image" style="background:var(--bg);">
                 <video id="telegram-video" autoplay loop muted playsinline style="width:100%; object-fit:contain; transition:opacity .5s ease;">
                     <source src="telegram-demo.mp4" type="video/mp4">
                 </video>
-                <figcaption style="background:var(--surface-hover);">Daily analytics summary via Telegram</figcaption>
+                <figcaption style="background:var(--surface-hover);">I set up a bot to send me a summary of my app analytics every morning.</figcaption>
             </figure>
             <script>
                 (function(){
@@ -664,34 +695,20 @@
                 })();
             </script>
 
-            <!-- AI -->
-            <div class="divider"></div>
-            <h2>AI</h2>
-            <p>
-                I use Claude Code for pretty much everything now. Coding feels solved at this point. It's turning me more into a product person, a designer, a marketer.
-            </p>
-
-            <figure class="episode-image" style="background:var(--bg);">
-                <video autoplay loop muted playsinline poster="thumb3-color.png" style="width:100%; object-fit:contain;">
-                    <source src="thumb3-color-video.mp4" type="video/mp4">
-                </video>
-            </figure>
-
             <!-- WHAT'S NEXT -->
-            <div class="divider"></div>
+
             <h2>What's Next</h2>
+            <p>All 4 apps are in a good place. The bottleneck is users, not features. Time to shift to marketing, content, and getting these in front of real people.</p>
             <ul>
-                <li>More users. Marketing and distribution.</li>
-                <li>Listen to feedback. Watch user behaviour.</li>
-                <li>Improve retention. Track day 1, 2, 3 drop-off.</li>
+                <li><strong>Market properly:</strong> Update landing pages, create content, get the word out.</li>
+                <li><strong>Get real users testing</strong> and watch how they actually use the apps.</li>
+                <li><strong>Improve retention:</strong> Make onboarding smoother, early experience more rewarding.</li>
             </ul>
 
-            <div class="divider"></div>
+
             <p>If you're reading this.. download the apps below!</p>
 
         </main>
-
-        <div class="divider"></div>
 
         <div class="episode-meta" style="justify-content:center; margin-top:20px; padding-bottom:24px;">
             <a href="https://ritualz.app" target="_blank" rel="noopener noreferrer" class="pill">&#x1F525; Ritualz</a>
