@@ -290,6 +290,37 @@
             color:var(--text-muted);
         }
 
+        /* app cards */
+        .app-card{
+            margin-bottom:20px;
+        }
+
+        .app-updates{
+            margin-top:8px;
+            padding:12px 14px;
+            border-radius:var(--border-radius);
+            background:var(--surface-hover);
+            border:1px solid var(--border);
+        }
+
+        .app-updates p{
+            margin-bottom:6px;
+        }
+
+        .app-updates p:last-child{
+            margin-bottom:0;
+        }
+
+        .update-label{
+            display:inline-block;
+            font-size:.7rem;
+            font-weight:600;
+            text-transform:uppercase;
+            letter-spacing:.04em;
+            color:var(--text-muted);
+            margin-right:6px;
+        }
+
         /* signoff section */
         .signoff{
             margin-top:26px;
@@ -340,6 +371,33 @@
 
         .image-row .episode-image{
             margin:0;
+            display:flex;
+            flex-direction:column;
+        }
+
+        .image-row .episode-image video{
+            flex:1;
+            min-height:0;
+            object-fit:contain;
+        }
+
+        .app-card .image-row .episode-image:first-child{
+            position:relative;
+            overflow:hidden;
+        }
+        .app-card .image-row .episode-image:first-child video{
+            position:absolute;
+            top:0;
+            left:0;
+            right:0;
+            bottom:33px;
+            height:calc(100% - 33px);
+            object-fit:contain;
+        }
+        .app-card .image-row .episode-image:first-child figcaption{
+            margin-top:auto;
+            position:relative;
+            z-index:1;
         }
 
         /* stats grid */
@@ -434,7 +492,7 @@
 
         <main class="episode-body">
             <p class="intro-highlight">
-                Released a new game, <a href="https://blinkbattle.gg" target="_blank" rel="noopener noreferrer">Blink Battle</a>. $1k MRR is the goal. These are the 4 apps I'm focusing on.
+                $1k MRR is the goal. These are the 4 apps I'm focusing on moving forward.
             </p>
 
             <div class="image-row" style="grid-template-columns:repeat(4, 1fr);">
@@ -466,11 +524,103 @@
 
             <!-- MRR -->
             <div class="divider"></div>
-            <h2>MRR = $18/month <span style="font-weight:400; font-size:.6em; color:var(--text-muted);">as of 26 Feb 2026</span></h2>
+            <h2>MRR = $18/month <span style="font-weight:400; font-size:.6em; color:var(--text-muted);"> (26 Feb 2026)</span></h2>
 
-            <p>To grow this I need to understand my users better. So I built analytics dashboards for each app.</p>
+            <p>Revenue comes from rewarded ads (via Google AdMob) and subscriptions/one-time purchases (via RevenueCat). No banner ads.</p>
+
+            <!-- THE APPS -->
+            <div class="divider"></div>
+
+            <div class="app-card">
+                <h3>&#x1F525; <a href="https://ritualz.app" target="_blank" rel="noopener noreferrer">Ritualz</a> <span style="font-weight:400; font-size:.75em; color:var(--text-muted);">Minimal Habit Tracker</span></h3>
+                <p>Beautiful heatmap to visualise your habits, plus home screen widgets.</p>
+                <div class="image-row">
+                    <figure class="episode-image" style="background:var(--bg);">
+                        <video autoplay loop muted playsinline style="width:100%; object-fit:contain;">
+                            <source src="ritualz_demo_dark.mp4" type="video/mp4">
+                        </video>
+                        <figcaption style="background:var(--surface-hover);"><a href="https://ritualz.app" target="_blank" rel="noopener noreferrer">Ritualz</a> App</figcaption>
+                    </figure>
+                    <figure class="episode-image" style="border-radius:8px;">
+                        <img class="theme-img-light" src="ritualz_analytics_light.png" alt="Ritualz analytics" loading="lazy">
+                        <img class="theme-img-dark" src="ritualz_analytics_dark.png" alt="Ritualz analytics" loading="lazy">
+                        <figcaption>Analytics</figcaption>
+                    </figure>
+                </div>
+                <div class="app-updates">
+                    <p>Added social features: share a habit using a code to track it together as a group, a streak leaderboard, and sharing your heatmap as an image. Building towards a natural viral loop. Now I need to actually show these off. Update the landing page, market it properly.</p>
+                </div>
+            </div>
+
+            <div class="app-card">
+                <h3>&#x1F4B3; <a href="https://expensif.app" target="_blank" rel="noopener noreferrer">Expensif</a> <span style="font-weight:400; font-size:.75em; color:var(--text-muted);">Personal Finance</span></h3>
+                <p>Premium UI with overview grids and graphs. Smart CSV import for any bank data.</p>
+                <div class="image-row">
+                    <figure class="episode-image" style="background:var(--bg);">
+                        <video autoplay loop muted playsinline style="width:100%; object-fit:contain;">
+                            <source src="expensif_demo_dark.mp4" type="video/mp4">
+                        </video>
+                        <figcaption style="background:var(--surface-hover);"><a href="https://expensif.app" target="_blank" rel="noopener noreferrer">Expensif</a> App</figcaption>
+                    </figure>
+                    <figure class="episode-image" style="border-radius:8px;">
+                        <img class="theme-img-light" src="expensif_analytics_light.png" alt="Expensif analytics" loading="lazy">
+                        <img class="theme-img-dark" src="expensif_analytics_dark.png" alt="Expensif analytics" loading="lazy">
+                        <figcaption>Analytics</figcaption>
+                    </figure>
+                </div>
+                <div class="app-updates">
+                    <p>Evolved from expense tracking to full income and expense tracking. Built a smart CSV import using the Claude API to handle any bank format. App is solid now, just need to get it in front of more people.</p>
+                </div>
+            </div>
+
+            <div class="app-card">
+                <h3>&#x1F4AC; <a href="https://tuteee.app" target="_blank" rel="noopener noreferrer">Tuteee</a> <span style="font-weight:400; font-size:.75em; color:var(--text-muted);">AI Math Tutor</span></h3>
+                <p>100-level game to master math with a personal AI tutor.</p>
+                <div class="image-row">
+                    <figure class="episode-image" style="background:var(--bg);">
+                        <video autoplay loop muted playsinline style="width:100%; object-fit:contain;">
+                            <source src="tuteee_demo_dark.mp4" type="video/mp4">
+                        </video>
+                        <figcaption style="background:var(--surface-hover);"><a href="https://tuteee.app" target="_blank" rel="noopener noreferrer">Tuteee</a> App</figcaption>
+                    </figure>
+                    <figure class="episode-image" style="border-radius:8px;">
+                        <img class="theme-img-light" src="tuteee_analytics_light.png" alt="Tuteee analytics" loading="lazy">
+                        <img class="theme-img-dark" src="tuteee_analytics_dark.png" alt="Tuteee analytics" loading="lazy">
+                        <figcaption>Analytics</figcaption>
+                    </figure>
+                </div>
+                <div class="app-updates">
+                    <p>Added a graph input feature so users can draw and input graphs directly. Need to get it in front of actual students now and watch how they use it.</p>
+                </div>
+            </div>
+
+            <div class="app-card">
+                <h3>&#x1F3AE; <a href="https://blinkbattle.gg" target="_blank" rel="noopener noreferrer">Blink Battle</a> <span style="font-weight:400; font-size:.75em; color:var(--text-muted);">Game</span></h3>
+                <p>Inspired by StarCraft. You get 3 lives.</p>
+                <div class="image-row">
+                    <figure class="episode-image" style="background:var(--bg);">
+                        <video autoplay loop muted playsinline style="width:100%; object-fit:contain;">
+                            <source src="blink_battle_demo_final.mp4" type="video/mp4">
+                        </video>
+                        <figcaption style="background:var(--surface-hover);"><a href="https://blinkbattle.gg" target="_blank" rel="noopener noreferrer">Blink Battle</a> App</figcaption>
+                    </figure>
+                    <figure class="episode-image" style="border-radius:8px;">
+                        <img class="theme-img-light" src="blinkbattle_analytics_light.png" alt="Blink Battle analytics" loading="lazy">
+                        <img class="theme-img-dark" src="blinkbattle_analytics_dark.png" alt="Blink Battle analytics" loading="lazy">
+                        <figcaption>Analytics</figcaption>
+                    </figure>
+                </div>
+                <div class="app-updates">
+                    <p>Just launched. Testing one-time in-app purchases for lives, or watch an ad to earn them. Way too hard right now though. Users can't get past level 2. Need to make it easier and more rewarding early on.</p>
+                </div>
+            </div>
 
             <!-- ANALYTICS -->
+            <div class="divider"></div>
+            <h2>Analytics</h2>
+
+            <p>To grow I need to understand my users better. So I built analytics dashboards for each app.</p>
+
             <div class="image-row" style="grid-template-columns:repeat(4, 1fr);">
                 <figure class="episode-image" style="border-radius:8px;">
                     <img class="theme-img-light" src="ritualz_analytics_light.png" alt="Ritualz analytics" loading="lazy">
@@ -513,16 +663,6 @@
                     });
                 })();
             </script>
-
-            <!-- TECH STACK -->
-            <div class="divider"></div>
-            <h2>Tech Stack</h2>
-            <ul>
-                <li><strong>Flutter</strong> + native iOS/Android</li>
-                <li><strong>Supabase + Firebase</strong></li>
-                <li><strong>RevenueCat</strong> - subscriptions, one time payments</li>
-                <li><strong>Google AdMob</strong></li>
-            </ul>
 
             <!-- AI -->
             <div class="divider"></div>
