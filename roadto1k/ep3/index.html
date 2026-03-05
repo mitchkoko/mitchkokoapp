@@ -590,7 +590,7 @@
                 </div>
                 <div class="image-row">
                     <figure class="episode-image" style="background:var(--bg);">
-                        <video data-lazy loop muted playsinline preload="none" poster="ritualz_demo_dark_poster.png" style="width:100%; object-fit:contain;">
+                        <video autoplay loop muted playsinline poster="ritualz_demo_dark_poster.png" style="width:100%; object-fit:contain;">
                             <source src="ritualz_demo_dark.mp4" type="video/mp4">
                         </video>
                         <figcaption style="background:var(--surface-hover);"><a href="https://ritualz.app" target="_blank" rel="noopener noreferrer">Ritualz App</a></figcaption>
@@ -614,7 +614,7 @@
                 </div>
                 <div class="image-row">
                     <figure class="episode-image" style="background:var(--bg);">
-                        <video data-lazy loop muted playsinline preload="none" poster="expensif_demo_dark_poster.png" style="width:100%; object-fit:contain;">
+                        <video autoplay loop muted playsinline poster="expensif_demo_dark_poster.png" style="width:100%; object-fit:contain;">
                             <source src="expensif_demo_dark.mp4" type="video/mp4">
                         </video>
                         <figcaption style="background:var(--surface-hover);"><a href="https://expensif.app" target="_blank" rel="noopener noreferrer">Expensif App</a></figcaption>
@@ -638,7 +638,7 @@
                 </div>
                 <div class="image-row">
                     <figure class="episode-image" style="background:var(--bg);">
-                        <video data-lazy loop muted playsinline preload="none" poster="tuteee_demo_dark_poster.png" style="width:100%; object-fit:contain;">
+                        <video autoplay loop muted playsinline poster="tuteee_demo_dark_poster.png" style="width:100%; object-fit:contain;">
                             <source src="tuteee_demo_dark.mp4" type="video/mp4">
                         </video>
                         <figcaption style="background:var(--surface-hover);"><a href="https://tuteee.app" target="_blank" rel="noopener noreferrer">Tuteee App</a></figcaption>
@@ -662,7 +662,7 @@
                 </div>
                 <div class="image-row">
                     <figure class="episode-image" style="background:var(--bg);">
-                        <video data-lazy loop muted playsinline preload="none" poster="blink_battle_demo_poster.png" style="width:100%; object-fit:contain;">
+                        <video autoplay loop muted playsinline poster="blink_battle_demo_poster.png" style="width:100%; object-fit:contain;">
                             <source src="blink_battle_demo_final.mp4" type="video/mp4">
                         </video>
                         <figcaption style="background:var(--surface-hover);"><a href="https://blinkbattle.gg" target="_blank" rel="noopener noreferrer">Blink Battle Game</a></figcaption>
@@ -678,7 +678,7 @@
 
 
             <figure class="episode-image" style="background:var(--bg);">
-                <video id="telegram-video" data-lazy loop muted playsinline preload="none" poster="telegram_demo_poster.png" style="width:100%; object-fit:contain; transition:opacity .5s ease;">
+                <video id="telegram-video" autoplay loop muted playsinline poster="telegram_demo_poster.png" style="width:100%; object-fit:contain; transition:opacity .5s ease;">
                     <source src="telegram-demo.mp4" type="video/mp4">
                 </video>
                 <figcaption style="background:var(--surface-hover);">I set up a bot to send me a summary of my app analytics every morning.</figcaption>
@@ -712,33 +712,6 @@
         </div>
     </div>
 
-    <script>
-        // Lazy-load videos: only start loading when they scroll into view
-        (function(){
-            var lazyVideos = document.querySelectorAll('video[data-lazy]');
-            if ('IntersectionObserver' in window) {
-                var observer = new IntersectionObserver(function(entries) {
-                    entries.forEach(function(entry) {
-                        if (entry.isIntersecting) {
-                            var video = entry.target;
-                            video.preload = 'auto';
-                            video.load();
-                            video.play();
-                            observer.unobserve(video);
-                        }
-                    });
-                }, { rootMargin: '200px' });
-                lazyVideos.forEach(function(video) { observer.observe(video); });
-            } else {
-                // Fallback: load all videos immediately
-                lazyVideos.forEach(function(video) {
-                    video.preload = 'auto';
-                    video.load();
-                    video.play();
-                });
-            }
-        })();
-    </script>
     <script src="../shared.js"></script>
 </body>
 </html>
