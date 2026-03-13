@@ -295,6 +295,161 @@
             margin-bottom:20px;
         }
 
+        .app-status{
+            margin-top:10px;
+            padding:12px 14px;
+            border-radius:var(--border-radius);
+            background:var(--surface-hover);
+            border:1px solid rgba(220,38,38,.12);
+            cursor:pointer;
+            position:relative;
+            overflow:hidden;
+            animation:borderPulseRed 2.5s ease-in-out infinite;
+            transition:animation .4s ease;
+        }
+
+        .app-status:hover{
+            animation:borderPulseGreen 2.5s ease-in-out infinite;
+        }
+
+        @keyframes borderPulseRed{
+            0%,100%{
+                border-color:rgba(220,38,38,.08);
+                box-shadow:0 0 6px rgba(220,38,38,.02), 0 0 1px rgba(220,38,38,.04);
+            }
+            50%{
+                border-color:rgba(220,38,38,.22);
+                box-shadow:0 0 12px rgba(220,38,38,.06), 0 0 2px rgba(220,38,38,.1);
+            }
+        }
+
+        [data-theme="dark"] .app-status{
+            animation-name:borderPulseRedDark;
+        }
+
+        [data-theme="dark"] .app-status:hover{
+            animation-name:borderPulseGreenDark;
+        }
+
+        @keyframes borderPulseRedDark{
+            0%,100%{
+                border-color:rgba(248,113,113,.06);
+                box-shadow:0 0 6px rgba(248,113,113,.02), 0 0 1px rgba(248,113,113,.03);
+            }
+            50%{
+                border-color:rgba(248,113,113,.2);
+                box-shadow:0 0 14px rgba(248,113,113,.06), 0 0 2px rgba(248,113,113,.08);
+            }
+        }
+
+        @keyframes borderPulseGreen{
+            0%,100%{
+                border-color:rgba(22,163,74,.08);
+                box-shadow:0 0 6px rgba(22,163,74,.02), 0 0 1px rgba(22,163,74,.04);
+            }
+            50%{
+                border-color:rgba(22,163,74,.22);
+                box-shadow:0 0 12px rgba(22,163,74,.06), 0 0 2px rgba(22,163,74,.1);
+            }
+        }
+
+        @keyframes borderPulseGreenDark{
+            0%,100%{
+                border-color:rgba(74,222,128,.06);
+                box-shadow:0 0 6px rgba(74,222,128,.02), 0 0 1px rgba(74,222,128,.03);
+            }
+            50%{
+                border-color:rgba(74,222,128,.2);
+                box-shadow:0 0 14px rgba(74,222,128,.06), 0 0 2px rgba(74,222,128,.08);
+            }
+        }
+
+        .app-status-content{
+            display:flex;
+            align-items:center;
+            gap:10px;
+            font-size:.9rem;
+            color:var(--text-secondary);
+        }
+
+        .app-status-label{
+            font-size:.7rem;
+            font-weight:600;
+            text-transform:uppercase;
+            letter-spacing:.06em;
+            margin-bottom:5px;
+            display:flex;
+            align-items:center;
+            gap:6px;
+            animation:labelPulse 2.5s ease-in-out infinite;
+        }
+
+        .app-status-bottleneck .app-status-label{ color:#dc2626; }
+        .app-status-solution .app-status-label{ color:#16a34a; }
+        [data-theme="dark"] .app-status-bottleneck .app-status-label{ color:#f87171; }
+        [data-theme="dark"] .app-status-solution .app-status-label{ color:#4ade80; }
+
+        @keyframes labelPulse{
+            0%,100%{ opacity:.6; }
+            50%{ opacity:1; }
+        }
+
+        .app-status-bottleneck{
+            transition:opacity .4s cubic-bezier(.4,0,.2,1), transform .4s cubic-bezier(.4,0,.2,1);
+        }
+
+        .app-status-solution{
+            position:absolute;
+            top:12px;
+            left:14px;
+            right:14px;
+            bottom:12px;
+            opacity:0;
+            transform:translateY(4px);
+            transition:opacity .4s cubic-bezier(.4,0,.2,1), transform .4s cubic-bezier(.4,0,.2,1);
+        }
+
+        .app-status:hover .app-status-bottleneck{
+            opacity:0;
+            transform:translateY(-4px);
+        }
+
+        .app-status:hover .app-status-solution{
+            opacity:1;
+            transform:translateY(0);
+        }
+
+        .status-dot{
+            width:7px;
+            height:7px;
+            border-radius:50%;
+            flex-shrink:0;
+            animation:dotPulse 2.5s ease-in-out infinite;
+        }
+
+        .status-dot-red{
+            background:#dc2626;
+            box-shadow:0 0 4px rgba(220,38,38,.3);
+        }
+        .status-dot-green{
+            background:#16a34a;
+            box-shadow:0 0 4px rgba(22,163,74,.3);
+        }
+        [data-theme="dark"] .status-dot-red{
+            background:#f87171;
+            box-shadow:0 0 6px rgba(248,113,113,.3);
+        }
+        [data-theme="dark"] .status-dot-green{
+            background:#4ade80;
+            box-shadow:0 0 6px rgba(74,222,128,.3);
+        }
+
+        @keyframes dotPulse{
+            0%,100%{ opacity:.4; transform:scale(1); }
+            50%{ opacity:1; transform:scale(1.3); }
+        }
+
+
         .app-updates{
             margin-top:8px;
             padding:14px 14px 12px;
@@ -506,9 +661,10 @@
             <img src="../../images/logo.png" alt="Mitch Koko logo" class="logo" />
             <div class="header-text">
                 <a href="../" class="home-link">&larr; Back to episodes</a>
-                <h1>Road to $1k/mo<span style="font-weight:400; color:var(--text-muted); font-size:.5em; margin-left:8px;">26 Feb 2026</span></h1>
+                <h1>Road to $1k/mo<span style="font-weight:400; color:var(--text-muted); font-size:.5em; margin-left:8px;">Episode 3 · 26 Feb 2026</span></h1>
                 <div class="episode-meta">
-                    <span class="pill">&#x1F4B0; $18 / mo</span>
+                    <span class="pill">&#x1F977;&#x1F3FD; Mitch Koko</span>
+                    <span class="pill">&#x1F4B0; $19 / mo</span>
                     <a href="https://ritualz.app" target="_blank" rel="noopener noreferrer" class="pill">&#x1F525; Ritualz</a>
                     <a href="https://expensif.app" target="_blank" rel="noopener noreferrer" class="pill">&#x1F4B3; Expensif</a>
                     <a href="https://tuteee.app" target="_blank" rel="noopener noreferrer" class="pill">&#x1F4AC; Tuteee</a>
@@ -518,8 +674,18 @@
         </header>
 
         <main class="episode-body">
+
+            <!-- THUMBNAIL -->
+
+            <figure class="episode-image" style="margin-top:0; border:none; box-shadow:none; background:transparent;">
+                <img class="theme-img-light" src="thumbnail/thumb-light.png" alt="Road to $1k/mo - Episode 3 thumbnail" style="border-radius:var(--border-radius-lg);">
+                <img class="theme-img-dark" src="thumbnail/thumb-dark.png" alt="Road to $1k/mo - Episode 3 thumbnail" style="border-radius:var(--border-radius-lg);">
+            </figure>
+
+            <!-- INTRO -->
+
             <p class="intro-highlight">
-                $1k MRR is the goal. These are the 4 apps I'm focusing on moving forward.
+                Three months ago I started this road to $1k series where my app was making $8 a month. Now the revenue is $19 a month and I've released a few more apps. The goal is to make at least $1k per month from these apps and I'm currently focusing on these 4 moving forward.
             </p>
 
             <div class="image-row" style="grid-template-columns:repeat(4, 1fr);">
@@ -549,11 +715,13 @@
                 </figure>
             </div>
 
-            <!-- MRR -->
+            <p>I built all of them with Flutter for cross-platform, but I also write native Swift and Kotlin for things like home screen widgets. <a href="https://supabase.com" target="_blank" rel="noopener noreferrer">Supabase</a> is my backend. I buy all my domains from <a href="https://porkbun.com" target="_blank" rel="noopener noreferrer">Porkbun</a>  - simple and cheap  - and each app has its own landing page.</p>
 
-            <h2>&#x1F4B0; MRR <span style="font-weight:400; font-size:.8em; color:var(--text-muted);"> $18 / mo</span></h2>
+            <!-- MRR & MONETISATION -->
 
-            <p>This revenue is mostly from <a href="https://ritualz.app" target="_blank" rel="noopener noreferrer">Ritualz</a> and <a href="https://expensif.app" target="_blank" rel="noopener noreferrer">Expensif</a> since they currently have the most users but both of these apps have limited monetisation potential. Recently I released <a href="https://tuteee.app" target="_blank" rel="noopener noreferrer">Tuteee</a> and <a href="https://blinkbattle.gg" target="_blank" rel="noopener noreferrer">Blink Battle</a> which both have the potential for higher engagement and better monetisation. I need to focus on marketing and distribution particularly for my newer apps.</p>
+            <h2>&#x1F4B0; MRR <span style="font-weight:400; font-size:.8em; color:var(--text-muted);"> $19 / mo</span></h2>
+
+            <p>The revenue right now is mostly coming from <a href="https://ritualz.app" target="_blank" rel="noopener noreferrer">Ritualz</a> and <a href="https://expensif.app" target="_blank" rel="noopener noreferrer">Expensif</a> since they've been out the longest and have the most users. But I actually think <a href="https://tuteee.app" target="_blank" rel="noopener noreferrer">Tuteee</a> and <a href="https://blinkbattle.gg" target="_blank" rel="noopener noreferrer">Blink Battle</a> have higher potential for monetisation  - they're just new so I need to get them in front of more people.</p>
 
             <div class="image-row" style="grid-template-columns:repeat(4, 1fr);">
                 <figure class="episode-image" style="border-radius:8px;">
@@ -578,15 +746,22 @@
                 </figure>
             </div>
 
-            <!-- THE APPS -->
+            <p>The monetisation model is something I've been thinking a lot about. I use <a href="https://www.revenuecat.com" target="_blank" rel="noopener noreferrer">RevenueCat</a> for managing all the subscriptions and one-time payments across both app stores, and Google <a href="https://admob.google.com" target="_blank" rel="noopener noreferrer">AdMob</a> for reward ads. And the basic flow I've been testing is  - you give the user the full app for free, let them use it, let them get invested. And then at a natural point they hit a wall. When they hit that wall a dialog box pops up with two options: watch a reward ad, or pay to remove that friction. That way even free users generate revenue and the ones who love the app convert to paying over time.</p>
 
+            <!-- BLINK BATTLE -->
 
             <div class="app-card">
                 <h2>&#x1F3AE; <a href="https://blinkbattle.gg" target="_blank" rel="noopener noreferrer">Blink Battle</a> <span style="font-weight:400; font-size:.8em; color:var(--text-muted);">Game</span></h2>
-                <p>Released a mobile game this month. Inspired by my favourite childhood game, Starcraft.</p>
-                <div class="app-updates">
-                    <div class="app-updates-title">Notes</div>
-                    <p>Just released this month. I really wanted to test out in-app one-time payments for games, things like buying extra lives. The concept of buying digital goods is interesting. Currently, the biggest problem is the difficulty - users can't get past level 2. Need to make it easier and more rewarding early on.</p>
+                <p>In <a href="https://blinkbattle.gg" target="_blank" rel="noopener noreferrer">Blink Battle</a>, you get 5 lives. Once you're out, you watch an ad for 5 more lives or buy them as a one-time purchase. This game is inspired by Starcraft which was my favourite game growing up. Took me a couple days to build and get on the app store. And I reckon this same game would've taken me months at least. Months of extremely hard work.</p>
+                <div class="app-status">
+                    <div class="app-status-bottleneck">
+                        <div class="app-status-label"><span class="status-dot status-dot-red"></span> Bottleneck</div>
+                        <div class="app-status-content">Difficulty curve. Users can't get past level 2.</div>
+                    </div>
+                    <div class="app-status-solution">
+                        <div class="app-status-label"><span class="status-dot status-dot-green"></span> Solution</div>
+                        <div class="app-status-content">Make the game easier and more rewarding early on.</div>
+                    </div>
                 </div>
                 <div class="image-row">
                     <figure class="episode-image" style="background:var(--bg);">
@@ -603,14 +778,21 @@
                 </div>
             </div>
 
-
+            <!-- TUTEEE -->
 
             <div class="app-card">
                 <h2>&#x1F4AC; <a href="https://tuteee.app" target="_blank" rel="noopener noreferrer">Tuteee</a> <span style="font-weight:400; font-size:.8em; color:var(--text-muted);">AI Math Tutor</span></h2>
-                <p>This is a personal AI tutor that gamifies education.</p>
-                <div class="app-updates">
-                    <div class="app-updates-title">Notes</div>
-                    <p>Released last month and have been refining it since - it's now robust and ready for more users. Main challenge is making the AI tutor feel interactive, not just a chatbot. Added graph input so users can draw and input graphs directly. Next step is getting it in front of actual students and watching how they use it.</p>
+                <p>In <a href="https://tuteee.app" target="_blank" rel="noopener noreferrer">Tuteee</a>, after 10 messages with the AI tutor you hit the wall. You've been learning, you're in the middle of a problem, you're invested. So you either watch an ad to keep going or subscribe for pro. This is the app I'm most excited about. I've been refining it since last month  - added graph input so users can draw and plot graphs directly, made the AI smarter at tracking what the student knows.</p>
+                <p>And it's funny because right after I built that graph input, Claude released interactive charts as a feature. Which is amazing but it makes you think about moats. Like what is the actual problem I'm solving and what edge do I have. AI is getting so good so fast that maybe all of this gets replaced eventually. I don't know.</p>
+                <div class="app-status">
+                    <div class="app-status-bottleneck">
+                        <div class="app-status-label"><span class="status-dot status-dot-red"></span> Bottleneck</div>
+                        <div class="app-status-content">Distribution. Need to get it in front of actual students.</div>
+                    </div>
+                    <div class="app-status-solution">
+                        <div class="app-status-label"><span class="status-dot status-dot-green"></span> Solution</div>
+                        <div class="app-status-content">Reach out through school groups and study communities.</div>
+                    </div>
                 </div>
                 <div class="image-row">
                     <figure class="episode-image" style="background:var(--bg);">
@@ -627,38 +809,20 @@
                 </div>
             </div>
 
-
-
-            <div class="app-card">
-                <h2>&#x1F4B3; <a href="https://expensif.app" target="_blank" rel="noopener noreferrer">Expensif</a> <span style="font-weight:400; font-size:.8em; color:var(--text-muted);">Personal Finance</span></h2>
-                <p>Premium UI with overview grids and graphs. Smart CSV import for any bank data.</p>
-                <div class="app-updates">
-                    <div class="app-updates-title">Notes</div>
-                    <p>Main challenge is making the app useful enough to justify a subscription. Expanded to full income + expense tracking and built a smart CSV import using the Claude API to handle any bank format. App is solid now, just need to get it in front of more people.</p>
-                </div>
-                <div class="image-row">
-                    <figure class="episode-image" style="background:var(--bg);">
-                        <video autoplay loop muted playsinline poster="posters/expensif.png" style="width:100%; object-fit:contain;">
-                            <source src="videos/expensif_demo.mp4" type="video/mp4">
-                        </video>
-                        <figcaption style="background:var(--surface-hover);"><a href="https://expensif.app" target="_blank" rel="noopener noreferrer">Expensif App</a></figcaption>
-                    </figure>
-                    <figure class="episode-image" style="border-radius:8px;">
-                        <img class="theme-img-light" src="analytics/expensif_light.png" alt="Expensif analytics" loading="lazy">
-                        <img class="theme-img-dark" src="analytics/expensif_dark.png" alt="Expensif analytics" loading="lazy">
-                        <figcaption>Analytics</figcaption>
-                    </figure>
-                </div>
-            </div>
-
-
+            <!-- RITUALZ -->
 
             <div class="app-card">
-                <h2>&#x1F525; <a href="https://ritualz.app" target="_blank" rel="noopener noreferrer">Ritualz</a> <span style="font-weight:400; font-size:.8em; color:var(--text-muted);">Minimal Habit Tracker</span></h2>
-                <p>Beautiful heatmap to visualise your habits, plus home screen widgets.</p>
-                <div class="app-updates">
-                    <div class="app-updates-title">Notes</div>
-                    <p>This was my very first real app. Biggest challenge is getting organic growth through a social/viral loop. Added group habits (share via code), streak leaderboard, and heatmap image sharing. Now I need to update the landing page and actually market these features.</p>
+                <h2>&#x1F525; <a href="https://ritualz.app" target="_blank" rel="noopener noreferrer">Ritualz</a> <span style="font-weight:400; font-size:.8em; color:var(--text-muted);">Habit Tracker</span></h2>
+                <p>My first real app and where most of the revenue is coming from. Added group habits and a streak leaderboard this month.</p>
+                <div class="app-status">
+                    <div class="app-status-bottleneck">
+                        <div class="app-status-label"><span class="status-dot status-dot-red"></span> Bottleneck</div>
+                        <div class="app-status-content">Organic growth. Need social features to drive a viral loop.</div>
+                    </div>
+                    <div class="app-status-solution">
+                        <div class="app-status-label"><span class="status-dot status-dot-green"></span> Solution</div>
+                        <div class="app-status-content">Market the group habits and leaderboard features.</div>
+                    </div>
                 </div>
                 <div class="image-row">
                     <figure class="episode-image" style="background:var(--bg);">
@@ -675,13 +839,47 @@
                 </div>
             </div>
 
+            <!-- EXPENSIF -->
 
+            <div class="app-card">
+                <h2>&#x1F4B3; <a href="https://expensif.app" target="_blank" rel="noopener noreferrer">Expensif</a> <span style="font-weight:400; font-size:.8em; color:var(--text-muted);">Personal Finance</span></h2>
+                <p>Built a smart CSV import using the <a href="https://claude.ai" target="_blank" rel="noopener noreferrer">Claude API</a> that handles any bank format. App is solid now.</p>
+                <div class="app-status">
+                    <div class="app-status-bottleneck">
+                        <div class="app-status-label"><span class="status-dot status-dot-red"></span> Bottleneck</div>
+                        <div class="app-status-content">Users. Need to get it in front of more people.</div>
+                    </div>
+                    <div class="app-status-solution">
+                        <div class="app-status-label"><span class="status-dot status-dot-green"></span> Solution</div>
+                        <div class="app-status-content">Create content showing the CSV import and premium features.</div>
+                    </div>
+                </div>
+                <div class="image-row">
+                    <figure class="episode-image" style="background:var(--bg);">
+                        <video autoplay loop muted playsinline poster="posters/expensif.png" style="width:100%; object-fit:contain;">
+                            <source src="videos/expensif_demo.mp4" type="video/mp4">
+                        </video>
+                        <figcaption style="background:var(--surface-hover);"><a href="https://expensif.app" target="_blank" rel="noopener noreferrer">Expensif App</a></figcaption>
+                    </figure>
+                    <figure class="episode-image" style="border-radius:8px;">
+                        <img class="theme-img-light" src="analytics/expensif_light.png" alt="Expensif analytics" loading="lazy">
+                        <img class="theme-img-dark" src="analytics/expensif_dark.png" alt="Expensif analytics" loading="lazy">
+                        <figcaption>Analytics</figcaption>
+                    </figure>
+                </div>
+            </div>
+
+            <!-- AI & WHAT'S NEXT -->
+
+            <h2>What's Next</h2>
+
+            <p>$19 a month, month 3. Growing slowly. I've been spending most of my time building and not enough time getting these apps in front of people. So next month I want to flip that. Fix the difficulty in Blink Battle, push Tuteee to actual students, and start making more content around the apps themselves.</p>
 
             <figure class="episode-image" style="background:var(--bg);">
                 <video id="telegram-video" autoplay loop muted playsinline poster="posters/telegram.png" style="width:100%; object-fit:contain; transition:opacity .5s ease;">
                     <source src="videos/telegram_demo.mp4" type="video/mp4">
                 </video>
-                <figcaption style="background:var(--surface-hover);">I set up a bot to send me a summary of my app analytics every morning.</figcaption>
+                <figcaption style="background:var(--surface-hover);">I set up a Telegram bot to send me a summary of my app analytics every morning. You can just build things now.</figcaption>
             </figure>
             <script>
                 (function(){
@@ -695,16 +893,21 @@
                 })();
             </script>
 
-            <!-- WHAT'S NEXT -->
+            <p>But honestly the thing I keep coming back to is just how fast everything is moving. AI is getting better literally every day at this point. Building and releasing an app used to take me months or even years. Now I can do it in days. And it's changing what the job even is  - I'm becoming more of a product person now, thinking about taste and design and what's actually worth making, because the coding part isn't really the bottleneck anymore. It's really more about solving a real problem.</p>
 
-            <h2>What's Next</h2>
-            <p>All 4 apps are in a good place. The bottleneck is users and retention, not features. Time to shift to marketing and distribution.</p>
+            <p>I've actually never had this much fun coding and building things. I genuinely don't know where this is all going. But I can't stop using it, it's helping me so much.</p>
+
             <div class="divider"></div>
-            <p>If you're reading this.. download the apps below!</p>
+            <p>Download the apps below and let me know what you think  - good or bad. Especially bad. That's how I learn and make these apps better.</p>
+
+            <figure class="episode-image" style="margin:20px 0 0; border:none; box-shadow:none; background:transparent;">
+                <img class="theme-img-light" src="thumbnail/thumb-alt.png" alt="Road to $1k/mo - Episode 3 alt thumbnail" style="border-radius:var(--border-radius-lg);" loading="lazy">
+                <img class="theme-img-dark" src="thumbnail/thumb-alt-dark.png" alt="Road to $1k/mo - Episode 3 alt thumbnail" style="border-radius:var(--border-radius-lg);" loading="lazy">
+            </figure>
 
         </main>
 
-        <div class="episode-meta" style="justify-content:center; margin-top:20px; padding-bottom:24px;">
+        <div class="episode-meta" style="justify-content:center; margin-top:20px; padding-bottom:40px;">
             <a href="https://ritualz.app" target="_blank" rel="noopener noreferrer" class="pill">&#x1F525; Ritualz</a>
             <a href="https://expensif.app" target="_blank" rel="noopener noreferrer" class="pill">&#x1F4B3; Expensif</a>
             <a href="https://tuteee.app" target="_blank" rel="noopener noreferrer" class="pill">&#x1F4AC; Tuteee</a>
